@@ -12,10 +12,10 @@ namespace ByteDev.DotNet
             if(xDocument == null)
                 throw new ArgumentNullException(nameof(xDocument));
 
-            TargetFramework = GetTargetFrameworkElement(xDocument).Value;
+            ProjectTarget = new DotNetProjectTarget(GetTargetFrameworkElement(xDocument).Value);
         }
 
-        public string TargetFramework { get; set; }
+        public DotNetProjectTarget ProjectTarget { get; }
 
         private static IEnumerable<XElement> GetPropertyGroups(XDocument xDocument)
         {

@@ -17,7 +17,7 @@ namespace ByteDev.DotNet.IntTests
 
             var sut = new DotNetProject(xDocument);
 
-            Assert.That(sut.TargetFramework, Is.EqualTo("netstandard2.0"));
+            Assert.That(sut.ProjectTarget.TargetValue, Is.EqualTo("netstandard2.0"));
         }
 
         [Test]
@@ -27,7 +27,7 @@ namespace ByteDev.DotNet.IntTests
 
             var sut = new DotNetProject(xDocument);
 
-            Assert.That(sut.TargetFramework, Is.EqualTo("netcoreapp2.1"));
+            Assert.That(sut.ProjectTarget.TargetValue, Is.EqualTo("netcoreapp2.1"));
         }
 
         [Test]
@@ -37,7 +37,7 @@ namespace ByteDev.DotNet.IntTests
 
             var sut = new DotNetProject(xDocument);
 
-            Assert.That(sut.TargetFramework, Is.EqualTo("v4.6.2"));
+            Assert.That(sut.ProjectTarget.TargetValue, Is.EqualTo("v4.6.2"));
         }
     }
 }
