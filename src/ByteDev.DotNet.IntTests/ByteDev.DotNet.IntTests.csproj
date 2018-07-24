@@ -15,6 +15,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="TestProjs\framework462.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="TestProjs\std20.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

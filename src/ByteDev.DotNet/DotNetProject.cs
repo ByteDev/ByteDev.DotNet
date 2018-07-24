@@ -19,10 +19,10 @@ namespace ByteDev.DotNet
 
         private static IEnumerable<XElement> GetPropertyGroups(XDocument xDocument)
         {
-            var propertyGroups = xDocument.Root?.Elements("PropertyGroup");
+            var propertyGroups = xDocument.Root?.Descendants().Where(d => d.Name.LocalName == "PropertyGroup");
 
-            if (propertyGroups == null)
-                throw new InvalidDotNetProjectException("Project document contains no PropertyGroup.");
+            if (propertyGroups == null || !propertyGroups.Any())
+                throw new InvalidDotNetProjectException("Project document contains no PropertyGroup elements.");
 
             return propertyGroups;
         }
@@ -31,7 +31,16 @@ namespace ByteDev.DotNet
         {
             var propertyGroups = GetPropertyGroups(xDocument);
 
-            var targetFrameworkElement = propertyGroups.Single(pg => pg.Element("TargetFramework") != null).Element("TargetFramework");
+            // .NET Core / Standard
+            var targetFrameworkElement = propertyGroups.SingleOrDefault(pg => pg.Elements().SingleOrDefault()?.Name.LocalName == "TargetFramework")?
+                .Elements().SingleOrDefault(pg => pg.Name.LocalName == "TargetFramework");
+
+            if (targetFrameworkElement == null)
+            {
+                // .NET Framework
+                targetFrameworkElement = propertyGroups.SingleOrDefault(pg => pg.Elements().SingleOrDefault()?.Name.LocalName == "TargetFrameworkVersion")?
+                    .Elements().SingleOrDefault(pg => pg.Name.LocalName == "TargetFrameworkVersion");
+            }
 
             if (targetFrameworkElement == null)
                 throw new InvalidDotNetProjectException("Project document contains no TargetFramework.");
