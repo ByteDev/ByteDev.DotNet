@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using ByteDev.DotNet.Project;
+using NUnit.Framework;
 
 namespace ByteDev.DotNet.UnitTests
 {

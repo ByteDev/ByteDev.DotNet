@@ -1,4 +1,4 @@
-﻿namespace ByteDev.DotNet
+﻿namespace ByteDev.DotNet.Project
 {
     public enum TargetType
     {

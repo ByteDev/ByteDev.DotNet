@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace ByteDev.DotNet
+namespace ByteDev.DotNet.Project
 {
     internal static class TargetValueExtensions
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace ByteDev.DotNet
+namespace ByteDev.DotNet.Project
 {
     [Serializable]
     public class InvalidDotNetProjectException : Exception

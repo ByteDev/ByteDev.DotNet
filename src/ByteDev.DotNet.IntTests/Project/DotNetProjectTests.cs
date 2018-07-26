@@ -1,7 +1,7 @@
 ﻿using System.Xml.Linq;
 using NUnit.Framework;
 
-namespace ByteDev.DotNet.IntTests
+namespace ByteDev.DotNet.IntTests.Project
 {
     [TestFixture]
     public class DotNetProjectTests
