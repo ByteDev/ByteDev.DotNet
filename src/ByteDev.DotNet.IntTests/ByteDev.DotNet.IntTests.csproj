@@ -15,13 +15,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="TestProjs\core21.xml">
+    <None Update="Project\TestProjs\core21.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="TestProjs\framework462.xml">
+    <None Update="Project\TestProjs\framework462.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="TestProjs\std20.xml">
+    <None Update="Project\TestProjs\std20.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Solution\TestSlns\sln-v12.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

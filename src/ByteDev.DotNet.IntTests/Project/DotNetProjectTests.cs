@@ -6,9 +6,9 @@ namespace ByteDev.DotNet.IntTests.Project
     [TestFixture]
     public class DotNetProjectTests
     {
-        private const string TestProjStd20 = @"TestProjs\std20.xml";
-        private const string TestProjCore21 = @"TestProjs\core21.xml";
-        private const string TestProjFramework462 = @"TestProjs\framework462.xml";
+        private const string TestProjStd20 = @"Project\TestProjs\std20.xml";
+        private const string TestProjCore21 = @"Project\TestProjs\core21.xml";
+        private const string TestProjFramework462 = @"Project\TestProjs\framework462.xml";
 
         [Test]
         public void WhenProjectXmlIsStandard_ThenReturnTargetFramework()
