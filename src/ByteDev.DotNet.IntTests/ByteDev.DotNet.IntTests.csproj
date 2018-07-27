@@ -24,6 +24,9 @@
     <None Update="Project\TestProjs\std20.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Solution\TestSlns\sln-v12-0projs.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Solution\TestSlns\sln-v12.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
