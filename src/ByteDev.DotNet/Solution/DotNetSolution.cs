@@ -9,10 +9,10 @@ namespace ByteDev.DotNet.Solution
     {
         public DotNetSolution(string slnText)
         {
-            FormatVersion = GetFormatVersion(slnText);
-            VisualStudioVersion = GetVisualStudioVersion(slnText);
-            MinimumVisualStudioVersion = GetMinimumVisualStudioVersion(slnText);
-            Projects = GetProjects(slnText);
+            FormatVersion = ParseFormatVersion(slnText);
+            VisualStudioVersion = ParseVisualStudioVersion(slnText);
+            MinimumVisualStudioVersion = ParseMinimumVisualStudioVersion(slnText);
+            Projects = ParseProjects(slnText);
         }
 
         public double FormatVersion { get; }
@@ -23,31 +23,38 @@ namespace ByteDev.DotNet.Solution
 
         public IEnumerable<DotNetSolutionProject> Projects { get; }
 
-        private static double GetFormatVersion(string slnText)
+        private static double ParseFormatVersion(string slnText)
         {
-            return double.Parse(Regex.Match(slnText, "[\r\n]?Microsoft Visual Studio Solution File, Format Version ([0-9.]+)", RegexOptions.Multiline).Groups[1].Value, CultureInfo.InvariantCulture);
+            try
+            {
+                return double.Parse(Regex.Match(slnText, "[\r\n]?Microsoft Visual Studio Solution File, Format Version ([0-9.]+)", RegexOptions.Multiline).Groups[1].Value, CultureInfo.InvariantCulture);
+            }
+            catch (FormatException fe)
+            {
+                throw new InvalidDotNetSolutionException("A valid Format Version could not be found in the sln text.", fe);
+            }
         }
 
-        private static string GetVisualStudioVersion(string slnText)
+        private static string ParseVisualStudioVersion(string slnText)
         {
             const string marker = "VisualStudioVersion = ";
 
             return Regex.Match(slnText, "^" + marker + "([0-9.]+)", RegexOptions.Multiline).Value.Substring(marker.Length);
         }
 
-        private string GetMinimumVisualStudioVersion(string slnText)
+        private static string ParseMinimumVisualStudioVersion(string slnText)
         {
             const string marker = "MinimumVisualStudioVersion = ";
 
             return Regex.Match(slnText, "^" + marker + "([0-9.]+)", RegexOptions.Multiline).Value.Substring(marker.Length);
         }
 
-        private IEnumerable<DotNetSolutionProject> GetProjects(string slnText)
+        private static IEnumerable<DotNetSolutionProject> ParseProjects(string slnText)
         {
-            const string pattern = "^Project\\(\"{(?<HostId>[A-F0-9-]+)}\"\\) = " +
+            const string pattern = "^Project\\(\"{(?<TypeId>[A-F0-9-]+)}\"\\) = " +
                 "\"(?<Name>.*?)\", " +
                 "\"(?<Path>.*?)\", " +
-                "\"{(?<TypeId>[A-F0-9-]+)}\"";
+                "\"{(?<Id>[A-F0-9-]+)}\"";
 
             var matches = Regex.Matches(slnText, pattern, RegexOptions.Multiline);
 
@@ -55,29 +62,21 @@ namespace ByteDev.DotNet.Solution
 
             foreach (Match match in matches)
             {
-                var proj = new DotNetSolutionProject
-                {
-                    HostId = new Guid(match.Groups[1].Value),
-                    Name = match.Groups[2].Value,
-                    Path = match.Groups[3].Value,
-                    TypeId = new Guid(match.Groups[4].Value)
-                };
-
-                list.Add(proj);
+                list.Add(CreateDotNetSolutionProject(match));
             }
 
             return list;
         }
-    }
 
-    // TODO: check proper names for properties
-    // TODO: check better way to get values (by name?)
-
-    public class DotNetSolutionProject
-    {
-        public Guid HostId { get; set; }       
-        public string Name { get; set; }
-        public string Path { get; set; }
-        public Guid TypeId { get; set; }       
+        private static DotNetSolutionProject CreateDotNetSolutionProject(Match match)
+        {
+            return new DotNetSolutionProject
+            {
+                TypeId = new Guid(match.Groups[1].Value),
+                Name = match.Groups[2].Value,
+                Path = match.Groups[3].Value,
+                Id = new Guid(match.Groups[4].Value)
+            };
+        }
     }
 }
