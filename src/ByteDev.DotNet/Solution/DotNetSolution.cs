@@ -9,6 +9,9 @@ namespace ByteDev.DotNet.Solution
     {
         public DotNetSolution(string slnText)
         {
+            if(string.IsNullOrEmpty(slnText))
+                throw new ArgumentException("Sln text was null or empty.", nameof(slnText));
+
             FormatVersion = ParseFormatVersion(slnText);
             VisualStudioVersion = ParseVisualStudioVersion(slnText);
             MinimumVisualStudioVersion = ParseMinimumVisualStudioVersion(slnText);
@@ -39,14 +42,28 @@ namespace ByteDev.DotNet.Solution
         {
             const string marker = "VisualStudioVersion = ";
 
-            return Regex.Match(slnText, "^" + marker + "([0-9.]+)", RegexOptions.Multiline).Value.Substring(marker.Length);
+            try
+            {
+                return Regex.Match(slnText, "^" + marker + "([0-9.]+)", RegexOptions.Multiline).Value.Substring(marker.Length);
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidDotNetSolutionException("A valid Visual Studio Version could not be found in the sln text.", ex);                
+            }
         }
 
         private static string ParseMinimumVisualStudioVersion(string slnText)
         {
             const string marker = "MinimumVisualStudioVersion = ";
 
-            return Regex.Match(slnText, "^" + marker + "([0-9.]+)", RegexOptions.Multiline).Value.Substring(marker.Length);
+            try
+            {
+                return Regex.Match(slnText, "^" + marker + "([0-9.]+)", RegexOptions.Multiline).Value.Substring(marker.Length);
+            }
+            catch (Exception ex)
+            {
+                throw new InvalidDotNetSolutionException("A valid Minimum Visual Studio Version could not be found in the sln text.", ex);
+            }
         }
 
         private static IEnumerable<DotNetSolutionProject> ParseProjects(string slnText)

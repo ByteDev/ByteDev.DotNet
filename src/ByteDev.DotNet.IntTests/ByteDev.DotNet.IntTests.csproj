@@ -27,6 +27,12 @@
     <None Update="Solution\TestSlns\sln-no-formatversion.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Solution\TestSlns\sln-no-minvsversion.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Solution\TestSlns\sln-no-vsversion.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Solution\TestSlns\sln-v12-0projs.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
