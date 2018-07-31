@@ -1,7 +1,7 @@
 ﻿using ByteDev.DotNet.Project;
 using NUnit.Framework;
 
-namespace ByteDev.DotNet.UnitTests
+namespace ByteDev.DotNet.UnitTests.Project
 {
     [TestFixture]
     public class DotNetProjectTargetTests

@@ -1,7 +1,6 @@
 ﻿using System;
-using ByteDev.DotNet.Project;
 
-namespace ByteDev.DotNet
+namespace ByteDev.DotNet.Project
 {
     public class DotNetProjectTarget
     {

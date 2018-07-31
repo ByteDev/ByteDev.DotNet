@@ -1,4 +1,5 @@
 ﻿using System.Xml.Linq;
+using ByteDev.DotNet.Project;
 using NUnit.Framework;
 
 namespace ByteDev.DotNet.IntTests.Project

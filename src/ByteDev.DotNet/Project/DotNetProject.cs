@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
-using ByteDev.DotNet.Project;
 
-namespace ByteDev.DotNet
+namespace ByteDev.DotNet.Project
 {
     public class DotNetProject
     {
