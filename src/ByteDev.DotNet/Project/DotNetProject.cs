@@ -17,6 +17,8 @@ namespace ByteDev.DotNet.Project
 
         public DotNetProjectTarget ProjectTarget { get; }
 
+        public ProjectFormat Format { get; private set; }
+
         private static IEnumerable<XElement> GetPropertyGroups(XDocument xDocument)
         {
             var propertyGroups = xDocument.Root?.Descendants().Where(d => d.Name.LocalName == "PropertyGroup");
@@ -27,25 +29,44 @@ namespace ByteDev.DotNet.Project
             return propertyGroups;
         }
 
-        private static XElement GetTargetFrameworkElement(XDocument xDocument)
+        private XElement GetTargetFrameworkElement(XDocument xDocument)
         {
             var propertyGroups = GetPropertyGroups(xDocument);
 
-            // .NET Core / Standard
-            var targetFrameworkElement = propertyGroups.SingleOrDefault(pg => pg.Elements().SingleOrDefault()?.Name.LocalName == "TargetFramework")?
-                .Elements().SingleOrDefault(pg => pg.Name.LocalName == "TargetFramework");
+            var targetFrameworkElement = GetOldStyleTargetFrameworkElement(propertyGroups);
 
             if (targetFrameworkElement == null)
             {
-                // .NET Framework
-                targetFrameworkElement = propertyGroups.SingleOrDefault(pg => pg.Elements().SingleOrDefault()?.Name.LocalName == "TargetFrameworkVersion")?
-                    .Elements().SingleOrDefault(pg => pg.Name.LocalName == "TargetFrameworkVersion");
+                targetFrameworkElement = GetNewStyleTargetFrameworkElement(propertyGroups);
+                Format = ProjectFormat.New;
+            }
+            else
+            {
+                Format = ProjectFormat.Old;
             }
 
             if (targetFrameworkElement == null)
                 throw new InvalidDotNetProjectException("Project document contains no TargetFramework.");
 
             return targetFrameworkElement;
+        }
+
+        private static XElement GetNewStyleTargetFrameworkElement(IEnumerable<XElement> propertyGroups)
+        {
+            const string name = "TargetFramework";
+
+            return propertyGroups.SingleOrDefault(pg => pg.Elements().SingleOrDefault()?.Name.LocalName == name)?
+                .Elements()
+                .SingleOrDefault(pg => pg.Name.LocalName == name);
+        }
+
+        private static XElement GetOldStyleTargetFrameworkElement(IEnumerable<XElement> propertyGroups)
+        {
+            const string name = "TargetFrameworkVersion";
+
+            return propertyGroups.SingleOrDefault(pg => pg.Elements().SingleOrDefault()?.Name.LocalName == name)?
+                .Elements()
+                .SingleOrDefault(pg => pg.Name.LocalName == name);
         }
     }
 }

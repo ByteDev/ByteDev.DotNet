@@ -47,5 +47,10 @@ namespace ByteDev.DotNet.Project
 
             throw new InvalidDotNetProjectException($"Could not determine version from '{targetValue}'.");
         }
+
+        public override string ToString()
+        {
+            return TargetValue;
+        }
     }
 }

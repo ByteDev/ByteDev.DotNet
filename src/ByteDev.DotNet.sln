@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ByteDev.DotNet.IntTests", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ByteDev.DotNet", "ByteDev.DotNet\ByteDev.DotNet.csproj", "{321736A6-AE48-46F1-89E5-074D6C105E66}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ByteDev.DotNet.UnitTests", "ByteDev.DotNet.UnitTests\ByteDev.DotNet.UnitTests.csproj", "{34D79A1C-6035-486F-B885-FEEF1DB6632A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ByteDev.DotNet.UnitTests", "ByteDev.DotNet.UnitTests\ByteDev.DotNet.UnitTests.csproj", "{34D79A1C-6035-486F-B885-FEEF1DB6632A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
