@@ -77,3 +77,9 @@ packages/
 .vs/
 
 !lib/**
+
+# Cake build
+build/tools/**
+!build/
+!build/tools/packages.config
+artifacts/**
