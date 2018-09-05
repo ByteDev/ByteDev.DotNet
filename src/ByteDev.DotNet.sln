@@ -11,6 +11,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ByteDev.DotNet", "ByteDev.D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ByteDev.DotNet.UnitTests", "ByteDev.DotNet.UnitTests\ByteDev.DotNet.UnitTests.csproj", "{34D79A1C-6035-486F-B885-FEEF1DB6632A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{149381AE-C5AB-4612-9C36-CDF26E47FDB3}"
+	ProjectSection(SolutionItems) = preProject
+		..\README.md = ..\README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{35D16047-687A-4B92-A1BE-605B0E2DAC40}"
+	ProjectSection(SolutionItems) = preProject
+		..\build\build.cake = ..\build\build.cake
+		..\build\nuget-publish.ps1 = ..\build\nuget-publish.ps1
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
