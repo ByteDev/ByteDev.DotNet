@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
+using ByteDev.DotNet.Project.Parsers;
 
 namespace ByteDev.DotNet.Project
 {
@@ -19,25 +20,15 @@ namespace ByteDev.DotNet.Project
 
         public ProjectFormat Format { get; private set; }
 
-        private static IEnumerable<XElement> GetPropertyGroups(XDocument xDocument)
-        {
-            var propertyGroups = xDocument.Root?.Descendants().Where(d => d.Name.LocalName == "PropertyGroup");
-
-            if (propertyGroups == null || !propertyGroups.Any())
-                throw new InvalidDotNetProjectException("Project document contains no PropertyGroup elements.");
-
-            return propertyGroups;
-        }
-
         private XElement GetTargetFrameworkElement(XDocument xDocument)
         {
             var propertyGroups = GetPropertyGroups(xDocument);
 
-            var targetFrameworkElement = GetOldStyleTargetFrameworkElement(propertyGroups);
+            var targetFrameworkElement = PropertyGroupXmlParser.GetOldStyleTargetFrameworkElement(propertyGroups);
 
             if (targetFrameworkElement == null)
             {
-                targetFrameworkElement = GetNewStyleTargetFrameworkElement(propertyGroups);
+                targetFrameworkElement = PropertyGroupXmlParser.GetNewStyleTargetFrameworkElement(propertyGroups);
                 Format = ProjectFormat.New;
             }
             else
@@ -51,22 +42,14 @@ namespace ByteDev.DotNet.Project
             return targetFrameworkElement;
         }
 
-        private static XElement GetNewStyleTargetFrameworkElement(IEnumerable<XElement> propertyGroups)
+        private static IList<XElement> GetPropertyGroups(XDocument xDocument)
         {
-            const string name = "TargetFramework";
+            var propertyGroups = ProjectXmlParser.GetPropertyGroups(xDocument)?.ToList();
 
-            return propertyGroups.SingleOrDefault(pg => pg.Elements().SingleOrDefault()?.Name.LocalName == name)?
-                .Elements()
-                .SingleOrDefault(pg => pg.Name.LocalName == name);
-        }
+            if (propertyGroups == null || !propertyGroups.Any())
+                throw new InvalidDotNetProjectException("Project document contains no PropertyGroup elements.");
 
-        private static XElement GetOldStyleTargetFrameworkElement(IEnumerable<XElement> propertyGroups)
-        {
-            const string name = "TargetFrameworkVersion";
-
-            return propertyGroups.SingleOrDefault(pg => pg.Elements().SingleOrDefault()?.Name.LocalName == name)?
-                .Elements()
-                .SingleOrDefault(pg => pg.Name.LocalName == name);
+            return propertyGroups;
         }
     }
 }
