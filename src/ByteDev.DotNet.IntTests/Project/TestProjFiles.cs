@@ -2,22 +2,19 @@
 {
     internal static class TestProjFiles
     {
+        private const string BasePath = @"Project\TestProjs\";
+
         internal static class NewFormat
         {
-            public static string NoPropertyGroups { get; } = GetPath("new-nopropertygroups.xml");
-            public static string Framework471 { get; } = GetPath("new-framework471.xml");
-            public static string Std20 { get; } = GetPath("new-std20.xml");
-            public static string Core21 { get; } = GetPath("new-core21.xml");
+            public const string NoPropertyGroups = BasePath + "new-nopropertygroups.xml";
+            public const string Framework471 = BasePath + "new-framework471.xml";
+            public const string Std20 = BasePath + "new-std20.xml";
+            public const string Core21 = BasePath + "new-core21.xml";
         }
 
         internal static class OldFormat
         {
-            public static string Framework462 { get; } = GetPath("old-framework462.xml");
-        }
-
-        private static string GetPath(string fileName)
-        {
-            return @"Project\TestProjs\" + fileName;
+            public const string Framework462 = BasePath + "old-framework462.xml";
         }
     }
 }

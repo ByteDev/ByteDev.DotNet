@@ -7,15 +7,20 @@ namespace ByteDev.DotNet.IntTests.Project
     [TestFixture]
     public class DotNetProjectTests
     {
+        private DotNetProject CreateSut(string filePath)
+        {
+            var xDocument = XDocument.Load(filePath);
+
+            return new DotNetProject(xDocument);
+        }
+
         [TestFixture]
         public class Constructor : DotNetProjectTests
         {
             [Test]
             public void WhenNoPropertyGroups_ThenThrowException()
             {
-                var xDocument = XDocument.Load(TestProjFiles.NewFormat.NoPropertyGroups);
-
-                var ex = Assert.Throws<InvalidDotNetProjectException>(() => new DotNetProject(xDocument));
+                var ex = Assert.Throws<InvalidDotNetProjectException>(() => CreateSut(TestProjFiles.NewFormat.NoPropertyGroups));
                 Assert.That(ex.Message, Is.EqualTo("Project document contains no PropertyGroup elements."));
             }
         }
@@ -54,13 +59,6 @@ namespace ByteDev.DotNet.IntTests.Project
 
                 Assert.That(sut.ProjectTarget.TargetValue, Is.EqualTo("v4.6.2"));
             }
-
-            private static DotNetProject CreateSut(string filePath)
-            {
-                var xDocument = XDocument.Load(filePath);
-
-                return new DotNetProject(xDocument);
-            }
         }
 
         [TestFixture]
@@ -69,9 +67,7 @@ namespace ByteDev.DotNet.IntTests.Project
             [Test]
             public void WhenProjectXmlFormatIsOldStyle_ThenReturnOld()
             {
-                var xDocument = XDocument.Load(TestProjFiles.OldFormat.Framework462);
-
-                var sut = new DotNetProject(xDocument);
+                var sut = CreateSut(TestProjFiles.OldFormat.Framework462);
 
                 Assert.That(sut.Format, Is.EqualTo(ProjectFormat.Old));
             }
@@ -79,9 +75,7 @@ namespace ByteDev.DotNet.IntTests.Project
             [Test]
             public void WhenProjectXmlFormatIsNewStyle_ThenReturnNew()
             {
-                var xDocument = XDocument.Load(TestProjFiles.NewFormat.Core21);
-
-                var sut = new DotNetProject(xDocument);
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21);
 
                 Assert.That(sut.Format, Is.EqualTo(ProjectFormat.New));
             }

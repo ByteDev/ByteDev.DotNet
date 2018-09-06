@@ -9,19 +9,10 @@ namespace ByteDev.DotNet.IntTests.Solution
     [TestFixture]
     public class DotNetSolutionTests
     {
-        private const string TestSlnV12 = @"Solution\TestSlns\sln-v12.txt";
-        private const string TestSlnV12ZeroProjs = @"Solution\TestSlns\sln-v12-0projs.txt";
-
-        private const string TestSlnNoFormatVersion = @"Solution\TestSlns\sln-no-formatversion.txt";
-        private const string TestSlnNoVsVersion = @"Solution\TestSlns\sln-no-vsversion.txt";
-        private const string TestSlnNoMinVsVersion = @"Solution\TestSlns\sln-no-minvsversion.txt";
-
         [Test]
         public void WhenSlnTextIsValid_ThenSetProperties()
         {
-            var slnText = GetSlnText(TestSlnV12);
-
-            var sut = new DotNetSolution(slnText);
+            var sut = CreateSut(TestSlnFiles.V12);
 
             Assert.That(sut.FormatVersion, Is.EqualTo(12));
             Assert.That(sut.VisualStudioVersion, Is.EqualTo("15.0.27703.2042"));
@@ -31,36 +22,28 @@ namespace ByteDev.DotNet.IntTests.Solution
         [Test]
         public void WhenSlnHasNoFormatVersion_ThenThrowException()
         {
-            var slnText = GetSlnText(TestSlnNoFormatVersion);
-
-            var ex = Assert.Throws<InvalidDotNetSolutionException>(() => new DotNetSolution(slnText));
+            var ex = Assert.Throws<InvalidDotNetSolutionException>(() => CreateSut(TestSlnFiles.NoFormatVersion));
             Assert.That(ex.Message, Is.EqualTo("A valid Format Version could not be found in the sln text."));
         }
 
         [Test]
         public void WhenSlnHasNoVisualStudioVersion_ThenThrowException()
         {
-            var slnText = GetSlnText(TestSlnNoVsVersion);
-
-            var ex = Assert.Throws<InvalidDotNetSolutionException>(() => new DotNetSolution(slnText));
+            var ex = Assert.Throws<InvalidDotNetSolutionException>(() => CreateSut(TestSlnFiles.NoVsVersion));
             Assert.That(ex.Message, Is.EqualTo("A valid Visual Studio Version could not be found in the sln text."));
         }
 
         [Test]
         public void WhenSlnHasNoMinVsVersion_ThenThrowException()
         {
-            var slnText = GetSlnText(TestSlnNoMinVsVersion);
-
-            var ex = Assert.Throws<InvalidDotNetSolutionException>(() => new DotNetSolution(slnText));
+            var ex = Assert.Throws<InvalidDotNetSolutionException>(() => CreateSut(TestSlnFiles.NoMinVsVersion));
             Assert.That(ex.Message, Is.EqualTo("A valid Minimum Visual Studio Version could not be found in the sln text."));
         }
 
         [Test]
         public void WhenSlnHasProjects_ThenSetProjectProperties()
         {
-            var slnText = GetSlnText(TestSlnV12);
-
-            var sut = new DotNetSolution(slnText);
+            var sut = CreateSut(TestSlnFiles.V12);
 
             Assert.That(sut.Projects.Count(), Is.EqualTo(4));
 
@@ -73,16 +56,21 @@ namespace ByteDev.DotNet.IntTests.Solution
         [Test]
         public void WhenSlnHasNoProject_ThenReturnEmpty()
         {
-            var slnText = GetSlnText(TestSlnV12ZeroProjs);
-
-            var sut = new DotNetSolution(slnText);
+            var sut = CreateSut(TestSlnFiles.V12NoProjs);
 
             Assert.That(sut.Projects.Count(), Is.EqualTo(0));
         }
 
-        private string GetSlnText(string slnFilePath)
+        private static string GetSlnText(string slnFilePath)
         {
             return File.ReadAllText(slnFilePath);
+        }
+
+        private DotNetSolution CreateSut(string slnFilePath)
+        {
+            var slnText = GetSlnText(slnFilePath);
+
+            return new DotNetSolution(slnText);
         }
     }
 }
