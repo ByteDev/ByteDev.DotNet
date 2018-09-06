@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="ByteDev.Common" Version="4.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.8.0" />
     <PackageReference Include="NUnit" Version="3.10.1" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.10.0" />
@@ -15,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Project\TestProjs\new-core21 - Copy.xml">
+    <None Update="Project\TestProjs\new-std15-and-net40.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Project\TestProjs\new-core21.xml">

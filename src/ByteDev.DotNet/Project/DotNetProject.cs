@@ -16,7 +16,9 @@ namespace ByteDev.DotNet.Project
             SetFormatAndTarget(xDocument);
         }
 
-        public DotNetProjectTarget ProjectTarget { get; private set; }
+        public bool IsMultiTarget => ProjectTargets?.Count() > 1;
+
+        public IEnumerable<DotNetProjectTarget> ProjectTargets { get; private set; }
 
         public ProjectFormat Format { get; private set; }
 
@@ -39,7 +41,9 @@ namespace ByteDev.DotNet.Project
             if (targetElement == null)
                 throw new InvalidDotNetProjectException("Project document contains no target framework.");
 
-            ProjectTarget = new DotNetProjectTarget(targetElement.Value);
+            ProjectTargets = targetElement.Value
+                .Split(';')
+                .Select(value => new DotNetProjectTarget(value));
         }
 
         private static IEnumerable<XElement> GetPropertyGroups(XDocument xDocument)

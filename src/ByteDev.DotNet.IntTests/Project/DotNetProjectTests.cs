@@ -1,4 +1,6 @@
-﻿using System.Xml.Linq;
+﻿using System.Linq;
+using System.Xml.Linq;
+using ByteDev.Common.Collections;
 using ByteDev.DotNet.Project;
 using NUnit.Framework;
 
@@ -26,38 +28,49 @@ namespace ByteDev.DotNet.IntTests.Project
         }
 
         [TestFixture]
-        public class ProjectTarget : DotNetProjectTests
+        public class ProjectTargets : DotNetProjectTests
         {
             [Test]
-            public void WhenProjXmlIsStandard_ThenReturnTargetFramework()
+            public void WhenProjXmlIsStandard_ThenReturnTarget()
             {
                 var sut = CreateSut(TestProjFiles.NewFormat.Std20);
 
-                Assert.That(sut.ProjectTarget.TargetValue, Is.EqualTo("netstandard2.0"));
+                Assert.That(sut.ProjectTargets.Single().TargetValue, Is.EqualTo("netstandard2.0"));
             }
 
             [Test]
-            public void WhenProjXmlIsCore_ThenReturnTargetFramework()
+            public void WhenProjXmlIsCore_ThenReturnTarget()
             {
                 var sut = CreateSut(TestProjFiles.NewFormat.Core21);
 
-                Assert.That(sut.ProjectTarget.TargetValue, Is.EqualTo("netcoreapp2.1"));
+                Assert.That(sut.ProjectTargets.Single().TargetValue, Is.EqualTo("netcoreapp2.1"));
             }
 
             [Test]
-            public void WhenProjXmIsNewFormatFramework_ThenReturnTargetFramework()
+            public void WhenProjXmIsNewFormatFramework_ThenReturnTarget()
             {
                 var sut = CreateSut(TestProjFiles.NewFormat.Framework471);
 
-                Assert.That(sut.ProjectTarget.TargetValue, Is.EqualTo("net471"));
+                Assert.That(sut.ProjectTargets.Single().TargetValue, Is.EqualTo("net471"));
             }
 
             [Test]
-            public void WhenProjXmlIsOldFormatFramework_ThenReturnTargetFramework()
+            public void WhenProjXmlIsOldFormatFramework_ThenReturnTarget()
             {
                 var sut = CreateSut(TestProjFiles.OldFormat.Framework462);
 
-                Assert.That(sut.ProjectTarget.TargetValue, Is.EqualTo("v4.6.2"));
+                Assert.That(sut.ProjectTargets.Single().TargetValue, Is.EqualTo("v4.6.2"));
+            }
+
+            [Test]
+            public void WhenIsMultiTarget_ThenReturnsAllTargets()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Std15AndFramework4);
+
+                Assert.That(sut.IsMultiTarget, Is.True);
+
+                Assert.That(sut.ProjectTargets.First().TargetValue, Is.EqualTo("netstandard1.5"));
+                Assert.That(sut.ProjectTargets.Second().TargetValue, Is.EqualTo("net40"));
             }
         }
 

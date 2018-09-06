@@ -8,7 +8,7 @@ namespace ByteDev.DotNet.Project
         public DotNetProjectTarget(string targetValue)
         {
             if(string.IsNullOrEmpty(targetValue))
-                throw new ArgumentException("Target framework was null or empty.", nameof(targetValue));
+                throw new ArgumentException("Target value was null or empty.", nameof(targetValue));
 
             TargetValue = targetValue;
 
