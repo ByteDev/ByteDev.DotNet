@@ -13,22 +13,22 @@ namespace ByteDev.DotNet.Project
             if(xDocument == null)
                 throw new ArgumentNullException(nameof(xDocument));
 
-            ProjectTarget = new DotNetProjectTarget(GetTargetFrameworkElement(xDocument).Value);
+            SetFormatAndTarget(xDocument);
         }
 
-        public DotNetProjectTarget ProjectTarget { get; }
+        public DotNetProjectTarget ProjectTarget { get; private set; }
 
         public ProjectFormat Format { get; private set; }
 
-        private XElement GetTargetFrameworkElement(XDocument xDocument)
+        private void SetFormatAndTarget(XDocument xDocument)
         {
             var propertyGroups = GetPropertyGroups(xDocument).ToList();
 
-            var targetFrameworkElement = PropertyGroupXmlParser.GetOldStyleTargetFrameworkElement(propertyGroups);
+            var targetElement = PropertyGroupXmlParser.GetOldStyleTargetElement(propertyGroups);
 
-            if (targetFrameworkElement == null)
+            if (targetElement == null)
             {
-                targetFrameworkElement = PropertyGroupXmlParser.GetNewStyleTargetFrameworkElement(propertyGroups);
+                targetElement = PropertyGroupXmlParser.GetNewStyleTargetElement(propertyGroups);
                 Format = ProjectFormat.New;
             }
             else
@@ -36,13 +36,13 @@ namespace ByteDev.DotNet.Project
                 Format = ProjectFormat.Old;
             }
 
-            if (targetFrameworkElement == null)
-                throw new InvalidDotNetProjectException("Project document contains no TargetFramework.");
+            if (targetElement == null)
+                throw new InvalidDotNetProjectException("Project document contains no target framework.");
 
-            return targetFrameworkElement;
+            ProjectTarget = new DotNetProjectTarget(targetElement.Value);
         }
 
-        private static IList<XElement> GetPropertyGroups(XDocument xDocument)
+        private static IEnumerable<XElement> GetPropertyGroups(XDocument xDocument)
         {
             var propertyGroups = ProjectXmlParser.GetPropertyGroups(xDocument)?.ToList();
 

@@ -6,7 +6,7 @@ namespace ByteDev.DotNet.Project.Parsers
 {
     internal class PropertyGroupXmlParser
     {
-        public static XElement GetOldStyleTargetFrameworkElement(IEnumerable<XElement> propertyGroups)
+        public static XElement GetOldStyleTargetElement(IEnumerable<XElement> propertyGroups)
         {
             const string name = "TargetFrameworkVersion";
 
@@ -15,7 +15,7 @@ namespace ByteDev.DotNet.Project.Parsers
                 .SingleOrDefault(pg => pg.Name.LocalName == name);
         }
 
-        public static XElement GetNewStyleTargetFrameworkElement(IEnumerable<XElement> propertyGroups)
+        public static XElement GetNewStyleTargetElement(IEnumerable<XElement> propertyGroups)
         {
             const string name = "TargetFramework";
 
