@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using ByteDev.Common.Collections;
 using ByteDev.DotNet.Solution;
 using NUnit.Framework;
 
@@ -54,21 +55,28 @@ namespace ByteDev.DotNet.IntTests.Solution
         }
 
         [Test]
+        public void WhenSlnHasSolutionFolder_ThenSetProjectProperties()
+        {
+            var sut = CreateSut(TestSlnFiles.V12);
+
+            Assert.That(sut.Projects.Fourth().IsSolutionFolder, Is.True);
+            Assert.That(sut.Projects.Fourth().TypeId, Is.EqualTo(new Guid("2150E333-8FDC-42A3-9474-1A3956D46DE8")));
+            Assert.That(sut.Projects.Fourth().Name, Is.EqualTo("Tests"));
+            Assert.That(sut.Projects.Fourth().Path, Is.EqualTo("Tests"));
+            Assert.That(sut.Projects.Fourth().Id, Is.EqualTo(new Guid("F8FDF7E8-B7FB-4BA1-8107-DB114CB729BB")));
+        }
+
+        [Test]
         public void WhenSlnHasNoProject_ThenReturnEmpty()
         {
             var sut = CreateSut(TestSlnFiles.V12NoProjs);
 
-            Assert.That(sut.Projects.Count(), Is.EqualTo(0));
-        }
-
-        private static string GetSlnText(string slnFilePath)
-        {
-            return File.ReadAllText(slnFilePath);
+            Assert.That(sut.Projects.Count, Is.EqualTo(0));
         }
 
         private DotNetSolution CreateSut(string slnFilePath)
         {
-            var slnText = GetSlnText(slnFilePath);
+            var slnText = File.ReadAllText(slnFilePath);
 
             return new DotNetSolution(slnText);
         }
