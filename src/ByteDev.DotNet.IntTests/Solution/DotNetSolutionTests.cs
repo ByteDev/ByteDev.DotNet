@@ -45,7 +45,7 @@ namespace ByteDev.DotNet.IntTests.Solution
         {
             var sut = CreateSut(TestSlnFiles.V12);
 
-            Assert.That(sut.Projects.Count(), Is.EqualTo(4));
+            Assert.That(sut.Projects.Count, Is.EqualTo(5));
 
             Assert.That(sut.Projects.First().TypeId, Is.EqualTo(new Guid("9A19103F-16F7-4668-BE54-9A1E7A4F7556")));
             Assert.That(sut.Projects.First().Name, Is.EqualTo("ByteDev.DotNet.IntTests"));
