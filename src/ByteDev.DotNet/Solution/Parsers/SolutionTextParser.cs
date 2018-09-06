@@ -1,21 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Text.RegularExpressions;
 
 namespace ByteDev.DotNet.Solution.Parsers
 {
     internal class SolutionTextParser
     {
-        public static double ParseFormatVersion(string slnText)
+        public static string ParseFormatVersion(string slnText)
         {
+            const string message = "A valid Format Version could not be found in the sln text.";
+
             try
             {
-                return Double.Parse(Regex.Match(slnText, "[\r\n]?Microsoft Visual Studio Solution File, Format Version ([0-9.]+)", RegexOptions.Multiline).Groups[1].Value, CultureInfo.InvariantCulture);
+                var value = Regex.Match(slnText, "[\r\n]?Microsoft Visual Studio Solution File, Format Version ([0-9.]+)", RegexOptions.Multiline).Groups[1].Value;
+
+                if (string.IsNullOrEmpty(value))
+                    throw new InvalidDotNetSolutionException(message);
+
+                return value;
             }
-            catch (FormatException fe)
+            catch (Exception ex)
             {
-                throw new InvalidDotNetSolutionException("A valid Format Version could not be found in the sln text.", fe);
+                throw new InvalidDotNetSolutionException(message, ex);
             }
         }
 

@@ -17,7 +17,7 @@ namespace ByteDev.DotNet.Solution
             Projects = SolutionTextParser.ParseProjects(slnText);
         }
 
-        public double FormatVersion { get; }
+        public string FormatVersion { get; }
 
         public string VisualStudioVersion { get; }
 

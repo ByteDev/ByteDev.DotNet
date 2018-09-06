@@ -14,7 +14,7 @@ namespace ByteDev.DotNet.IntTests.Solution
         {
             var sut = CreateSut(TestSlnFiles.V12);
 
-            Assert.That(sut.FormatVersion, Is.EqualTo(12));
+            Assert.That(sut.FormatVersion, Is.EqualTo("12.00"));
             Assert.That(sut.VisualStudioVersion, Is.EqualTo("15.0.27703.2042"));
             Assert.That(sut.MinimumVisualStudioVersion, Is.EqualTo("10.0.40219.1"));
         }
