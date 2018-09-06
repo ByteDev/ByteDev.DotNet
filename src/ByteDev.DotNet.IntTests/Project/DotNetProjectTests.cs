@@ -24,33 +24,42 @@ namespace ByteDev.DotNet.IntTests.Project
         public class ProjectTarget : DotNetProjectTests
         {
             [Test]
-            public void WhenProjectXmlIsStandard_ThenReturnTargetFramework()
+            public void WhenProjXmlIsStandard_ThenReturnTargetFramework()
             {
-                var xDocument = XDocument.Load(TestProjFiles.NewFormat.Std20);
-
-                var sut = new DotNetProject(xDocument);
+                var sut = CreateSut(TestProjFiles.NewFormat.Std20);
 
                 Assert.That(sut.ProjectTarget.TargetValue, Is.EqualTo("netstandard2.0"));
             }
 
             [Test]
-            public void WhenProjectXmlIsCore_ThenReturnTargetFramework()
+            public void WhenProjXmlIsCore_ThenReturnTargetFramework()
             {
-                var xDocument = XDocument.Load(TestProjFiles.NewFormat.Core21);
-
-                var sut = new DotNetProject(xDocument);
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21);
 
                 Assert.That(sut.ProjectTarget.TargetValue, Is.EqualTo("netcoreapp2.1"));
             }
 
             [Test]
-            public void WhenProjectXmlIsFramework_ThenReturnTargetFramework()
+            public void WhenProjXmIsNewFormatFramework_ThenReturnTargetFramework()
             {
-                var xDocument = XDocument.Load(TestProjFiles.OldFormat.Framework462);
+                var sut = CreateSut(TestProjFiles.NewFormat.Framework471);
 
-                var sut = new DotNetProject(xDocument);
+                Assert.That(sut.ProjectTarget.TargetValue, Is.EqualTo("net471"));
+            }
+
+            [Test]
+            public void WhenProjXmlIsOldFormatFramework_ThenReturnTargetFramework()
+            {
+                var sut = CreateSut(TestProjFiles.OldFormat.Framework462);
 
                 Assert.That(sut.ProjectTarget.TargetValue, Is.EqualTo("v4.6.2"));
+            }
+
+            private static DotNetProject CreateSut(string filePath)
+            {
+                var xDocument = XDocument.Load(filePath);
+
+                return new DotNetProject(xDocument);
             }
         }
 

@@ -15,7 +15,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Project\TestProjs\new-core21 - Copy.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Project\TestProjs\new-core21.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Project\TestProjs\new-framework471.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Project\TestProjs\old-framework462.xml">

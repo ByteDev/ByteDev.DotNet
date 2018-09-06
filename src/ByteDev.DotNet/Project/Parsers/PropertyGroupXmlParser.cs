@@ -10,7 +10,7 @@ namespace ByteDev.DotNet.Project.Parsers
         {
             const string name = "TargetFrameworkVersion";
 
-            return propertyGroups.SingleOrDefault(pg => pg.Elements().SingleOrDefault()?.Name.LocalName == name)?
+            return propertyGroups.SingleOrDefault(pg => pg.Elements().FirstOrDefault()?.Name.LocalName == name)?
                 .Elements()
                 .SingleOrDefault(pg => pg.Name.LocalName == name);
         }
@@ -19,7 +19,7 @@ namespace ByteDev.DotNet.Project.Parsers
         {
             const string name = "TargetFramework";
 
-            return propertyGroups.SingleOrDefault(pg => pg.Elements().SingleOrDefault()?.Name.LocalName == name)?
+            return propertyGroups.SingleOrDefault(pg => pg.Elements().FirstOrDefault()?.Name.LocalName == name)?
                 .Elements()
                 .SingleOrDefault(pg => pg.Name.LocalName == name);
         }

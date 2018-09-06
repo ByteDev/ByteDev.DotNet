@@ -22,7 +22,7 @@ namespace ByteDev.DotNet.Project
 
         private XElement GetTargetFrameworkElement(XDocument xDocument)
         {
-            var propertyGroups = GetPropertyGroups(xDocument);
+            var propertyGroups = GetPropertyGroups(xDocument).ToList();
 
             var targetFrameworkElement = PropertyGroupXmlParser.GetOldStyleTargetFrameworkElement(propertyGroups);
 

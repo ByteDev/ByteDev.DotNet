@@ -5,6 +5,7 @@
         internal static class NewFormat
         {
             public static string NoPropertyGroups { get; } = GetPath("new-nopropertygroups.xml");
+            public static string Framework471 { get; } = GetPath("new-framework471.xml");
             public static string Std20 { get; } = GetPath("new-std20.xml");
             public static string Core21 { get; } = GetPath("new-core21.xml");
         }
