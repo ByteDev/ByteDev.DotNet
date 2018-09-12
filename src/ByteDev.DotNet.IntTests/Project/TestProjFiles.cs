@@ -13,6 +13,8 @@
             public const string Core21 = BasePath + "new-core21.xml";
 
             public const string Std15AndFramework4 = BasePath + "new-std15-and-net40.xml";
+
+            public const string Core21Exe = BasePath + "new-core21-exe.xml";
         }
 
         internal static class OldFormat

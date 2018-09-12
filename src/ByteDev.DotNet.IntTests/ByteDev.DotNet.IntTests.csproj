@@ -16,6 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Project\TestProjs\new-core21-exe.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Project\TestProjs\new-std15-and-net40.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

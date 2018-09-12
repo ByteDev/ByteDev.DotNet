@@ -72,6 +72,14 @@ namespace ByteDev.DotNet.IntTests.Project
                 Assert.That(sut.ProjectTargets.First().TargetValue, Is.EqualTo("netstandard1.5"));
                 Assert.That(sut.ProjectTargets.Second().TargetValue, Is.EqualTo("net40"));
             }
+
+            [Test]
+            public void WhenTargetFrameworkIsNotFirstElement_ThenReturnTarget()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
+
+                Assert.That(sut.ProjectTargets.Single().TargetValue, Is.EqualTo("netcoreapp2.1"));
+            }
         }
 
         [TestFixture]

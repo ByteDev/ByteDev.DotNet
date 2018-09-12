@@ -9,19 +9,18 @@ namespace ByteDev.DotNet.Project.Parsers
         public static XElement GetOldStyleTargetElement(IEnumerable<XElement> propertyGroups)
         {
             const string name = "TargetFrameworkVersion";
-
-            return propertyGroups.SingleOrDefault(pg => pg.Elements().FirstOrDefault()?.Name.LocalName == name)?
-                .Elements()
-                .SingleOrDefault(pg => pg.Name.LocalName == name);
+            XNamespace nameSpace = "http://schemas.microsoft.com/developer/msbuild/2003";
+            
+            return propertyGroups.SingleOrDefault(pg => pg.Element(nameSpace + name) != null)?
+                .Element(nameSpace + name);
         }
 
         public static XElement GetNewStyleTargetElement(IEnumerable<XElement> propertyGroups)
         {
             const string name = "TargetFramework";
 
-            return propertyGroups.SingleOrDefault(pg => pg.Elements().FirstOrDefault()?.Name.LocalName == name)?
-                .Elements()
-                .SingleOrDefault(pg => pg.Name.LocalName == name);
+            return propertyGroups.SingleOrDefault(pg => pg.Element(name) != null)?
+                .Element(name);
         }
     }
 }
