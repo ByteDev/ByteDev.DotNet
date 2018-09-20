@@ -72,7 +72,7 @@ namespace ByteDev.DotNet.Project
                 case TargetType.Framework:
                     Description = _isOldStyleFormat ? 
                         $".NET Framework {TargetValue.Substring(TargetValuePrefix.FrameworkOld.Length)}" : 
-                        $".NET Framework {FormatVersionNumber(TargetValue.Substring(TargetValuePrefix.FrameworkNew.Length))}";
+                        $".NET Framework {VersionNumberFormatter.Format(TargetValue.Substring(TargetValuePrefix.FrameworkNew.Length))}";
                     break;
 
                 case TargetType.Core:
@@ -86,12 +86,6 @@ namespace ByteDev.DotNet.Project
                 default:
                     throw new InvalidOperationException($"Unhandled {nameof(TargetType)}: {Type}.");
             }
-        }
-
-        private static string FormatVersionNumber(string versionNumber)
-        {
-            // e.g. in: 471 out: 4.7.1
-            return string.Join(".", versionNumber.ToCharArray());
         }
     }
 }
