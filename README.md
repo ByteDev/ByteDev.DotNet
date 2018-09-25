@@ -1,3 +1,5 @@
+[![NuGet Package](https://img.shields.io/nuget/v/ByteDev.DotNet.svg)](https://www.nuget.org/packages/ByteDev.DotNet)
+
 # ByteDev.DotNet
 
 Set of classes for reading .NET solution and project files.
