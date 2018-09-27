@@ -101,5 +101,85 @@ namespace ByteDev.DotNet.IntTests.Project
                 Assert.That(sut.Format, Is.EqualTo(ProjectFormat.New));
             }
         }
+
+        [TestFixture]
+        public class Description : DotNetProjectTests
+        {
+            [Test]
+            public void WhenDescriptionIsPresent_ThenReturnDescription()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21);
+
+                Assert.That(sut.Description, Is.EqualTo("new-core21 Description"));
+            }
+
+            [Test]
+            public void WhenDescriptionIsNotPresent_ThenReturnNull()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
+
+                Assert.That(sut.Description, Is.Null);
+            }
+        }
+
+        [TestFixture]
+        public class Authors : DotNetProjectTests
+        {
+            [Test]
+            public void WhenAuthorsIsPresent_ThenReturnDescription()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21);
+
+                Assert.That(sut.Authors, Is.EqualTo("John Smith, Jesus Christ"));
+            }
+
+            [Test]
+            public void WhenAuthorsIsNotPresent_ThenReturnNull()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
+
+                Assert.That(sut.Authors, Is.Null);
+            }
+        }
+
+        [TestFixture]
+        public class Company : DotNetProjectTests
+        {
+            [Test]
+            public void WhenAuthorsIsPresent_ThenReturnDescription()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21);
+
+                Assert.That(sut.Company, Is.EqualTo("Something Ltd."));
+            }
+
+            [Test]
+            public void WhenAuthorsIsNotPresent_ThenReturnNull()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
+
+                Assert.That(sut.Company, Is.Null);
+            }
+        }
+
+        [TestFixture]
+        public class PackageTags : DotNetProjectTests
+        {
+            [Test]
+            public void WhenPackageTagsIsPresent_ThenReturnDescription()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21);
+
+                Assert.That(sut.PackageTags, Is.EqualTo("something program exe"));
+            }
+
+            [Test]
+            public void WhenPackageTagsIsNotPresent_ThenReturnNull()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
+
+                Assert.That(sut.PackageTags, Is.Null);
+            }
+        }
     }
 }

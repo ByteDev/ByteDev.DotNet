@@ -2,6 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <Authors>Paul Stanley</Authors>
+    <Product />
+    <Description>Integration tests</Description>
+    <Company />
   </PropertyGroup>
 
   <ItemGroup>

@@ -13,7 +13,14 @@ namespace ByteDev.DotNet.Project
             if(xDocument == null)
                 throw new ArgumentNullException(nameof(xDocument));
 
-            SetFormatAndTarget(xDocument);
+            List<XElement> propertyGroups = xDocument.GetPropertyGroups().ToList();
+
+            SetFormatAndTargets(propertyGroups);
+
+            Description = GetPropertyGroupElement(propertyGroups, "Description");
+            Authors = GetPropertyGroupElement(propertyGroups, "Authors");
+            Company = GetPropertyGroupElement(propertyGroups, "Company");
+            PackageTags = GetPropertyGroupElement(propertyGroups, "PackageTags");
         }
 
         public bool IsMultiTarget => ProjectTargets?.Count() > 1;
@@ -22,10 +29,16 @@ namespace ByteDev.DotNet.Project
 
         public ProjectFormat Format { get; private set; }
 
-        private void SetFormatAndTarget(XDocument xDocument)
-        {
-            var propertyGroups = GetPropertyGroups(xDocument).ToList();
+        public string Description { get; }
 
+        public string Authors { get; }
+
+        public string Company { get; }
+
+        public string PackageTags { get; }
+
+        private void SetFormatAndTargets(List<XElement> propertyGroups)
+        {
             var targetElement = PropertyGroupXmlParser.GetOldStyleTargetElement(propertyGroups);
 
             if (targetElement == null)
@@ -46,14 +59,12 @@ namespace ByteDev.DotNet.Project
                 .Select(value => new DotNetProjectTarget(value));
         }
 
-        private static IEnumerable<XElement> GetPropertyGroups(XDocument xDocument)
+        private static string GetPropertyGroupElement(IEnumerable<XElement> propertyGroups, string elementName)
         {
-            var propertyGroups = ProjectXmlParser.GetPropertyGroups(xDocument)?.ToList();
+            var xElement = propertyGroups.SingleOrDefault(pg => pg.Element(elementName) != null)?
+                .Element(elementName);
 
-            if (propertyGroups == null || !propertyGroups.Any())
-                throw new InvalidDotNetProjectException("Project document contains no PropertyGroup elements.");
-
-            return propertyGroups;
+            return xElement?.Value;
         }
     }
 }

@@ -2,6 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <Description>new-core21 Description</Description>
+    <Authors>John Smith, Jesus Christ</Authors>
+    <Company>Something Ltd.</Company>
+    <PackageTags>something program exe</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
