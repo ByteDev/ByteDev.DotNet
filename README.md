@@ -1,3 +1,4 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/github/bytedev/ByteDev.DotNet?branch=master&svg=true)](https://ci.appveyor.com/project/bytedev/ByteDev-DotNet/branch/master)
 [![NuGet Package](https://img.shields.io/nuget/v/ByteDev.DotNet.svg)](https://www.nuget.org/packages/ByteDev.DotNet)
 
 # ByteDev.DotNet
