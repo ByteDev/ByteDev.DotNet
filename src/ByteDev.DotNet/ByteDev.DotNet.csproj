@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
 	<Description>Set of classes for reading .NET solution and project files.</Description>
-    <Version>1.1.1</Version>
+    <Version>1.2.0</Version>
     <Authors>Paul Stanley</Authors>
     <Company></Company>
     <PackageTags>dotnet solution project</PackageTags>

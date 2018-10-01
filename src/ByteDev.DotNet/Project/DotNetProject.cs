@@ -8,6 +8,11 @@ namespace ByteDev.DotNet.Project
 {
     public class DotNetProject
     {
+        private readonly Lazy<string> _description;
+        private readonly Lazy<string> _authors;
+        private readonly Lazy<string> _company;
+        private readonly Lazy<string> _packageTags;
+
         public DotNetProject(XDocument xDocument)
         {
             if(xDocument == null)
@@ -17,10 +22,10 @@ namespace ByteDev.DotNet.Project
 
             SetFormatAndTargets(propertyGroups);
 
-            Description = GetPropertyGroupElement(propertyGroups, "Description");
-            Authors = GetPropertyGroupElement(propertyGroups, "Authors");
-            Company = GetPropertyGroupElement(propertyGroups, "Company");
-            PackageTags = GetPropertyGroupElement(propertyGroups, "PackageTags");
+            _description = new Lazy<string>(() => GetPropertyGroupElement(propertyGroups, "Description"));
+            _authors = new Lazy<string>(() => GetPropertyGroupElement(propertyGroups, "Authors"));
+            _company = new Lazy<string>(() => GetPropertyGroupElement(propertyGroups, "Company"));
+            _packageTags = new Lazy<string>(() => GetPropertyGroupElement(propertyGroups, "PackageTags"));
         }
 
         public bool IsMultiTarget => ProjectTargets?.Count() > 1;
@@ -29,13 +34,13 @@ namespace ByteDev.DotNet.Project
 
         public ProjectFormat Format { get; private set; }
 
-        public string Description { get; }
+        public string Description => _description.Value;
 
-        public string Authors { get; }
+        public string Authors => _authors.Value;
 
-        public string Company { get; }
+        public string Company => _company.Value;
 
-        public string PackageTags { get; }
+        public string PackageTags => _packageTags.Value;
 
         private void SetFormatAndTargets(List<XElement> propertyGroups)
         {
