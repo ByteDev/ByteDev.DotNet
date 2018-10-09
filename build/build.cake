@@ -1,4 +1,5 @@
-#tool "nuget:?package=xunit.runner.console"
+#addin nuget:?package=Cake.Incubator&version=3.0.0
+#tool "nuget:?package=NUnit.Runners&version=2.6.4"
 
 var nugetSources = new[] {"https://api.nuget.org/v3/index.json"};
 
@@ -8,14 +9,9 @@ var solutionFilePath = "../src/ByteDev.DotNet.sln";
 
 var artifactsDirectory = Directory("../artifacts");
 var nugetDirectory = artifactsDirectory + Directory("NuGet");
-	
-// Configuration - The build configuration (Debug/Release) to use.
-// 1. If command line parameter parameter passed, use that.
-// 2. Otherwise if an Environment variable exists, use that.
-var configuration = 
-    HasArgument("Configuration") ? Argument<string>("Configuration") :
-    EnvironmentVariable("Configuration") != null ? EnvironmentVariable("Configuration") : "Release";
-	
+
+var configuration = GetConfiguration();
+
 Information("Configurtion: " + configuration);
 
 
@@ -95,8 +91,11 @@ Task("CreateNuGetPackages")
     .IsDependentOn("IntegrationTests")
     .Does(() =>
     {
+		var nugetVersion = GetNuGetVersion();
+
         var settings = new DotNetCorePackSettings()
 		{
+			ArgumentCustomization = args => args.Append("/p:Version=" + nugetVersion),
 			Configuration = configuration,
 			OutputDirectory = nugetDirectory
 		};
@@ -109,3 +108,32 @@ Task("Default")
     .IsDependentOn("CreateNuGetPackages");
 
 RunTarget(target);
+
+// -----------------------
+
+string GetConfiguration()
+{
+	if(HasArgument("Configuration"))
+	{
+		return Argument<string>("Configuration");
+	}
+
+	return EnvironmentVariable("Configuration") != null ? 
+		EnvironmentVariable("Configuration") : 
+		"Release";
+}
+
+string GetNuGetVersion()
+{
+	var settings = new GitVersionSettings
+	{
+		OutputType = GitVersionOutput.Json
+	};
+
+	GitVersion versionInfo = GitVersion(settings);
+
+	Information("GitVersion:");
+	Information(versionInfo.Dump<GitVersion>());
+
+	return versionInfo.NuGetVersion;
+}
