@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using ByteDev.DotNet.Solution.Parsers;
 
 namespace ByteDev.DotNet.Solution
@@ -24,5 +25,12 @@ namespace ByteDev.DotNet.Solution
         public string MinimumVisualStudioVersion { get; }
 
         public IList<DotNetSolutionProject> Projects { get; }
+
+        public static DotNetSolution Load(string slnFilePath)
+        {
+            string slnText = File.ReadAllText(slnFilePath);
+
+            return new DotNetSolution(slnText);
+        }
     }
 }

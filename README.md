@@ -27,12 +27,10 @@ There are two main classes in the project: DotNetSolution and DotNetProject.
 
 ### DotNetSolution
 
-Read in a .NET solution file and pass it into a DotNetSolution object:
+Load a .NET solution file:
 
 ```c#
-string slnText = File.ReadAllText(@"C:\mysolution.sln");
-
-var dotNetSolution = new DotNetSolution(slnText);
+var dotNetSolution = DotNetSolution.Load(@"C:\mysolution.sln");
 
 Console.WriteLine(dotNetSolution.VisualStudioVersion);
 Console.WriteLine(dotNetSolution.Projects.Count);
@@ -40,12 +38,10 @@ Console.WriteLine(dotNetSolution.Projects.Count);
 
 ### DotNetProject
 
-Read in a .NET project file and pass it into a DotNetProject object:
+Load a .NET project file:
 
 ```c#
-string projXml = XDocument.Load(@"C:\myproj.csproj");
-
-var dotNetProject = new DotNetProject(projXml);
+var dotNetProject = DotNetProject.Load(@"C:\myproj.csproj");
 
 Console.WriteLine(dotNetProject.ProjectTargets.Single());
 Console.WriteLine(dotNetProject.Format);

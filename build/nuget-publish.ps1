@@ -2,6 +2,7 @@
 
 $nupkgExten = ".nupkg"
 $nupkgFileFolder = "../artifacts/NuGet/"
+$nugetExe = ".\nuget.exe"
 
 $dir = get-childitem $nupkgFileFolder
 $files = $dir | where {$_.extension -eq $nupkgExten} 
@@ -19,15 +20,15 @@ foreach($file in $files) {
 }
 
 Write-Output ""
-$key = Read-Host -Prompt "Please enter nuget.org API key" #-AsSecureString
-#$key = [Runtime.InteropServices.Marshal]::PtrToStringAuto([Runtime.InteropServices.Marshal]::SecureStringToBSTR($key))
+$key = Read-Host -Prompt "Please enter nuget.org API key"
 
 foreach($file in $files) {
     $filePath = $nupkgFileFolder + $file.Name
 
     Write-Output ""
     Write-Output "Publishing '$filePath' to nuget.org API..."
-    nuget push $filePath $key -Source https://api.nuget.org/v3/index.json
+	
+    & $nugetExe push $filePath $key -Source https://api.nuget.org/v3/index.json
 
     if($LASTEXITCODE -eq 0) {
         Write-Host "Publish '$filePath' successful." -ForegroundColor Green

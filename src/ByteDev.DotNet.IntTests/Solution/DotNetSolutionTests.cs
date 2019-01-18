@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Linq;
 using ByteDev.Common.Collections;
 using ByteDev.DotNet.Solution;
@@ -76,9 +75,7 @@ namespace ByteDev.DotNet.IntTests.Solution
 
         private DotNetSolution CreateSut(string slnFilePath)
         {
-            var slnText = File.ReadAllText(slnFilePath);
-
-            return new DotNetSolution(slnText);
+            return DotNetSolution.Load(slnFilePath);
         }
     }
 }

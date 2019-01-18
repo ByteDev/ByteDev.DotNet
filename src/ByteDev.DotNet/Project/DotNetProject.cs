@@ -42,6 +42,13 @@ namespace ByteDev.DotNet.Project
 
         public string PackageTags => _packageTags.Value;
 
+        public static DotNetProject Load(string projFilePath)
+        {
+            var xDoc = XDocument.Load(projFilePath);
+
+            return new DotNetProject(xDoc);
+        }
+        
         private void SetFormatAndTargets(List<XElement> propertyGroups)
         {
             var targetElement = PropertyGroupXmlParser.GetOldStyleTargetElement(propertyGroups);

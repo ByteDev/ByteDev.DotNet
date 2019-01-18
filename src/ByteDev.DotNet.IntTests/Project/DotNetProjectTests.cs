@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using System.Xml.Linq;
 using ByteDev.Common.Collections;
 using ByteDev.DotNet.Project;
 using NUnit.Framework;
@@ -9,11 +8,9 @@ namespace ByteDev.DotNet.IntTests.Project
     [TestFixture]
     public class DotNetProjectTests
     {
-        private DotNetProject CreateSut(string filePath)
+        private static DotNetProject CreateSut(string filePath)
         {
-            var xDocument = XDocument.Load(filePath);
-
-            return new DotNetProject(xDocument);
+            return DotNetProject.Load(filePath);
         }
 
         [TestFixture]
