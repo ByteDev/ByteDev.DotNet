@@ -197,8 +197,32 @@ namespace ByteDev.DotNet.IntTests.Project
             {
                 var sut = CreateSut(TestProjFiles.NewFormat.Core21);
 
-                Assert.That(sut.ProjectReferences.First().Include, Is.EqualTo(@"..\ByteDev.SomeProj1\ByteDev.SomeProj1.csproj"));
-                Assert.That(sut.ProjectReferences.Second().Include, Is.EqualTo(@"..\ByteDev.SomeProj2\ByteDev.SomeProj2.csproj"));
+                Assert.That(sut.ProjectReferences.First().FilePath, Is.EqualTo(@"..\ByteDev.SomeProj1\ByteDev.SomeProj1.csproj"));
+                Assert.That(sut.ProjectReferences.Second().FilePath, Is.EqualTo(@"..\ByteDev.SomeProj2\ByteDev.SomeProj2.csproj"));
+            }
+        }
+
+        [TestFixture]
+        public class PackageReferences : DotNetProjectTests
+        {
+            [Test]
+            public void WhenNoPackageReferences_ThenReturnEmpty()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
+
+                Assert.That(sut.PackageReferences, Is.Empty);
+            }
+
+            [Test]
+            public void WhenTwoPackageReferences_ThenReturnPackageReferences()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21);
+
+                Assert.That(sut.PackageReferences.First().Name, Is.EqualTo("Microsoft.NET.Test.Sdk"));
+                Assert.That(sut.PackageReferences.First().Version, Is.EqualTo("15.8.0"));
+
+                Assert.That(sut.PackageReferences.Second().Name, Is.EqualTo("NUnit"));
+                Assert.That(sut.PackageReferences.Second().Version, Is.EqualTo("3.10.1"));
             }
         }
     }

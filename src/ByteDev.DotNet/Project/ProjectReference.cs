@@ -2,11 +2,11 @@
 {
     public class ProjectReference
     {
-        public string Include { get; set; }
+        public string FilePath { get; set; }
 
         public override string ToString()
         {
-            return Include;
+            return FilePath;
         }
     }
 }
