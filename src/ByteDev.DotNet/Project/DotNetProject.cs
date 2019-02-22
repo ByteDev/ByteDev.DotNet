@@ -8,6 +8,8 @@ namespace ByteDev.DotNet.Project
 {
     public class DotNetProject
     {
+        private const char PackageTagsDelimiter = ' ';
+
         private readonly Lazy<string> _description;
         private readonly Lazy<string> _authors;
         private readonly Lazy<string> _company;
@@ -40,7 +42,7 @@ namespace ByteDev.DotNet.Project
 
         public string Company => _company.Value;
 
-        public string PackageTags => _packageTags.Value;
+        public string[] PackageTags => string.IsNullOrEmpty(_packageTags.Value) ? new string[0] : _packageTags.Value.Split(PackageTagsDelimiter);
 
         public static DotNetProject Load(string projFilePath)
         {

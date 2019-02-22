@@ -163,19 +163,21 @@ namespace ByteDev.DotNet.IntTests.Project
         public class PackageTags : DotNetProjectTests
         {
             [Test]
+            public void WhenPackageTagsIsNotPresent_ThenReturnEmpty()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
+
+                Assert.That(sut.PackageTags, Is.Empty);
+            }
+
+            [Test]
             public void WhenPackageTagsIsPresent_ThenReturnDescription()
             {
                 var sut = CreateSut(TestProjFiles.NewFormat.Core21);
 
-                Assert.That(sut.PackageTags, Is.EqualTo("something program exe"));
-            }
-
-            [Test]
-            public void WhenPackageTagsIsNotPresent_ThenReturnNull()
-            {
-                var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
-
-                Assert.That(sut.PackageTags, Is.Null);
+                Assert.That(sut.PackageTags.First(), Is.EqualTo("something"));
+                Assert.That(sut.PackageTags.Second(), Is.EqualTo("program"));
+                Assert.That(sut.PackageTags.Third(), Is.EqualTo("exe"));
             }
         }
     }
