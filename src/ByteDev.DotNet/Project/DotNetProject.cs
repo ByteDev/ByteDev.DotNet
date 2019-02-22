@@ -21,8 +21,8 @@ namespace ByteDev.DotNet.Project
             if(xDocument == null)
                 throw new ArgumentNullException(nameof(xDocument));
 
-            SetItemGroupProperties(xDocument);
             SetPropertyGroupProperties(xDocument);
+            SetItemGroupProperties(xDocument);
         }
 
         public bool IsMultiTarget => ProjectTargets?.Count() > 1;

@@ -185,7 +185,7 @@ namespace ByteDev.DotNet.IntTests.Project
         public class ProjectReferences : DotNetProjectTests
         {
             [Test]
-            public void WhenNoProjectReferences_ThenReturnEmpty()
+            public void WhenNewFormat_AndNoProjectReferences_ThenReturnEmpty()
             {
                 var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
 
@@ -193,12 +193,20 @@ namespace ByteDev.DotNet.IntTests.Project
             }
 
             [Test]
-            public void WhenTwoProjectReferences_ThenReturnProjectReference()
+            public void WhenNewFormat_AndTwoProjectReferences_ThenReturnProjectReference()
             {
                 var sut = CreateSut(TestProjFiles.NewFormat.Core21);
 
                 Assert.That(sut.ProjectReferences.First().FilePath, Is.EqualTo(@"..\ByteDev.SomeProj1\ByteDev.SomeProj1.csproj"));
                 Assert.That(sut.ProjectReferences.Second().FilePath, Is.EqualTo(@"..\ByteDev.SomeProj2\ByteDev.SomeProj2.csproj"));
+            }
+
+            [Test]
+            public void WhenOldFormat_AndOneProjectReference_ThenReturnProjectReference()
+            {
+                var sut = CreateSut(TestProjFiles.OldFormat.Framework462);
+
+                Assert.That(sut.ProjectReferences.First().FilePath, Is.EqualTo(@"..\ByteDev.AnotherProj\ByteDev.AnotherProj.csproj"));
             }
         }
 
@@ -206,7 +214,7 @@ namespace ByteDev.DotNet.IntTests.Project
         public class PackageReferences : DotNetProjectTests
         {
             [Test]
-            public void WhenNoPackageReferences_ThenReturnEmpty()
+            public void WhenNewFormat_AndNoPackageReferences_ThenReturnEmpty()
             {
                 var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
 
@@ -214,7 +222,7 @@ namespace ByteDev.DotNet.IntTests.Project
             }
 
             [Test]
-            public void WhenTwoPackageReferences_ThenReturnPackageReferences()
+            public void WhenNewFormat_AndTwoPackageReferences_ThenReturnPackageReferences()
             {
                 var sut = CreateSut(TestProjFiles.NewFormat.Core21);
 
@@ -223,6 +231,14 @@ namespace ByteDev.DotNet.IntTests.Project
 
                 Assert.That(sut.PackageReferences.Second().Name, Is.EqualTo("NUnit"));
                 Assert.That(sut.PackageReferences.Second().Version, Is.EqualTo("3.10.1"));
+            }
+
+            [Test]
+            public void WhenOldFormat_ThenReturnEmpty()
+            {
+                var sut = CreateSut(TestProjFiles.OldFormat.Framework462);
+
+                Assert.That(sut.PackageReferences, Is.Empty);
             }
         }
     }
