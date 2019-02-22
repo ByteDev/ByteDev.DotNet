@@ -22,6 +22,7 @@ namespace ByteDev.DotNet.UnitTests.Project
             [TestCase("471", "4.7.1")]
             [TestCase("4710", "4.7.10")]
             [TestCase("4.7.10", "4.7.10")]
+            [TestCase("4.7.1.2", "4.7.1.2")]
             public void WhenProvidedInput_ThenReturnFormattedVersion(string unformatted, string expected)
             {
                 var result = VersionNumberFormatter.Format(unformatted);

@@ -1,13 +1,11 @@
-﻿using System.Linq;
-
-namespace ByteDev.DotNet.Project
+﻿namespace ByteDev.DotNet.Project
 {
     internal class VersionNumberFormatter
     {
         /// <summary>
         /// Returns a formatted version number of the
-        /// form: 3.2.10. If the value contains any "."
-        /// then no formatting will be applied.
+        /// form: [Major].[Minor].[Patch].
+        /// If the value contains any "." then no formatting will be applied.
         /// </summary>
         public static string Format(string value)
         {

@@ -25,5 +25,16 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="TechTalk.SpecFlow, Version=2.1.0.0, Culture=neutral, PublicKeyToken=0778194805d6db41, processorArchitecture=MSIL">
+      <HintPath>..\packages\SpecFlow.2.1.0\lib\net45\TechTalk.SpecFlow.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ByteDev.AnotherProj\ByteDev.AnotherProj.csproj">
+      <Project>{975B74CD-3AE9-47D8-800B-4145F26E758C}</Project>
+      <Name>ByteDev.AnotherProj</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>
