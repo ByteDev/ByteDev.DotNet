@@ -15,7 +15,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ByteDev.SomeProj\ByteDev.SomeProj.csproj" />
+    <ProjectReference Include="..\ByteDev.SomeProj1\ByteDev.SomeProj1.csproj" />
+    <ProjectReference Include="..\ByteDev.SomeProj2\ByteDev.SomeProj2.csproj" />
   </ItemGroup>
 
 </Project>

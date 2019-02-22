@@ -171,13 +171,34 @@ namespace ByteDev.DotNet.IntTests.Project
             }
 
             [Test]
-            public void WhenPackageTagsIsPresent_ThenReturnDescription()
+            public void WhenPackageTagsIsPresent_ThenReturnAllPackageTags()
             {
                 var sut = CreateSut(TestProjFiles.NewFormat.Core21);
-
+                
                 Assert.That(sut.PackageTags.First(), Is.EqualTo("something"));
                 Assert.That(sut.PackageTags.Second(), Is.EqualTo("program"));
                 Assert.That(sut.PackageTags.Third(), Is.EqualTo("exe"));
+            }
+        }
+
+        [TestFixture]
+        public class ProjectReferences : DotNetProjectTests
+        {
+            [Test]
+            public void WhenNoProjectReferences_ThenReturnEmpty()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
+
+                Assert.That(sut.ProjectReferences, Is.Empty);
+            }
+
+            [Test]
+            public void WhenTwoProjectReferences_ThenReturnProjectReference()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21);
+
+                Assert.That(sut.ProjectReferences.First().Include, Is.EqualTo(@"..\ByteDev.SomeProj1\ByteDev.SomeProj1.csproj"));
+                Assert.That(sut.ProjectReferences.Second().Include, Is.EqualTo(@"..\ByteDev.SomeProj2\ByteDev.SomeProj2.csproj"));
             }
         }
     }

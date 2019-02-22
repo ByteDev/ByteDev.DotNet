@@ -20,14 +20,18 @@ namespace ByteDev.DotNet.Project
             if(xDocument == null)
                 throw new ArgumentNullException(nameof(xDocument));
 
-            List<XElement> propertyGroups = xDocument.GetPropertyGroups().ToList();
+            var propertyGroups = new PropertyGroupCollection(xDocument);
 
-            SetFormatAndTargets(propertyGroups);
+            SetFormatAndTargets(propertyGroups.PropertyGroupElements);
 
-            _description = new Lazy<string>(() => GetPropertyGroupElement(propertyGroups, "Description"));
-            _authors = new Lazy<string>(() => GetPropertyGroupElement(propertyGroups, "Authors"));
-            _company = new Lazy<string>(() => GetPropertyGroupElement(propertyGroups, "Company"));
-            _packageTags = new Lazy<string>(() => GetPropertyGroupElement(propertyGroups, "PackageTags"));
+            _description = new Lazy<string>(() => propertyGroups.GetElementValue("Description"));
+            _authors = new Lazy<string>(() => propertyGroups.GetElementValue("Authors"));
+            _company = new Lazy<string>(() => propertyGroups.GetElementValue("Company"));
+            _packageTags = new Lazy<string>(() => propertyGroups.GetElementValue("PackageTags"));
+
+            var itemGroups = new ItemGroupCollection(xDocument);
+
+            ProjectReferences = itemGroups.GetProjectReferences();
         }
 
         public bool IsMultiTarget => ProjectTargets?.Count() > 1;
@@ -42,7 +46,9 @@ namespace ByteDev.DotNet.Project
 
         public string Company => _company.Value;
 
-        public string[] PackageTags => string.IsNullOrEmpty(_packageTags.Value) ? new string[0] : _packageTags.Value.Split(PackageTagsDelimiter);
+        public IEnumerable<string> PackageTags => string.IsNullOrEmpty(_packageTags.Value) ? new string[0] : _packageTags.Value.Split(PackageTagsDelimiter);
+
+        public IEnumerable<ProjectReference> ProjectReferences { get; set; }
 
         public static DotNetProject Load(string projFilePath)
         {
@@ -51,7 +57,7 @@ namespace ByteDev.DotNet.Project
             return new DotNetProject(xDoc);
         }
         
-        private void SetFormatAndTargets(List<XElement> propertyGroups)
+        private void SetFormatAndTargets(IList<XElement> propertyGroups)
         {
             var targetElement = PropertyGroupXmlParser.GetOldStyleTargetElement(propertyGroups);
 
@@ -71,14 +77,6 @@ namespace ByteDev.DotNet.Project
             ProjectTargets = targetElement.Value
                 .Split(';')
                 .Select(value => new DotNetProjectTarget(value));
-        }
-
-        private static string GetPropertyGroupElement(IEnumerable<XElement> propertyGroups, string elementName)
-        {
-            var xElement = propertyGroups.SingleOrDefault(pg => pg.Element(elementName) != null)?
-                .Element(elementName);
-
-            return xElement?.Value;
         }
     }
 }
