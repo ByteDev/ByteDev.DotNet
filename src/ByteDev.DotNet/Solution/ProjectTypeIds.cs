@@ -2,10 +2,14 @@
 
 namespace ByteDev.DotNet.Solution
 {
+    /// <summary>
+    /// Solution project type IDs. List originally based on:
+    /// https://www.codeproject.com/Reference/720512/List-of-Visual-Studio-Project-Type-GUIDs
+    /// </summary>
     internal static class ProjectTypeIds
     {
         public static readonly Guid SolutionFolder = new Guid("2150E333-8FDC-42A3-9474-1A3956D46DE8");
-        public static readonly Guid ProjectFolders = new Guid("66A26720-8FB5-11D2-AA7E-00C04F688DDE");
+        public static readonly Guid ProjectFolder = new Guid("66A26720-8FB5-11D2-AA7E-00C04F688DDE");
         public static readonly Guid Test = new Guid("3AC096D0-A1C2-E12C-1390-A8335801FDAB");
 
         public static readonly Guid CSharp = new Guid("FAE04EC0-301F-11D3-BF4B-00C04F79EFBC");
@@ -15,7 +19,6 @@ namespace ByteDev.DotNet.Solution
         public static readonly Guid CPlusPlus = new Guid("8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942");
         public static readonly Guid VbNet = new Guid("F184B08F-C81C-45F6-A57F-5ABD9991F28F");
 
-        public static readonly Guid WebApplication = new Guid("349C5851-65DF-11DA-9384-00065B846F21");
         public static readonly Guid WebSite = new Guid("E24C65DC-7377-472B-9ABA-BC803B73C61A");
         public static readonly Guid AspNet5 = new Guid("8BB2217D-0F2D-49D1-97BC-3654ED321F3B");
         public static readonly Guid AspNetMvc1 = new Guid("603C0E0B-DB56-11DC-BE95-000D561079B0");
@@ -23,10 +26,6 @@ namespace ByteDev.DotNet.Solution
         public static readonly Guid AspNetMvc3 = new Guid("E53F8FEA-EAE0-44A6-8774-FFD645390401");
         public static readonly Guid AspNetMvc4 = new Guid("E3E379DF-F4C6-4180-9B81-6769533ABE47");
         public static readonly Guid AspNetMvc5 = new Guid("349C5851-65DF-11DA-9384-00065B846F21");
-        public static readonly Guid Mvc2 = new Guid("F85E285D-A4E0-4152-9332-AB1D724D3325");
-        public static readonly Guid Mvc3 = new Guid("E53F8FEA-EAE0-44A6-8774-FFD645390401");
-        public static readonly Guid Mvc4 = new Guid("E3E379DF-F4C6-4180-9B81-6769533ABE47");
-        public static readonly Guid Mvc5 = new Guid("349C5851-65DF-11DA-9384-00065B846F21");
 
         public static readonly Guid Database = new Guid("A9ACE9BB-CECE-4E62-9AA4-C7E7C5BD2124");
         public static readonly Guid DatabaseOther = new Guid("4F174C21-8C12-11D0-8340-0000F80270F8");
@@ -66,10 +65,6 @@ namespace ByteDev.DotNet.Solution
         public static readonly Guid VisualStudioToolsForApplications = new Guid("A860303F-1F3F-4691-B57E-529FC101A107");
         public static readonly Guid VisualStudioToolsForOffice = new Guid("BAA0C2D2-18E2-41B9-852F-F413020CAA33");
 
-        public static readonly Guid WindowsCSharp = new Guid("FAE04EC0-301F-11D3-BF4B-00C04F79EFBC");
-        public static readonly Guid WindowsVbNet = new Guid("F184B08F-C81C-45F6-A57F-5ABD9991F28F");
-        public static readonly Guid WindowsVisualCPlusPlus = new Guid("8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942");
-
         public static readonly Guid Wcf = new Guid("3D9AD99F-2412-4246-B90B-4EAA41C64699");
         public static readonly Guid Wpf = new Guid("60DC8134-EBA5-43B8-BCC9-BB4BC16C2548");
 
@@ -81,8 +76,6 @@ namespace ByteDev.DotNet.Solution
         public static readonly Guid WindowsPhoneAppCSharp = new Guid("C089C8C0-30E0-4E22-80C0-CE093F111A43");
         public static readonly Guid WindowsPhoneAppVbNet = new Guid("DB03555F-0C8B-43BE-9FF9-57896B3C5E56");
         public static readonly Guid WindowsStoreAppsAndComponents = new Guid("BC8A1FFA-BEE3-4634-8014-F334798102B3");
-        public static readonly Guid XamarinAndroid = new Guid("EFBA0AD7-5A72-4C68-AF49-83D382785DCF");
-        public static readonly Guid XamarinIOs = new Guid("6BC8ED88-2882-458C-8E55-DFD12B67127B");
 
         public static readonly Guid XnaWindows = new Guid("6D335F3A-9D43-41b4-9D22-F6F17C4BE596");
         public static readonly Guid XnaXBox = new Guid("2DF5C3F4-5A5F-47a9-8E94-23B4456F55E2");
