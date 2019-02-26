@@ -3,7 +3,12 @@ using System.Collections.Generic;
 
 namespace ByteDev.DotNet.Solution
 {
-    public class DotNetSolutionProjectTypeFactory
+    public interface IDotNetSolutionProjectTypeFactory
+    {
+        DotNetSolutionProjectType Create(Guid projectTypeId);
+    }
+
+    public class DotNetSolutionProjectTypeFactory : IDotNetSolutionProjectTypeFactory
     {
         private static readonly Dictionary<Guid, string> Types = new Dictionary<Guid, string>
         {
@@ -65,22 +70,15 @@ namespace ByteDev.DotNet.Solution
 
         public DotNetSolutionProjectType Create(Guid projectTypeId)
         {
-            return new DotNetSolutionProjectType
-            {
-                Id = projectTypeId,
-                Description = GetDescription(projectTypeId)
-            };
-        }
-
-        private string GetDescription(Guid projectTypeId)
-        {
             try
             {
-                return Types[projectTypeId];
+                var description = Types[projectTypeId];
+
+                return new DotNetSolutionProjectType(projectTypeId, description);
             }
-            catch (KeyNotFoundException ex)
+            catch (KeyNotFoundException)
             {
-                throw new ArgumentException($"Project type ID: '{projectTypeId}' is not recognised.", nameof(projectTypeId), ex);
+                return new UnknownDotNetSolutionProjectType(projectTypeId);
             }
         }
     }

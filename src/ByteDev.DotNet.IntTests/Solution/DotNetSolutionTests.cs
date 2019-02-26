@@ -22,21 +22,36 @@ namespace ByteDev.DotNet.IntTests.Solution
         [Test]
         public void WhenSlnHasNoFormatVersion_ThenThrowException()
         {
-            var ex = Assert.Throws<InvalidDotNetSolutionException>(() => CreateSut(TestSlnFiles.NoFormatVersion));
+            var sut = CreateSut(TestSlnFiles.NoFormatVersion);
+
+            var ex = Assert.Throws<InvalidDotNetSolutionException>(() =>
+            {
+                var x = sut.FormatVersion;
+            });
             Assert.That(ex.Message, Is.EqualTo("A valid Format Version could not be found in the sln text."));
         }
 
         [Test]
         public void WhenSlnHasNoVisualStudioVersion_ThenThrowException()
         {
-            var ex = Assert.Throws<InvalidDotNetSolutionException>(() => CreateSut(TestSlnFiles.NoVsVersion));
+            var sut = CreateSut(TestSlnFiles.NoVsVersion);
+
+            var ex = Assert.Throws<InvalidDotNetSolutionException>(() =>
+            {
+                var x = sut.VisualStudioVersion;
+            });
             Assert.That(ex.Message, Is.EqualTo("A valid Visual Studio Version could not be found in the sln text."));
         }
 
         [Test]
         public void WhenSlnHasNoMinVsVersion_ThenThrowException()
         {
-            var ex = Assert.Throws<InvalidDotNetSolutionException>(() => CreateSut(TestSlnFiles.NoMinVsVersion));
+            var sut = CreateSut(TestSlnFiles.NoMinVsVersion);
+
+            var ex = Assert.Throws<InvalidDotNetSolutionException>(() =>
+            {
+                var x = sut.MinimumVisualStudioVersion;
+            });
             Assert.That(ex.Message, Is.EqualTo("A valid Minimum Visual Studio Version could not be found in the sln text."));
         }
 
@@ -47,7 +62,7 @@ namespace ByteDev.DotNet.IntTests.Solution
 
             Assert.That(sut.Projects.Count, Is.EqualTo(5));
 
-            Assert.That(sut.Projects.First().TypeId, Is.EqualTo(new Guid("9A19103F-16F7-4668-BE54-9A1E7A4F7556")));
+            Assert.That(sut.Projects.First().Type.Id, Is.EqualTo(new Guid("9A19103F-16F7-4668-BE54-9A1E7A4F7556")));
             Assert.That(sut.Projects.First().Name, Is.EqualTo("ByteDev.DotNet.IntTests"));
             Assert.That(sut.Projects.First().Path, Is.EqualTo(@"ByteDev.DotNet.IntTests\ByteDev.DotNet.IntTests.csproj"));
             Assert.That(sut.Projects.First().Id, Is.EqualTo(new Guid("989150B8-63EE-4213-A7E0-71ECB5A781C8")));
@@ -58,8 +73,7 @@ namespace ByteDev.DotNet.IntTests.Solution
         {
             var sut = CreateSut(TestSlnFiles.V12);
 
-            Assert.That(sut.Projects.Fourth().IsSolutionFolder, Is.True);
-            Assert.That(sut.Projects.Fourth().TypeId, Is.EqualTo(new Guid("2150E333-8FDC-42A3-9474-1A3956D46DE8")));
+            Assert.That(sut.Projects.Fourth().Type.Id, Is.EqualTo(new Guid("2150E333-8FDC-42A3-9474-1A3956D46DE8")));
             Assert.That(sut.Projects.Fourth().Name, Is.EqualTo("Tests"));
             Assert.That(sut.Projects.Fourth().Path, Is.EqualTo("Tests"));
             Assert.That(sut.Projects.Fourth().Id, Is.EqualTo(new Guid("F8FDF7E8-B7FB-4BA1-8107-DB114CB729BB")));
@@ -73,7 +87,7 @@ namespace ByteDev.DotNet.IntTests.Solution
             Assert.That(sut.Projects.Count, Is.EqualTo(0));
         }
 
-        private DotNetSolution CreateSut(string slnFilePath)
+        private static DotNetSolution CreateSut(string slnFilePath)
         {
             return DotNetSolution.Load(slnFilePath);
         }
