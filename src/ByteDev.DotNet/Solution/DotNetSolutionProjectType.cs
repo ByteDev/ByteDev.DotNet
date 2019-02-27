@@ -8,6 +8,8 @@ namespace ByteDev.DotNet.Solution
 
         public string Description { get; }
 
+        public bool IsSolutionFolder => Id == ProjectTypeIds.SolutionFolder;
+
         public DotNetSolutionProjectType(Guid id, string description)
         {
             Id = id;

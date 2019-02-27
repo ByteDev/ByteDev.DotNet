@@ -22,6 +22,26 @@ namespace ByteDev.DotNet.UnitTests.Solution
         }
 
         [TestFixture]
+        public class IsSolutionFolder : DotNetSolutionProjectTypeTests
+        {
+            [Test]
+            public void WhenIsSolutionFolder_ThenReturnTrue()
+            {
+                var sut = new DotNetSolutionProjectType(ProjectTypeIds.SolutionFolder, "Solution Folder");
+
+                Assert.That(sut.IsSolutionFolder, Is.True);
+            }
+
+            [Test]
+            public void WhenIsNotSolutionFolder_ThenReturnFalse()
+            {
+                var sut = new DotNetSolutionProjectType(ProjectTypeIds.CSharp, "C#");
+
+                Assert.That(sut.IsSolutionFolder, Is.False);
+            }
+        }
+
+        [TestFixture]
         public class OverrideEquals : DotNetSolutionProjectTypeTests
         {
             [Test]
