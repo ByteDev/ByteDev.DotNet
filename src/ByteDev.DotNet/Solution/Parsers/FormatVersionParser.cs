@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace ByteDev.DotNet.Solution.Parsers
 {
-    public class FormatVersionParser : ISolutionTextParser<string>
+    internal class FormatVersionParser : ISolutionTextParser<string>
     {
         private const string ErrorMessage = "A valid Format Version could not be found in the sln text.";
 

@@ -4,8 +4,14 @@ using System.Text.RegularExpressions;
 
 namespace ByteDev.DotNet.Solution.Parsers
 {
-    public class DotNetSolutionProjectsParser : ISolutionTextParser<IList<DotNetSolutionProject>>
+    internal class DotNetSolutionProjectsParser : ISolutionTextParser<IList<DotNetSolutionProject>>
     {
+        private const string ProjectPattern = 
+            "^Project\\(\"{(?<TypeId>[A-F0-9-]+)}\"\\) = " +
+            "\"(?<Name>.*?)\", " +
+            "\"(?<Path>.*?)\", " +
+            "\"{(?<Id>[A-F0-9-]+)}\"";
+
         private readonly IDotNetSolutionProjectTypeFactory _typeFactory;
 
         public DotNetSolutionProjectsParser(IDotNetSolutionProjectTypeFactory typeFactory)
@@ -15,12 +21,7 @@ namespace ByteDev.DotNet.Solution.Parsers
 
         public IList<DotNetSolutionProject> Parse(string slnText)
         {
-            const string pattern = "^Project\\(\"{(?<TypeId>[A-F0-9-]+)}\"\\) = " +
-                                   "\"(?<Name>.*?)\", " +
-                                   "\"(?<Path>.*?)\", " +
-                                   "\"{(?<Id>[A-F0-9-]+)}\"";
-
-            var matches = Regex.Matches(slnText, pattern, RegexOptions.Multiline);
+            var matches = Regex.Matches(slnText, ProjectPattern, RegexOptions.Multiline);
 
             var list = new List<DotNetSolutionProject>();
 

@@ -3,10 +3,12 @@
 namespace ByteDev.DotNet.Solution
 {
     /// <summary>
-    /// Solution project type IDs. List originally based on:
-    /// https://www.codeproject.com/Reference/720512/List-of-Visual-Studio-Project-Type-GUIDs
+    /// Solution project type IDs.
     /// </summary>
-    internal static class ProjectTypeIds
+    /// <remarks>
+    /// List originally based on: https://www.codeproject.com/Reference/720512/List-of-Visual-Studio-Project-Type-GUIDs
+    /// </remarks>
+    public static class ProjectTypeIds
     {
         public static readonly Guid SolutionFolder = new Guid("2150E333-8FDC-42A3-9474-1A3956D46DE8");
         public static readonly Guid ProjectFolder = new Guid("66A26720-8FB5-11D2-AA7E-00C04F688DDE");

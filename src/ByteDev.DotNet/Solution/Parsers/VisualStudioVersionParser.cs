@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace ByteDev.DotNet.Solution.Parsers
 {
-    public class VisualStudioVersionParser : ISolutionTextParser<string>
+    internal class VisualStudioVersionParser : ISolutionTextParser<string>
     {
         private const string Marker = "VisualStudioVersion = ";
 

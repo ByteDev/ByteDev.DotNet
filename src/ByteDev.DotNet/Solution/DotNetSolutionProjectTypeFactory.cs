@@ -3,11 +3,6 @@ using System.Collections.Generic;
 
 namespace ByteDev.DotNet.Solution
 {
-    public interface IDotNetSolutionProjectTypeFactory
-    {
-        DotNetSolutionProjectType Create(Guid projectTypeId);
-    }
-
     public class DotNetSolutionProjectTypeFactory : IDotNetSolutionProjectTypeFactory
     {
         private static readonly Dictionary<Guid, string> Types = new Dictionary<Guid, string>
