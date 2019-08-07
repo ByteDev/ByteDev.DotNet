@@ -62,10 +62,20 @@ namespace ByteDev.DotNet.IntTests.Solution
 
             Assert.That(sut.Projects.Count, Is.EqualTo(5));
 
-            Assert.That(sut.Projects.First().Type.Id, Is.EqualTo(new Guid("9A19103F-16F7-4668-BE54-9A1E7A4F7556")));
+            Assert.That(sut.Projects.First().Type.Id, Is.EqualTo(ProjectTypeIds.CSharpNewFormat));
             Assert.That(sut.Projects.First().Name, Is.EqualTo("ByteDev.DotNet.IntTests"));
             Assert.That(sut.Projects.First().Path, Is.EqualTo(@"ByteDev.DotNet.IntTests\ByteDev.DotNet.IntTests.csproj"));
             Assert.That(sut.Projects.First().Id, Is.EqualTo(new Guid("989150B8-63EE-4213-A7E0-71ECB5A781C8")));
+
+            Assert.That(sut.Projects.Second().Type.Id, Is.EqualTo(ProjectTypeIds.CSharpNewFormat));
+            Assert.That(sut.Projects.Second().Name, Is.EqualTo("ByteDev.DotNet"));
+            Assert.That(sut.Projects.Second().Path, Is.EqualTo(@"ByteDev.DotNet\ByteDev.DotNet.csproj"));
+            Assert.That(sut.Projects.Second().Id, Is.EqualTo(new Guid("321736A6-AE48-46F1-89E5-074D6C105E66")));
+            
+            Assert.That(sut.Projects.Third().Type.Id, Is.EqualTo(ProjectTypeIds.CSharp));
+            Assert.That(sut.Projects.Third().Name, Is.EqualTo("ByteDev.DotNet.UnitTests"));
+            Assert.That(sut.Projects.Third().Path, Is.EqualTo(@"ByteDev.DotNet.UnitTests\ByteDev.DotNet.UnitTests.csproj"));
+            Assert.That(sut.Projects.Third().Id, Is.EqualTo(new Guid("34D79A1C-6035-486F-B885-FEEF1DB6632A")));
         }
 
         [Test]
@@ -73,7 +83,7 @@ namespace ByteDev.DotNet.IntTests.Solution
         {
             var sut = CreateSut(TestSlnFiles.V12);
 
-            Assert.That(sut.Projects.Fourth().Type.Id, Is.EqualTo(new Guid("2150E333-8FDC-42A3-9474-1A3956D46DE8")));
+            Assert.That(sut.Projects.Fourth().Type.Id, Is.EqualTo(ProjectTypeIds.SolutionFolder));
             Assert.That(sut.Projects.Fourth().Name, Is.EqualTo("Tests"));
             Assert.That(sut.Projects.Fourth().Path, Is.EqualTo("Tests"));
             Assert.That(sut.Projects.Fourth().Id, Is.EqualTo(new Guid("F8FDF7E8-B7FB-4BA1-8107-DB114CB729BB")));
