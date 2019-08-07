@@ -24,17 +24,36 @@ namespace ByteDev.DotNet.Solution
             _projects = new Lazy<IList<DotNetSolutionProject>>(() => new DotNetSolutionProjectsParser(new DotNetSolutionProjectTypeFactory()).Parse(slnText));
         }
 
+        /// <summary>
+        /// File format version.
+        /// </summary>
         public string FormatVersion => _formatVersion.Value;
 
+        /// <summary>
+        /// The full version of Visual Studio that (most recently) saved the solution file.
+        /// If the solution file is saved by a newer version of Visual Studio that has the same major version,
+        /// this value is not updated so as to lessen churn in the file.
+        /// </summary>
         public string VisualStudioVersion => _visualStudioVersion.Value;
 
+        /// <summary>
+        /// The minimum (oldest) version of Visual Studio that can open this solution file.
+        /// </summary>
         public string MinimumVisualStudioVersion => _minimumVisualStudioVersion.Value;
 
+        /// <summary>
+        /// Collection of projects referenced by the solution file.
+        /// </summary>
         public IList<DotNetSolutionProject> Projects => _projects.Value;
 
+        /// <summary>
+        /// Loads the DotNetSolution from the specified file path.
+        /// </summary>
+        /// <param name="slnFilePath">Sln file path.</param>
+        /// <returns>DotNetSolution</returns>
         public static DotNetSolution Load(string slnFilePath)
         {
-            string slnText = File.ReadAllText(slnFilePath);
+            var slnText = File.ReadAllText(slnFilePath);
 
             return new DotNetSolution(slnText);
         }
