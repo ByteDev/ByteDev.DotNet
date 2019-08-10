@@ -2,10 +2,10 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-	  <Description>Set of classes for reading .NET solution and project files.</Description>
+	  <Description>.NET Standard library for reading .NET solution and project files.</Description>
     <Authors>Paul Stanley</Authors>
     <Company></Company>
-    <PackageTags>dotnet solution project</PackageTags>
+    <PackageTags>dotnet .net solution project sln csproj file</PackageTags>
   </PropertyGroup>
 
 </Project>
