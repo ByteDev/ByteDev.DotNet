@@ -5,7 +5,7 @@
 	  <Description>.NET Standard library for reading .NET solution and project files.</Description>
     <Authors>Paul Stanley</Authors>
     <Company></Company>
-    <PackageTags>dotnet .net solution project sln csproj file</PackageTags>
+    <PackageTags>dotnet .net solution project sln csproj read reader file library</PackageTags>
   </PropertyGroup>
 
 </Project>

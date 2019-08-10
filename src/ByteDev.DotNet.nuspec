@@ -9,7 +9,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>.NET Standard library for reading .NET solution and project files.</description>
     <copyright>Copyright 2019</copyright>
-    <tags>dotnet .net solution project sln csproj file</tags>
+    <tags>dotnet .net solution project sln csproj read reader file library</tags>
 	<iconUrl>https://raw.githubusercontent.com/bytedev/ByteDev.DotNet/master/images/icon.png</iconUrl>
   </metadata>
   <files>
