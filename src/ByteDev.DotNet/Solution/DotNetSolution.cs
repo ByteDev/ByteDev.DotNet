@@ -10,7 +10,9 @@ namespace ByteDev.DotNet.Solution
         private readonly Lazy<string> _formatVersion;
         private readonly Lazy<string> _visualStudioVersion;
         private readonly Lazy<string> _minimumVisualStudioVersion;
+
         private readonly Lazy<IList<DotNetSolutionProject>> _projects;
+        private readonly Lazy<IList<DotNetSolutionGlobalSection>> _globalSections;
 
         public DotNetSolution(string slnText)
         {
@@ -22,6 +24,7 @@ namespace ByteDev.DotNet.Solution
             _minimumVisualStudioVersion = new Lazy<string>(() => new MinimumVisualStudioVersionParser().Parse(slnText));
 
             _projects = new Lazy<IList<DotNetSolutionProject>>(() => new DotNetSolutionProjectsParser(new DotNetSolutionProjectTypeFactory()).Parse(slnText));
+            _globalSections = new Lazy<IList<DotNetSolutionGlobalSection>>(() => new DotNetSolutionGlobalSectionParser().Parse(slnText));
         }
 
         /// <summary>
@@ -45,6 +48,11 @@ namespace ByteDev.DotNet.Solution
         /// Collection of projects referenced by the solution file.
         /// </summary>
         public IList<DotNetSolutionProject> Projects => _projects.Value;
+
+        /// <summary>
+        /// Collection of global section settings.
+        /// </summary>
+        public IList<DotNetSolutionGlobalSection> GlobalSections => _globalSections.Value;
 
         /// <summary>
         /// Loads the DotNetSolution from the specified file path.

@@ -97,6 +97,25 @@ namespace ByteDev.DotNet.IntTests.Solution
             Assert.That(sut.Projects.Count, Is.EqualTo(0));
         }
 
+        [Test]
+        public void WhenSlnHasGlobalSections_ThenSetGlobalSectionsProperty()
+        {
+            var sut = CreateSut(TestSlnFiles.V12);
+
+            Assert.That(sut.GlobalSections.Count, Is.EqualTo(5));
+
+            Assert.That(sut.GlobalSections.First().Name, Is.EqualTo("SolutionConfigurationPlatforms"));
+            Assert.That(sut.GlobalSections.First().Type, Is.EqualTo(GlobalSectionType.PreSolution));
+            Assert.That(sut.GlobalSections.First().Settings.Count, Is.EqualTo(2));
+            Assert.That(sut.GlobalSections.First().Settings["Debug|Any CPU"], Is.EqualTo("Debug|Any CPU"));
+            Assert.That(sut.GlobalSections.First().Settings["Release|Any CPU"], Is.EqualTo("Release|Any CPU"));
+
+            Assert.That(sut.GlobalSections.Fifth().Name, Is.EqualTo("ExtensibilityGlobals"));
+            Assert.That(sut.GlobalSections.Fifth().Type, Is.EqualTo(GlobalSectionType.PostSolution));
+            Assert.That(sut.GlobalSections.Fifth().Settings.Count, Is.EqualTo(1));
+            Assert.That(sut.GlobalSections.Fifth().Settings["SolutionGuid"], Is.EqualTo("{D663B417-FDD2-470E-B2AF-230ED44C07C6}"));
+        }
+
         private static DotNetSolution CreateSut(string slnFilePath)
         {
             return DotNetSolution.Load(slnFilePath);

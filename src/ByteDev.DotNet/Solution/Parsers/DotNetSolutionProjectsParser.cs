@@ -35,14 +35,12 @@ namespace ByteDev.DotNet.Solution.Parsers
 
         private DotNetSolutionProject CreateDotNetSolutionProject(Match match)
         {
-            var typeId = new Guid(match.Groups[1].Value);
-
             return new DotNetSolutionProject
             {
-                Type = _typeFactory.Create(typeId),
-                Name = match.Groups[2].Value,
-                Path = match.Groups[3].Value,
-                Id = new Guid(match.Groups[4].Value)
+                Type = _typeFactory.Create(new Guid(match.Groups["TypeId"].Value)),
+                Name = match.Groups["Name"].Value,
+                Path = match.Groups["Path"].Value,
+                Id = new Guid(match.Groups["Id"].Value)
             };
         }
     }
