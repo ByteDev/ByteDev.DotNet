@@ -12,6 +12,9 @@ namespace ByteDev.DotNet.Solution
 
         public DotNetSolutionProjectType(Guid id, string description)
         {
+            if(string.IsNullOrEmpty(description))
+                throw new ArgumentException("Description was null or empty.", nameof(description));
+
             Id = id;
             Description = description;
         }
