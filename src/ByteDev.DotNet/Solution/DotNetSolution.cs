@@ -51,7 +51,7 @@ namespace ByteDev.DotNet.Solution
         public IList<DotNetSolutionProject> Projects => _projects.Value;
 
         /// <summary>
-        /// Collection of global section settings.
+        /// Collection of global sections.
         /// </summary>
         public IList<DotNetSolutionGlobalSection> GlobalSections => _globalSections.Value;
 
