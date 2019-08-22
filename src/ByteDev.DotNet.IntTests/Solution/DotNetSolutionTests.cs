@@ -129,6 +129,31 @@ namespace ByteDev.DotNet.IntTests.Solution
 
                 Assert.That(sut.Projects.Count, Is.EqualTo(0));
             }
+
+            [Test]
+            public void WhenProjectHasSections_ThenSetSectionProperty()
+            {
+                var sut = CreateSut(TestSlnFiles.V12);
+
+                Assert.That(sut.Projects.Fifth().ProjectSections.First().Name, Is.EqualTo("SolutionItems"));
+                Assert.That(sut.Projects.Fifth().ProjectSections.First().Type, Is.EqualTo(ProjectSectionType.PreProject));
+                Assert.That(sut.Projects.Fifth().ProjectSections.First().Dependencies.Count, Is.EqualTo(1));
+                Assert.That(sut.Projects.Fifth().ProjectSections.First().Dependencies[@".nuget\NuGet.Config"], Is.EqualTo(@".nuget\NuGet.Config"));
+
+                Assert.That(sut.Projects.Fifth().ProjectSections.Second().Name, Is.EqualTo("TestItems"));
+                Assert.That(sut.Projects.Fifth().ProjectSections.Second().Type, Is.EqualTo(ProjectSectionType.PostProject));
+                Assert.That(sut.Projects.Fifth().ProjectSections.Second().Dependencies.Count, Is.EqualTo(2));
+                Assert.That(sut.Projects.Fifth().ProjectSections.Second().Dependencies[@"{B381C2FB-9E2E-4833-822B-1EC5DFF2458F}"], Is.EqualTo(@"{B381C2FB-9E2E-4833-822B-1EC5DFF2458F}"));
+                Assert.That(sut.Projects.Fifth().ProjectSections.Second().Dependencies[@"{C391D787-0B39-4122-9712-714A9F9742CD}"], Is.EqualTo(@"{C391D787-0B39-4122-9712-714A9F9742CD}"));
+            }
+
+            [Test]
+            public void WhenProjectHasNoSections_ThenSetToEmpty()
+            {
+                var sut = CreateSut(TestSlnFiles.V12);
+
+                Assert.That(sut.Projects.First().ProjectSections, Is.Empty);
+            }
         }
 
         [TestFixture]

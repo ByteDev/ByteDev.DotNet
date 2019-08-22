@@ -1,8 +1,9 @@
 ﻿using System;
 using ByteDev.DotNet.Solution;
+using ByteDev.DotNet.Solution.Factories;
 using NUnit.Framework;
 
-namespace ByteDev.DotNet.UnitTests.Solution
+namespace ByteDev.DotNet.UnitTests.Solution.Factories
 {
     [TestFixture]
     public class DotNetSolutionProjectTypeFactoryTests

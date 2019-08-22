@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using ByteDev.DotNet.Solution.Factories;
 using ByteDev.DotNet.Solution.Parsers;
 
 namespace ByteDev.DotNet.Solution

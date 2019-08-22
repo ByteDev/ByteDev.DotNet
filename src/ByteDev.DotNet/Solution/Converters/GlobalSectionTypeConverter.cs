@@ -1,4 +1,4 @@
-﻿namespace ByteDev.DotNet.Solution.Parsers
+﻿namespace ByteDev.DotNet.Solution.Converters
 {
     internal static class GlobalSectionTypeConverter
     {

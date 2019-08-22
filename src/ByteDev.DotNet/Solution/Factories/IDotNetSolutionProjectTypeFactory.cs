@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ByteDev.DotNet.Solution
+namespace ByteDev.DotNet.Solution.Factories
 {
     public interface IDotNetSolutionProjectTypeFactory
     {

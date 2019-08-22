@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ByteDev.DotNet.Solution
+namespace ByteDev.DotNet.Solution.Factories
 {
     public class DotNetSolutionProjectTypeFactory : IDotNetSolutionProjectTypeFactory
     {

@@ -15,6 +15,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "nuget", "nuget", "{62D43D35
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
 	EndProjectSection
+	ProjectSection(TestItems) = postProject
+		{B381C2FB-9E2E-4833-822B-1EC5DFF2458F} = {B381C2FB-9E2E-4833-822B-1EC5DFF2458F}
+		{C391D787-0B39-4122-9712-714A9F9742CD} = {C391D787-0B39-4122-9712-714A9F9742CD}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
