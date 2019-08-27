@@ -3,7 +3,7 @@
     public class ProjectReference
     {
         /// <summary>
-        /// Path to the project.
+        /// Path to the project file.
         /// </summary>
         public string FilePath { get; set; }
 

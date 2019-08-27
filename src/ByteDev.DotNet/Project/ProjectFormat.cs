@@ -3,11 +3,11 @@
     public enum ProjectFormat
     {
         /// <summary>
-        /// The older (pre-VS2017) format
+        /// The older (pre-VS2017) format.
         /// </summary>
         Old,
         /// <summary>
-        /// The newer (VS2017) format
+        /// The newer (VS2017) format.
         /// </summary>
         New
     }

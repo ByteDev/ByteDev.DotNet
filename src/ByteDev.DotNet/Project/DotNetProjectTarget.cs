@@ -18,12 +18,24 @@ namespace ByteDev.DotNet.Project
             SetDescription();
         }
 
+        /// <summary>
+        /// Raw target value as read from the project XML.
+        /// </summary>
         public string TargetValue { get; }
 
+        /// <summary>
+        /// The type of target (Framework, Core or Standard).
+        /// </summary>
         public TargetType Type { get; private set; }
 
+        /// <summary>
+        /// Version information for the target.
+        /// </summary>
         public string Version { get; private set; }
 
+        /// <summary>
+        /// A readable description of the target.
+        /// </summary>
         public string Description { get; private set; }
 
         public override string ToString()
