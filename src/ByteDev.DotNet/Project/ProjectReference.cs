@@ -2,6 +2,9 @@
 {
     public class ProjectReference
     {
+        /// <summary>
+        /// Path to the project.
+        /// </summary>
         public string FilePath { get; set; }
 
         public override string ToString()

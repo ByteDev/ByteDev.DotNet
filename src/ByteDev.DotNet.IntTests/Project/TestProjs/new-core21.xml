@@ -6,6 +6,13 @@
     <Authors>John Smith, Jesus Christ</Authors>
     <Company>Something Ltd.</Company>
     <PackageTags>something program exe</PackageTags>
+    <Copyright>Some Copyright</Copyright>
+    <PackageLicenseUrl>http://licenseurl/</PackageLicenseUrl>
+    <PackageProjectUrl>http://projecturl/</PackageProjectUrl>
+    <PackageIconUrl>http://iconurl/</PackageIconUrl>
+    <RepositoryUrl>http://repourl/</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageReleaseNotes>Some release notes</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

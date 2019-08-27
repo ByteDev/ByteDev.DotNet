@@ -160,6 +160,146 @@ namespace ByteDev.DotNet.IntTests.Project
         }
 
         [TestFixture]
+        public class PackageLicenseUrl : DotNetProjectTests
+        {
+            [Test]
+            public void WhenPackageLicenseUrlIsPresent_ThenReturnPackageLicenseUrl()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21);
+
+                Assert.That(sut.PackageLicenseUrl, Is.EqualTo("http://licenseurl/"));
+            }
+
+            [Test]
+            public void WhenPackageLicenseUrlIsNotPresent_ThenReturnNull()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
+
+                Assert.That(sut.PackageLicenseUrl, Is.Null);
+            }
+        }
+
+        [TestFixture]
+        public class PackageProjectUrl : DotNetProjectTests
+        {
+            [Test]
+            public void WhenPackageProjectUrlIsPresent_ThenReturnPackageProjectUrl()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21);
+
+                Assert.That(sut.PackageProjectUrl, Is.EqualTo("http://projecturl/"));
+            }
+
+            [Test]
+            public void WhenPackageProjectUrlIsNotPresent_ThenReturnNull()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
+
+                Assert.That(sut.PackageProjectUrl, Is.Null);
+            }
+        }
+
+        [TestFixture]
+        public class PackageIconUrl : DotNetProjectTests
+        {
+            [Test]
+            public void WhenPackageIconUrlIsPresent_ThenReturnPackageIconUrl()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21);
+
+                Assert.That(sut.PackageIconUrl, Is.EqualTo("http://iconurl/"));
+            }
+
+            [Test]
+            public void WhenPackageIconUrlIsNotPresent_ThenReturnNull()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
+
+                Assert.That(sut.PackageIconUrl, Is.Null);
+            }
+        }
+
+        [TestFixture]
+        public class RepositoryUrl : DotNetProjectTests
+        {
+            [Test]
+            public void WhenRepositoryUrlIsPresent_ThenReturnRepositoryUrl()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21);
+
+                Assert.That(sut.RepositoryUrl, Is.EqualTo("http://repourl/"));
+            }
+
+            [Test]
+            public void WhenRepositoryUrlIsNotPresent_ThenReturnNull()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
+
+                Assert.That(sut.RepositoryUrl, Is.Null);
+            }
+        }
+
+        [TestFixture]
+        public class RepositoryType : DotNetProjectTests
+        {
+            [Test]
+            public void WhenRepositoryTypeIsPresent_ThenReturnRepositoryType()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21);
+
+                Assert.That(sut.RepositoryType, Is.EqualTo("git"));
+            }
+
+            [Test]
+            public void WhenRepositoryTypeIsNotPresent_ThenReturnNull()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
+
+                Assert.That(sut.RepositoryType, Is.Null);
+            }
+        }
+
+        [TestFixture]
+        public class PackageReleaseNotes : DotNetProjectTests
+        {
+            [Test]
+            public void WhenPackageReleaseNotesIsPresent_ThenReturnPackageReleaseNotes()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21);
+
+                Assert.That(sut.PackageReleaseNotes, Is.EqualTo("Some release notes"));
+            }
+
+            [Test]
+            public void WhenPackageReleaseNotesIsNotPresent_ThenReturnNull()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
+
+                Assert.That(sut.PackageReleaseNotes, Is.Null);
+            }
+        }
+
+        [TestFixture]
+        public class Copyright : DotNetProjectTests
+        {
+            [Test]
+            public void WhenCopyrightIsPresent_ThenReturnCopyright()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21);
+
+                Assert.That(sut.Copyright, Is.EqualTo("Some Copyright"));
+            }
+
+            [Test]
+            public void WhenCopyrightIsNotPresent_ThenReturnNull()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
+
+                Assert.That(sut.Copyright, Is.Null);
+            }
+        }
+
+        [TestFixture]
         public class PackageTags : DotNetProjectTests
         {
             [Test]

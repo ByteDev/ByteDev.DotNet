@@ -18,14 +18,14 @@ namespace ByteDev.DotNet.Project
         {
             var projectRefElements = ItemGroupElements.Descendants().Where(e => e.Name.LocalName == "ProjectReference");
 
-            return projectRefElements.Select(e => CreateProjectReferenceFor(e));
+            return projectRefElements.Select(CreateProjectReferenceFor);
         }
 
         public IEnumerable<PackageReference> GetPackageReferences()
         {
             var packageRefElements = ItemGroupElements.Descendants().Where(e => e.Name.LocalName == "PackageReference");
 
-            return packageRefElements.Select(e => CreatePackageReferenceFor(e));
+            return packageRefElements.Select(CreatePackageReferenceFor);
         }
 
         private static IList<XElement> GetItemGroups(XDocument xDocument)
