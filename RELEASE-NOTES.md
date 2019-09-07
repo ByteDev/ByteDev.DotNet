@@ -1,5 +1,17 @@
 # Release Notes
 
+## 4.1.0 - 07 Sep 2019
+
+Breaking changes:
+* (None)
+
+New features:
+* Added project properties CopyRight, PackageLicenseUrl, PackageProjectUrl, PackageIconUrl, RepositoryUrl, RepositoryType, PackageReleaseNotes.
+* Improved public method and property comments.
+
+Bug fixes:
+* (None)
+
 ## 4.0.0 - 22 Aug 2019
 
 Breaking changes:

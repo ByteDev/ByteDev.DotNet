@@ -38,7 +38,7 @@ namespace ByteDev.DotNet.Project
         public bool IsMultiTarget => ProjectTargets?.Count() > 1;
 
         /// <summary>
-        /// The project's targets (i.e. Framework, Core or Standard).
+        /// The project's targets.
         /// </summary>
         public IEnumerable<DotNetProjectTarget> ProjectTargets { get; private set; }
 
