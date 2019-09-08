@@ -372,7 +372,7 @@ namespace ByteDev.DotNet.IntTests.Project
             }
 
             [Test]
-            public void WhenNewFormat_AndTwoPackageReferences_ThenReturnPackageReferences()
+            public void WhenNewFormat_AndTwoPackageReferencesWithVersionNumbers_ThenReturnPackageReferences()
             {
                 var sut = CreateSut(TestProjFiles.NewFormat.Core21);
 
@@ -381,6 +381,15 @@ namespace ByteDev.DotNet.IntTests.Project
 
                 Assert.That(sut.PackageReferences.Second().Name, Is.EqualTo("NUnit"));
                 Assert.That(sut.PackageReferences.Second().Version, Is.EqualTo("3.10.1"));
+            }
+
+            [Test]
+            public void WhenNewFormat_AndPackageReferenceHasNoVersion_ThenReturnPackageReferences()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21);
+
+                Assert.That(sut.PackageReferences.Third().Name, Is.EqualTo("Microsoft.AspNetCore.App"));
+                Assert.That(sut.PackageReferences.Third().Version, Is.Null);
             }
 
             [Test]
