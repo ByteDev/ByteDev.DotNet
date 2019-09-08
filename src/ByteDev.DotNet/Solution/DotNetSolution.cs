@@ -9,6 +9,7 @@ namespace ByteDev.DotNet.Solution
     public class DotNetSolution
     {
         private readonly Lazy<string> _formatVersion;
+        private readonly Lazy<int> _majorVersion;
         private readonly Lazy<string> _visualStudioVersion;
         private readonly Lazy<string> _minimumVisualStudioVersion;
 
@@ -21,6 +22,7 @@ namespace ByteDev.DotNet.Solution
                 throw new ArgumentException("Solution text was null or empty.", nameof(slnText));
 
             _formatVersion = new Lazy<string>(() => new FormatVersionParser().Parse(slnText));
+            _majorVersion = new Lazy<int>(() => new MajorVersionParser().Parse(slnText));
             _visualStudioVersion = new Lazy<string>(() => new VisualStudioVersionParser().Parse(slnText));
             _minimumVisualStudioVersion = new Lazy<string>(() => new MinimumVisualStudioVersionParser().Parse(slnText));
 
@@ -32,6 +34,12 @@ namespace ByteDev.DotNet.Solution
         /// File format version.
         /// </summary>
         public string FormatVersion => _formatVersion.Value;
+
+        /// <summary>
+        /// The major version of Visual Studio that (most recently) saved this solution file.
+        /// This information controls the version number in the solution icon.
+        /// </summary>
+        public int MajorVersion => _majorVersion.Value;
 
         /// <summary>
         /// The full version of Visual Studio that (most recently) saved the solution file.

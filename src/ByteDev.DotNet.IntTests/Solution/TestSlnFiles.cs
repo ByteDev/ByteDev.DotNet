@@ -10,6 +10,7 @@
         public const string V12NoProjs = BasePath + "sln-v12-noprojs.txt";
 
         public const string NoFormatVersion = BasePath + "sln-no-formatversion.txt";
+        public const string NoMajorVersion = BasePath + "sln-no-majorversion.txt";
         public const string NoVsVersion = BasePath + "sln-no-vsversion.txt";
         public const string NoMinVsVersion = BasePath + "sln-no-minvsversion.txt";
     }

@@ -53,6 +53,9 @@
     <None Update="Solution\TestSlns\sln-no-vsversion.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Solution\TestSlns\sln-no-majorversion.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Solution\TestSlns\sln-v12-noglobal.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
