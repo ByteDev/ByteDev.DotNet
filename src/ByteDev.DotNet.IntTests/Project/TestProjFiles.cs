@@ -11,6 +11,7 @@
             public const string Framework471 = BasePath + "new-framework471.xml";
             public const string Std20 = BasePath + "new-std20.xml";
             public const string Core21 = BasePath + "new-core21.xml";
+            public const string Core21CommaTags = BasePath + "new-core21-commatags.xml";
 
             public const string Std15AndFramework4 = BasePath + "new-std15-and-net40.xml";
 

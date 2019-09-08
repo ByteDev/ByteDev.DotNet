@@ -8,7 +8,6 @@ namespace ByteDev.DotNet.Project
 {
     public class DotNetProject
     {
-        private const char PackageTagsDelimiter = ' ';
         private const char ProjectTargetDelimiter = ';';
 
         private Lazy<string> _description;
@@ -101,7 +100,19 @@ namespace ByteDev.DotNet.Project
         /// <summary>
         /// Collection of tags that designates the package.
         /// </summary>
-        public IEnumerable<string> PackageTags => string.IsNullOrEmpty(_packageTags.Value) ? new string[0] : _packageTags.Value.Split(PackageTagsDelimiter);
+        public IEnumerable<string> PackageTags
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_packageTags.Value))
+                    return Enumerable.Empty<string>();
+
+                if (_packageTags.Value.Contains(','))
+                    return _packageTags.Value.Split(',').Select(tag => tag.Trim());
+
+                return _packageTags.Value.Split(' ');
+            }
+        }
 
         /// <summary>
         /// Collection of references to other projects.

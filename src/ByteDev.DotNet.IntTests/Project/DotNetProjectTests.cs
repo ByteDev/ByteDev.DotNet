@@ -311,13 +311,23 @@ namespace ByteDev.DotNet.IntTests.Project
             }
 
             [Test]
-            public void WhenPackageTagsIsPresent_ThenReturnAllPackageTags()
+            public void WhenPackageTagsAreDelimitedWithSpaces_ThenReturnAllPackageTags()
             {
                 var sut = CreateSut(TestProjFiles.NewFormat.Core21);
                 
                 Assert.That(sut.PackageTags.First(), Is.EqualTo("something"));
                 Assert.That(sut.PackageTags.Second(), Is.EqualTo("program"));
                 Assert.That(sut.PackageTags.Third(), Is.EqualTo("exe"));
+            }
+
+            [Test]
+            public void WhenPackageTagsAreDelimitedWithCommas_ThenReturnAllPackageTags()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21CommaTags);
+
+                Assert.That(sut.PackageTags.First(), Is.EqualTo("tag1"));
+                Assert.That(sut.PackageTags.Second(), Is.EqualTo("tag2"));
+                Assert.That(sut.PackageTags.Third(), Is.EqualTo("tag3"));
             }
         }
 
