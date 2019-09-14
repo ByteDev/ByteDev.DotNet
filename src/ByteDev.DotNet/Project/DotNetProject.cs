@@ -21,6 +21,9 @@ namespace ByteDev.DotNet.Project
         private Lazy<string> _repositoryType;
         private Lazy<string> _packageReleaseNotes;
         private Lazy<string> _copyright;
+        private Lazy<bool> _isPackable;
+        private Lazy<string> _packageVersion;
+        private Lazy<string> _packageId;
 
         public DotNetProject(XDocument xDocument)
         {
@@ -45,31 +48,70 @@ namespace ByteDev.DotNet.Project
         /// Whether the project in the new or old format.
         /// </summary>
         public ProjectFormat Format { get; private set; }
-
-        /// <summary>
-        /// Project description.
-        /// </summary>
-        public string Description => _description.Value;
-
-        /// <summary>
-        /// Authors of the project.
-        /// </summary>
-        public string Authors => _authors.Value;
         
+        /// <summary>
+        /// Project URL applicable to the package.
+        /// </summary>
+        public string PackageProjectUrl => _packageProjectUrl.Value;
+
+        /// <summary>
+        /// Collection of references to other projects.
+        /// </summary>
+        public IEnumerable<ProjectReference> ProjectReferences { get; private set; }
+
+        /// <summary>
+        /// Collection of references to external packages.  Will return empty unless the project
+        /// is in the new format (old format package references are typically in a packages.config file).
+        /// </summary>
+        public IEnumerable<PackageReference> PackageReferences { get; private set; }
+
+        #region Assembly properties
+
         /// <summary>
         /// Company name for the project.
         /// </summary>
         public string Company => _company.Value;
 
-        /// <summary>
-        /// A URL to the license that is applicable to the package.
-        /// </summary>
-        public string PackageLicenseUrl => _packageLicenseUrl.Value;
+        #endregion
+
+        #region Package Metadata
 
         /// <summary>
-        /// Project URL applicable to the package.
+        /// Specifies the name for the resulting package. If not specified, the pack operation will default to using the AssemblyName or directory name as the name of the package.
         /// </summary>
-        public string PackageProjectUrl => _packageProjectUrl.Value;
+        public string PackageId => _packageId.Value;
+
+        /// <summary>
+        /// Specifies the version that the resulting package will have. Accepts all forms of NuGet version string.
+        /// </summary>
+        public string PackageVersion => _packageVersion.Value;
+
+        /// <summary>
+        /// Specifies whether the project can be packed. The default value is true.
+        /// </summary>
+        public bool IsPackable => _isPackable.Value;
+
+        /// <summary>
+        /// A semicolon-separated list of packages authors, matching the profile names on nuget.org.
+        /// These are displayed in the NuGet Gallery on nuget.org and are used to cross-reference packages by the same authors.
+        /// </summary>
+        public string Authors => _authors.Value;
+
+        /// <summary>
+        /// A long description for the assembly.
+        /// If PackageDescription is not specified then this property is also used as the description of the package.
+        /// </summary>
+        public string Description => _description.Value;
+
+        /// <summary>
+        /// Copyright details for the package.
+        /// </summary>
+        public string Copyright => _copyright.Value;
+
+        /// <summary>
+        /// An URL to the license that is applicable to the package. (deprecated since Visual Studio 15.9.4, .NET SDK 2.1.502 and 2.2.101).
+        /// </summary>
+        public string PackageLicenseUrl => _packageLicenseUrl.Value;
 
         /// <summary>
         /// A URL for a 64x64 image used as the icon for the package in UI display.
@@ -77,26 +119,10 @@ namespace ByteDev.DotNet.Project
         public string PackageIconUrl => _packageIconUrl.Value;
 
         /// <summary>
-        /// Specifies the URL for the repository where the source code for the package resides and/or from which it's being built.
-        /// </summary>
-        public string RepositoryUrl => _repositoryUrl.Value;
-
-        /// <summary>
-        /// Specifies the type of the repository. For example: "git".
-        /// </summary>
-        public string RepositoryType => _repositoryType.Value;
-
-        /// <summary>
         /// Release notes for the package.
         /// </summary>
         public string PackageReleaseNotes => _packageReleaseNotes.Value;
 
-        /// <summary>
-        /// Copy right information for the project.
-        /// </summary>
-        public string Copyright => _copyright.Value;
-
-        
         /// <summary>
         /// Collection of tags that designates the package.
         /// </summary>
@@ -115,16 +141,17 @@ namespace ByteDev.DotNet.Project
         }
 
         /// <summary>
-        /// Collection of references to other projects.
+        /// Specifies the URL for the repository where the source code for the package resides and/or from which it's being built.
         /// </summary>
-        public IEnumerable<ProjectReference> ProjectReferences { get; private set; }
+        public string RepositoryUrl => _repositoryUrl.Value;
 
         /// <summary>
-        /// Collection of references to external packages.  Will return empty unless the project
-        /// is in the new format (old format package references are typically in a packages.config file).
+        /// Specifies the type of the repository. For example: "git".
         /// </summary>
-        public IEnumerable<PackageReference> PackageReferences { get; private set; }
+        public string RepositoryType => _repositoryType.Value;
 
+        #endregion
+        
         /// <summary>
         /// Loads the DotNetProject from the specified file path.
         /// </summary>
@@ -151,9 +178,29 @@ namespace ByteDev.DotNet.Project
 
             SetFormatAndProjectTargets(propertyGroups);
 
+            SetAssemblyProperties(propertyGroups);
+            SetPackageProperties(propertyGroups);
+        }
+
+        private void SetAssemblyProperties(PropertyGroupCollection propertyGroups)
+        {
+            _company = new Lazy<string>(() => propertyGroups.GetElementValue("Company"));
+        }
+
+        private void SetPackageProperties(PropertyGroupCollection propertyGroups)
+        {
+            _isPackable = new Lazy<bool>(() =>
+            {
+                var value = propertyGroups.GetElementValue("IsPackable");
+
+                return value == null || Convert.ToBoolean(value);
+            });
+
+            _packageVersion = new Lazy<string>(() => propertyGroups.GetElementValue("PackageVersion"));
+            _packageId = new Lazy<string>(() => propertyGroups.GetElementValue("PackageId"));
+
             _description = new Lazy<string>(() => propertyGroups.GetElementValue("Description"));
             _authors = new Lazy<string>(() => propertyGroups.GetElementValue("Authors"));
-            _company = new Lazy<string>(() => propertyGroups.GetElementValue("Company"));
             _packageTags = new Lazy<string>(() => propertyGroups.GetElementValue("PackageTags"));
             _packageLicenseUrl = new Lazy<string>(() => propertyGroups.GetElementValue("PackageLicenseUrl"));
             _packageProjectUrl = new Lazy<string>(() => propertyGroups.GetElementValue("PackageProjectUrl"));

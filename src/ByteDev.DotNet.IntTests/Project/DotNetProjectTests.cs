@@ -100,6 +100,66 @@ namespace ByteDev.DotNet.IntTests.Project
         }
 
         [TestFixture]
+        public class IsPackable : DotNetProjectTests
+        {
+            [Test]
+            public void WhenIsPackableIsPresent_ThenReturnIsPackable()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21);
+
+                Assert.That(sut.IsPackable, Is.False);
+            }
+
+            [Test]
+            public void WhenIsPackableIsNotPresent_ThenReturnTrue()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
+
+                Assert.That(sut.IsPackable, Is.True);
+            }
+        }
+
+        [TestFixture]
+        public class PackageVersion : DotNetProjectTests
+        {
+            [Test]
+            public void WhenPackageVersionIsPresent_ThenReturnPackageVersion()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21);
+
+                Assert.That(sut.PackageVersion, Is.EqualTo("1.2.3"));
+            }
+
+            [Test]
+            public void WhenPackageVersionIsNotPresent_ThenReturnNull()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
+
+                Assert.That(sut.PackageVersion, Is.Null);
+            }
+        }
+
+        [TestFixture]
+        public class PackageId : DotNetProjectTests
+        {
+            [Test]
+            public void WhenPackageIdIsPresent_ThenReturnPackageId()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21);
+
+                Assert.That(sut.PackageId, Is.EqualTo("MyPackageName"));
+            }
+
+            [Test]
+            public void WhenPackageIdIsNotPresent_ThenReturnNull()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
+
+                Assert.That(sut.PackageId, Is.Null);
+            }
+        }
+
+        [TestFixture]
         public class Description : DotNetProjectTests
         {
             [Test]

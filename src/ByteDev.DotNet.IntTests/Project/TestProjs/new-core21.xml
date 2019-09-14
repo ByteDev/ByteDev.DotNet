@@ -13,6 +13,9 @@
     <RepositoryUrl>http://repourl/</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageReleaseNotes>Some release notes</PackageReleaseNotes>
+    <IsPackable>false</IsPackable>
+    <PackageVersion>1.2.3</PackageVersion>
+    <PackageId>MyPackageName</PackageId>
   </PropertyGroup>
 
   <ItemGroup>
