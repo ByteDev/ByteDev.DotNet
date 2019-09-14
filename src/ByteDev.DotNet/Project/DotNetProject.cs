@@ -13,7 +13,7 @@ namespace ByteDev.DotNet.Project
         private Lazy<string> _description;
         private Lazy<IEnumerable<string>> _authors;
         private Lazy<string> _company;
-        private Lazy<string> _packageTags;
+        private Lazy<IEnumerable<string>> _packageTags;
         private Lazy<string> _packageLicenseUrl;
         private Lazy<string> _packageProjectUrl;
         private Lazy<string> _packageIconUrl;
@@ -150,19 +150,7 @@ namespace ByteDev.DotNet.Project
         /// <summary>
         /// Collection of tags that designates the package.
         /// </summary>
-        public IEnumerable<string> PackageTags
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(_packageTags.Value))
-                    return Enumerable.Empty<string>();
-
-                if (_packageTags.Value.Contains(','))
-                    return _packageTags.Value.Split(',').Select(tag => tag.Trim());
-
-                return _packageTags.Value.Split(' ');
-            }
-        }
+        public IEnumerable<string> PackageTags => _packageTags.Value;
 
         /// <summary>
         /// Specifies the URL for the repository where the source code for the package resides and/or from which it's being built.
@@ -224,9 +212,25 @@ namespace ByteDev.DotNet.Project
             {
                 var value = propertyGroups.GetElementValue("Authors");
 
-                return value?.Split(';') ?? Enumerable.Empty<string>();
+                if (string.IsNullOrEmpty(value))
+                    return Enumerable.Empty<string>();
+
+                return value.Split(';');
             });
             
+            _packageTags = new Lazy<IEnumerable<string>>(() =>
+            {
+                var value = propertyGroups.GetElementValue("PackageTags");
+                
+                if (string.IsNullOrEmpty(value))
+                    return Enumerable.Empty<string>();
+
+                if (value.Contains(','))
+                    return value.Split(',').Select(tag => tag.Trim());
+
+                return value.Split(' ');
+            });
+
             _packageVersion = new Lazy<string>(() => propertyGroups.GetElementValue("PackageVersion"));
             _packageId = new Lazy<string>(() => propertyGroups.GetElementValue("PackageId"));
             _title = new Lazy<string>(() => propertyGroups.GetElementValue("Title"));
@@ -235,7 +239,6 @@ namespace ByteDev.DotNet.Project
             _packageLicenseExpression = new Lazy<string>(() => propertyGroups.GetElementValue("PackageLicenseExpression"));
 
             _description = new Lazy<string>(() => propertyGroups.GetElementValue("Description"));
-            _packageTags = new Lazy<string>(() => propertyGroups.GetElementValue("PackageTags"));
             _packageLicenseUrl = new Lazy<string>(() => propertyGroups.GetElementValue("PackageLicenseUrl"));
             _packageProjectUrl = new Lazy<string>(() => propertyGroups.GetElementValue("PackageProjectUrl"));
             _packageIconUrl = new Lazy<string>(() => propertyGroups.GetElementValue("PackageIconUrl"));
