@@ -27,6 +27,7 @@ namespace ByteDev.DotNet.Project
         private Lazy<string> _title;
         private Lazy<string> _packageDescription;
         private Lazy<bool> _packageRequireLicenseAcceptance;
+        private Lazy<string> _packageLicenseExpression;
 
         public DotNetProject(XDocument xDocument)
         {
@@ -78,6 +79,11 @@ namespace ByteDev.DotNet.Project
         #endregion
 
         #region Package Metadata
+        
+        /// <summary>
+        /// An SPDX license identifier or expression. For example, Apache-2.0.
+        /// </summary>
+        public string PackageLicenseExpression => _packageLicenseExpression.Value;
 
         /// <summary>
         /// Specifies whether the client must prompt the consumer to accept the package license before installing the package. The default is false.
@@ -219,6 +225,7 @@ namespace ByteDev.DotNet.Project
             _title = new Lazy<string>(() => propertyGroups.GetElementValue("Title"));
             _packageDescription = new Lazy<string>(() => propertyGroups.GetElementValue("PackageDescription"));
             _packageRequireLicenseAcceptance = new Lazy<bool>(() => Convert.ToBoolean(propertyGroups.GetElementValue("PackageRequireLicenseAcceptance")));
+            _packageLicenseExpression = new Lazy<string>(() => propertyGroups.GetElementValue("PackageLicenseExpression"));
 
             _description = new Lazy<string>(() => propertyGroups.GetElementValue("Description"));
             _authors = new Lazy<string>(() => propertyGroups.GetElementValue("Authors"));

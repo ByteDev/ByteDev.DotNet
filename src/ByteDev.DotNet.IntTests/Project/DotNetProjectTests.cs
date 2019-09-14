@@ -220,6 +220,26 @@ namespace ByteDev.DotNet.IntTests.Project
         }
 
         [TestFixture]
+        public class PackageLicenseExpression : DotNetProjectTests
+        {
+            [Test]
+            public void WhenPackageLicenseExpressionIsPresent_ThenReturnPackageLicenseExpression()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21);
+
+                Assert.That(sut.PackageLicenseExpression, Is.EqualTo("Apache-2.0"));
+            }
+
+            [Test]
+            public void WhenPackageLicenseExpressionIsNotPresent_ThenReturnNull()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
+
+                Assert.That(sut.PackageLicenseExpression, Is.Null);
+            }
+        }
+
+        [TestFixture]
         public class Description : DotNetProjectTests
         {
             [Test]

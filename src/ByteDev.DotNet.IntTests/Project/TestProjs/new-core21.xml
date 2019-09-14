@@ -19,6 +19,7 @@
     <Title>Some Title</Title>
     <PackageDescription>Some description</PackageDescription>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
