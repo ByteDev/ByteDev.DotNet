@@ -24,6 +24,9 @@ namespace ByteDev.DotNet.Project
         private Lazy<bool> _isPackable;
         private Lazy<string> _packageVersion;
         private Lazy<string> _packageId;
+        private Lazy<string> _title;
+        private Lazy<string> _packageDescription;
+        private Lazy<bool> _packageRequireLicenseAcceptance;
 
         public DotNetProject(XDocument xDocument)
         {
@@ -75,6 +78,21 @@ namespace ByteDev.DotNet.Project
         #endregion
 
         #region Package Metadata
+
+        /// <summary>
+        /// Specifies whether the client must prompt the consumer to accept the package license before installing the package. The default is false.
+        /// </summary>
+        public bool PackageRequireLicenseAcceptance => _packageRequireLicenseAcceptance.Value;
+
+        /// <summary>
+        /// A long description of the package for UI display.
+        /// </summary>
+        public string PackageDescription => _packageDescription.Value;
+
+        /// <summary>
+        /// A human-friendly title of the package, typically used in UI displays as on nuget.org and the Package Manager in Visual Studio. If not specified, the package ID is used instead.
+        /// </summary>
+        public string Title => _title.Value;
 
         /// <summary>
         /// Specifies the name for the resulting package. If not specified, the pack operation will default to using the AssemblyName or directory name as the name of the package.
@@ -198,6 +216,9 @@ namespace ByteDev.DotNet.Project
 
             _packageVersion = new Lazy<string>(() => propertyGroups.GetElementValue("PackageVersion"));
             _packageId = new Lazy<string>(() => propertyGroups.GetElementValue("PackageId"));
+            _title = new Lazy<string>(() => propertyGroups.GetElementValue("Title"));
+            _packageDescription = new Lazy<string>(() => propertyGroups.GetElementValue("PackageDescription"));
+            _packageRequireLicenseAcceptance = new Lazy<bool>(() => Convert.ToBoolean(propertyGroups.GetElementValue("PackageRequireLicenseAcceptance")));
 
             _description = new Lazy<string>(() => propertyGroups.GetElementValue("Description"));
             _authors = new Lazy<string>(() => propertyGroups.GetElementValue("Authors"));

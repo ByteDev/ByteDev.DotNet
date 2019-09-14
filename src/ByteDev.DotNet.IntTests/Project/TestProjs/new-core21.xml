@@ -16,6 +16,9 @@
     <IsPackable>false</IsPackable>
     <PackageVersion>1.2.3</PackageVersion>
     <PackageId>MyPackageName</PackageId>
+    <Title>Some Title</Title>
+    <PackageDescription>Some description</PackageDescription>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <ItemGroup>

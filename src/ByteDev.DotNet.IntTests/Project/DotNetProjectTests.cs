@@ -160,6 +160,66 @@ namespace ByteDev.DotNet.IntTests.Project
         }
 
         [TestFixture]
+        public class Title : DotNetProjectTests
+        {
+            [Test]
+            public void WhenTitleIsPresent_ThenReturnTitle()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21);
+
+                Assert.That(sut.Title, Is.EqualTo("Some Title"));
+            }
+
+            [Test]
+            public void WhenTitleIsNotPresent_ThenReturnNull()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
+
+                Assert.That(sut.Title, Is.Null);
+            }
+        }
+
+        [TestFixture]
+        public class PackageDescription : DotNetProjectTests
+        {
+            [Test]
+            public void WhenPackageDescriptionIsPresent_ThenReturnPackageDescription()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21);
+
+                Assert.That(sut.PackageDescription, Is.EqualTo("Some description"));
+            }
+
+            [Test]
+            public void WhenPackageDescriptionIsNotPrsent_ThenReturnNull()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
+
+                Assert.That(sut.PackageDescription, Is.Null);
+            }
+        }
+
+        [TestFixture]
+        public class PackageRequireLicenseAcceptance : DotNetProjectTests
+        {
+            [Test]
+            public void WhenPackageRequireLicenseAcceptanceIsPresent_ThenReturnPackageRequireLicenseAcceptance()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21);
+
+                Assert.That(sut.PackageRequireLicenseAcceptance, Is.True);
+            }
+
+            [Test]
+            public void WhenPackageRequireLicenseAcceptanceIsNotPresent_ThenReturnFalse()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
+
+                Assert.That(sut.PackageRequireLicenseAcceptance, Is.False);
+            }
+        }
+
+        [TestFixture]
         public class Description : DotNetProjectTests
         {
             [Test]
