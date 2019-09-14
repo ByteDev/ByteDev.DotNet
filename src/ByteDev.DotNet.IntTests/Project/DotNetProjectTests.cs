@@ -263,19 +263,21 @@ namespace ByteDev.DotNet.IntTests.Project
         public class Authors : DotNetProjectTests
         {
             [Test]
-            public void WhenAuthorsIsPresent_ThenReturnDescription()
+            public void WhenTwoAuthorsIsPresent_ThenReturnTwoAuthors()
             {
                 var sut = CreateSut(TestProjFiles.NewFormat.Core21);
 
-                Assert.That(sut.Authors, Is.EqualTo("John Smith, Jesus Christ"));
+                Assert.That(sut.Authors.Count(), Is.EqualTo(2));
+                Assert.That(sut.Authors.First(), Is.EqualTo("John Smith"));
+                Assert.That(sut.Authors.Second(), Is.EqualTo("Jesus Christ"));
             }
 
             [Test]
-            public void WhenAuthorsIsNotPresent_ThenReturnNull()
+            public void WhenAuthorsIsNotPresent_ThenReturnEmpty()
             {
                 var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
 
-                Assert.That(sut.Authors, Is.Null);
+                Assert.That(sut.Authors, Is.Empty);
             }
         }
 

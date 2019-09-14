@@ -11,7 +11,7 @@ namespace ByteDev.DotNet.Project
         private const char ProjectTargetDelimiter = ';';
 
         private Lazy<string> _description;
-        private Lazy<string> _authors;
+        private Lazy<IEnumerable<string>> _authors;
         private Lazy<string> _company;
         private Lazy<string> _packageTags;
         private Lazy<string> _packageLicenseUrl;
@@ -116,10 +116,10 @@ namespace ByteDev.DotNet.Project
         public bool IsPackable => _isPackable.Value;
 
         /// <summary>
-        /// A semicolon-separated list of packages authors, matching the profile names on nuget.org.
+        /// List of packages authors, matching the profile names on nuget.org.
         /// These are displayed in the NuGet Gallery on nuget.org and are used to cross-reference packages by the same authors.
         /// </summary>
-        public string Authors => _authors.Value;
+        public IEnumerable<string> Authors => _authors.Value;
 
         /// <summary>
         /// A long description for the assembly.
@@ -220,6 +220,13 @@ namespace ByteDev.DotNet.Project
                 return value == null || Convert.ToBoolean(value);
             });
 
+            _authors = new Lazy<IEnumerable<string>>(() =>
+            {
+                var value = propertyGroups.GetElementValue("Authors");
+
+                return value?.Split(';') ?? Enumerable.Empty<string>();
+            });
+            
             _packageVersion = new Lazy<string>(() => propertyGroups.GetElementValue("PackageVersion"));
             _packageId = new Lazy<string>(() => propertyGroups.GetElementValue("PackageId"));
             _title = new Lazy<string>(() => propertyGroups.GetElementValue("Title"));
@@ -228,7 +235,6 @@ namespace ByteDev.DotNet.Project
             _packageLicenseExpression = new Lazy<string>(() => propertyGroups.GetElementValue("PackageLicenseExpression"));
 
             _description = new Lazy<string>(() => propertyGroups.GetElementValue("Description"));
-            _authors = new Lazy<string>(() => propertyGroups.GetElementValue("Authors"));
             _packageTags = new Lazy<string>(() => propertyGroups.GetElementValue("PackageTags"));
             _packageLicenseUrl = new Lazy<string>(() => propertyGroups.GetElementValue("PackageLicenseUrl"));
             _packageProjectUrl = new Lazy<string>(() => propertyGroups.GetElementValue("PackageProjectUrl"));
