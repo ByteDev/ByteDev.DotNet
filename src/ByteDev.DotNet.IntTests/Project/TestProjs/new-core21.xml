@@ -1,12 +1,23 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
-    <Description>new-core21 Description</Description>
-    <Authors>John Smith;Jesus Christ</Authors>
+    <!-- AssemblyInfo -->
     <Company>Something Ltd.</Company>
-    <PackageTags>something program exe</PackageTags>
+    <Configuration>debug</Configuration>
+    <FileVersion>1.2.3</FileVersion>
+    <InformationalVersion>beta2</InformationalVersion>
+    <Product>Some Product</Product>
+    <AssemblyTitle>Some Title</AssemblyTitle>
+    <AssemblyVersion>3.2.1</AssemblyVersion>
+    <NeutralLanguage>en</NeutralLanguage>
+
+    <!-- AssemblyInfo and NugetMetaData -->
     <Copyright>Some Copyright</Copyright>
+    <Description>new-core21 Description</Description>
+
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <Authors>John Smith;Jesus Christ</Authors>
+    <PackageTags>something program exe</PackageTags>
     <PackageLicenseUrl>http://licenseurl/</PackageLicenseUrl>
     <PackageProjectUrl>http://projecturl/</PackageProjectUrl>
     <PackageIconUrl>http://iconurl/</PackageIconUrl>

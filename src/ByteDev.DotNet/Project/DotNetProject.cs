@@ -14,7 +14,6 @@ namespace ByteDev.DotNet.Project
 
         private Lazy<string> _description;
         private Lazy<IEnumerable<string>> _authors;
-        private Lazy<string> _company;
         private Lazy<IEnumerable<string>> _packageTags;
         private Lazy<string> _packageLicenseUrl;
         private Lazy<string> _packageProjectUrl;
@@ -86,14 +85,10 @@ namespace ByteDev.DotNet.Project
         /// </summary>
         public IEnumerable<PackageReference> PackageReferences { get; private set; }
 
-        #region Assembly properties
-
         /// <summary>
-        /// Company name for the project.
+        /// Assembly info properties. 
         /// </summary>
-        public string Company => _company.Value;
-
-        #endregion
+        public AssemblyInfoProperties AssemblyInfoProperties { get; private set; }
 
         #region Package Metadata
 
@@ -293,15 +288,13 @@ namespace ByteDev.DotNet.Project
             var propertyGroups = new PropertyGroupCollection(xDocument);
 
             SetFormatAndProjectTargets(propertyGroups);
+            
+            AssemblyInfoProperties = new AssemblyInfoProperties(propertyGroups);
 
-            SetAssemblyProperties(propertyGroups);
             SetPackageProperties(propertyGroups);
         }
 
-        private void SetAssemblyProperties(PropertyGroupCollection propertyGroups)
-        {
-            _company = new Lazy<string>(() => propertyGroups.GetElementValue("Company"));
-        }
+        
 
         private void SetPackageProperties(PropertyGroupCollection propertyGroups)
         {

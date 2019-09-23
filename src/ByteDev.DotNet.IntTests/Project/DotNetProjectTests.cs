@@ -23,6 +23,211 @@ namespace ByteDev.DotNet.IntTests.Project
                 Assert.That(ex.Message, Is.EqualTo("Project document contains no PropertyGroup elements."));
             }
         }
+        
+        [TestFixture]
+        public class AssemblyInfoProperties : DotNetProjectTests
+        {
+            [TestFixture]
+            public class Company : AssemblyInfoProperties
+            {
+                [Test]
+                public void WhenCompanyIsPresent_ThenReturnValue()
+                {
+                    var sut = CreateSut(TestProjFiles.NewFormat.Core21);
+
+                    Assert.That(sut.AssemblyInfoProperties.Company, Is.EqualTo("Something Ltd."));
+                }
+
+                [Test]
+                public void WhenCompanyIsNotPresent_ThenReturnNull()
+                {
+                    var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
+
+                    Assert.That(sut.AssemblyInfoProperties.Company, Is.Null);
+                }
+            }
+
+            [TestFixture]
+            public class Configuration : AssemblyInfoProperties
+            {
+                [Test]
+                public void WhenConfigurationIsPresent_ThenReturnValue()
+                {
+                    var sut = CreateSut(TestProjFiles.NewFormat.Core21);
+
+                    Assert.That(sut.AssemblyInfoProperties.Configuration, Is.EqualTo("debug"));
+                }
+
+                [Test]
+                public void WhenConfigurationIsNotPresent_ThenReturnNull()
+                {
+                    var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
+
+                    Assert.That(sut.AssemblyInfoProperties.Configuration, Is.Null);
+                }
+            }
+
+            [TestFixture]
+            public class CopyrightAip : AssemblyInfoProperties
+            {
+                [Test]
+                public void WheCopyrightIsPresent_ThenReturnValue()
+                {
+                    var sut = CreateSut(TestProjFiles.NewFormat.Core21);
+
+                    Assert.That(sut.AssemblyInfoProperties.Copyright, Is.EqualTo("Some Copyright"));
+                }
+
+                [Test]
+                public void WhenCopyrightIsNotPresent_ThenReturnNull()
+                {
+                    var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
+
+                    Assert.That(sut.AssemblyInfoProperties.Copyright, Is.Null);
+                }
+            }
+
+            [TestFixture]
+            public class DescriptionAip : AssemblyInfoProperties
+            {
+                [Test]
+                public void WhenDescriptionIsPresent_ThenReturnValue()
+                {
+                    var sut = CreateSut(TestProjFiles.NewFormat.Core21);
+
+                    Assert.That(sut.AssemblyInfoProperties.Description, Is.EqualTo("new-core21 Description"));
+                }
+
+                [Test]
+                public void WhenDescriptionIsNotPresent_ThenReturnNull()
+                {
+                    var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
+
+                    Assert.That(sut.AssemblyInfoProperties.Description, Is.Null);
+                }
+            }
+
+            [TestFixture]
+            public class FileVersion : AssemblyInfoProperties
+            {
+                [Test]
+                public void WhenFileVersionIsPresent_ThenReturnValue()
+                {
+                    var sut = CreateSut(TestProjFiles.NewFormat.Core21);
+
+                    Assert.That(sut.AssemblyInfoProperties.FileVersion, Is.EqualTo("1.2.3"));
+                }
+
+                [Test]
+                public void WhenFileVersionIsNotPresent_ThenReturnNull()
+                {
+                    var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
+
+                    Assert.That(sut.AssemblyInfoProperties.FileVersion, Is.Null);
+                }
+            }
+
+            [TestFixture]
+            public class InformationalVersion : AssemblyInfoProperties
+            {
+                [Test]
+                public void WhenInformationalVersionIsPresent_ThenReturnValue()
+                {
+                    var sut = CreateSut(TestProjFiles.NewFormat.Core21);
+
+                    Assert.That(sut.AssemblyInfoProperties.InformationalVersion, Is.EqualTo("beta2"));
+                }
+
+                [Test]
+                public void WhenInformationalVersionIsNotPresent_ThenReturnNull()
+                {
+                    var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
+
+                    Assert.That(sut.AssemblyInfoProperties.InformationalVersion, Is.Null);
+                }
+            }
+
+            [TestFixture]
+            public class Product : AssemblyInfoProperties
+            {
+                [Test]
+                public void WhenProductIsPresent_ThenReturnValue()
+                {
+                    var sut = CreateSut(TestProjFiles.NewFormat.Core21);
+
+                    Assert.That(sut.AssemblyInfoProperties.Product, Is.EqualTo("Some Product"));
+                }
+
+                [Test]
+                public void WhenProductIsNotPresent_ThenReturnNull()
+                {
+                    var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
+
+                    Assert.That(sut.AssemblyInfoProperties.Product, Is.Null);
+                }
+            }
+
+            [TestFixture]
+            public class TitleAip : AssemblyInfoProperties
+            {
+                [Test]
+                public void WhenInformationalVersionIsPresent_ThenReturnValue()
+                {
+                    var sut = CreateSut(TestProjFiles.NewFormat.Core21);
+
+                    Assert.That(sut.AssemblyInfoProperties.Title, Is.EqualTo("Some Title"));
+                }
+
+                [Test]
+                public void WhenInformationalVersionIsNotPresent_ThenReturnNull()
+                {
+                    var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
+
+                    Assert.That(sut.AssemblyInfoProperties.Title, Is.Null);
+                }
+            }
+
+            [TestFixture]
+            public class Version : AssemblyInfoProperties
+            {
+                [Test]
+                public void WhenVersionIsPresent_ThenReturnValue()
+                {
+                    var sut = CreateSut(TestProjFiles.NewFormat.Core21);
+
+                    Assert.That(sut.AssemblyInfoProperties.Version, Is.EqualTo("3.2.1"));
+                }
+
+                [Test]
+                public void WhenVersionIsNotPresent_ThenReturnNull()
+                {
+                    var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
+
+                    Assert.That(sut.AssemblyInfoProperties.Version, Is.Null);
+                }
+            }
+
+            [TestFixture]
+            public class NeutralLanguage : AssemblyInfoProperties
+            {
+                [Test]
+                public void WhenNeutralLanguageIsPresent_ThenReturnValue()
+                {
+                    var sut = CreateSut(TestProjFiles.NewFormat.Core21);
+
+                    Assert.That(sut.AssemblyInfoProperties.NeutralLanguage, Is.EqualTo("en"));
+                }
+
+                [Test]
+                public void WhenNeutralLanguageIsNotPresent_ThenReturnNull()
+                {
+                    var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
+
+                    Assert.That(sut.AssemblyInfoProperties.NeutralLanguage, Is.Null);
+                }
+            }
+        }
+
 
         [TestFixture]
         public class ProjectTargets : DotNetProjectTests
@@ -586,26 +791,6 @@ namespace ByteDev.DotNet.IntTests.Project
                 Assert.That(sut.ContentTargetFolders.Count(), Is.EqualTo(2));
                 Assert.That(sut.ContentTargetFolders.First(), Is.EqualTo("content"));
                 Assert.That(sut.ContentTargetFolders.Second(), Is.EqualTo("contentFiles"));
-            }
-        }
-
-        [TestFixture]
-        public class Company : DotNetProjectTests
-        {
-            [Test]
-            public void WhenAuthorsIsPresent_ThenReturnDescription()
-            {
-                var sut = CreateSut(TestProjFiles.NewFormat.Core21);
-
-                Assert.That(sut.Company, Is.EqualTo("Something Ltd."));
-            }
-
-            [Test]
-            public void WhenAuthorsIsNotPresent_ThenReturnNull()
-            {
-                var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
-
-                Assert.That(sut.Company, Is.Null);
             }
         }
 
