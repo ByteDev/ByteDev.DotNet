@@ -180,6 +180,26 @@ namespace ByteDev.DotNet.IntTests.Project
         }
 
         [TestFixture]
+        public class PackageLicenseFile : DotNetProjectTests
+        {
+            [Test]
+            public void WhenPackageDescriptionIsPresent_ThenReturnValue()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21);
+
+                Assert.That(sut.PackageLicenseFile, Is.EqualTo(@"license\mylicense.txt"));
+            }
+
+            [Test]
+            public void WhenPackageDescriptionIsNotPrsent_ThenReturnNull()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
+
+                Assert.That(sut.PackageLicenseFile, Is.Null);
+            }
+        }
+
+        [TestFixture]
         public class PackageDescription : DotNetProjectTests
         {
             [Test]
@@ -278,6 +298,294 @@ namespace ByteDev.DotNet.IntTests.Project
                 var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
 
                 Assert.That(sut.Authors, Is.Empty);
+            }
+        }
+
+        [TestFixture]
+        public class PackageOutputPath : DotNetProjectTests
+        {
+            [Test]
+            public void WhenPackageOutputPathIsPresent_ThenReturnPackageOutputPath()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21);
+
+                Assert.That(sut.PackageOutputPath, Is.EqualTo(@"C:\temp"));
+            }
+
+            [Test]
+            public void WhenPackageOutputPathIsNotPresent_ThenReturnNull()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
+
+                Assert.That(sut.PackageOutputPath, Is.Null);
+            }
+        }
+
+        [TestFixture]
+        public class IncludeSymbols : DotNetProjectTests
+        {
+            [Test]
+            public void WhenIncludeSymbolsIsPresent_ThenReturnValue()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21);
+
+                Assert.That(sut.IncludeSymbols, Is.True);
+            }
+
+            [Test]
+            public void WhenIncludeSymbolsIsNotPresent_ThenReturnFalse()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
+
+                Assert.That(sut.IncludeSymbols, Is.False);
+            }
+        }
+
+        [TestFixture]
+        public class IncludeSource : DotNetProjectTests
+        {
+            [Test]
+            public void WhenIncludeSourceIsPresent_ThenReturnValue()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21);
+
+                Assert.That(sut.IncludeSource, Is.True);
+            }
+
+            [Test]
+            public void WhenIncludeSourceIsNotPresent_ThenReturnFalse()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
+
+                Assert.That(sut.IncludeSource, Is.False);
+            }
+        }
+
+        [TestFixture]
+        public class IsTool : DotNetProjectTests
+        {
+            [Test]
+            public void WhenIsToolIsPresent_ThenReturnValue()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21);
+
+                Assert.That(sut.IsTool, Is.True);
+            }
+            
+            [Test]
+            public void WhenIsToolIsNotPresent_ThenReturnFalse()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
+
+                Assert.That(sut.IsTool, Is.False);
+            }
+        }
+
+        [TestFixture]
+        public class NoPackageAnalysis : DotNetProjectTests
+        {
+            [Test]
+            public void WhenNoPackageAnalysisIsPresent_ThenReturnValue()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21);
+
+                Assert.That(sut.NoPackageAnalysis, Is.True);
+            }
+
+            [Test]
+            public void WhenNoPackageAnalysisIsNotPresent_ThenReturnFalse()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
+
+                Assert.That(sut.NoPackageAnalysis, Is.False);
+            }
+        }
+
+        [TestFixture]
+        public class IncludeBuildOutput : DotNetProjectTests
+        {
+            [Test]
+            public void WhenIncludeBuildOutputIsPresent_ThenReturnValue()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21);
+
+                Assert.That(sut.IncludeBuildOutput, Is.True);
+            }
+
+            [Test]
+            public void WhenIncludeBuildOutputIsNotPresent_ThenReturnFalse()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
+
+                Assert.That(sut.IncludeBuildOutput, Is.False);
+            }
+        }
+
+        [TestFixture]
+        public class IncludeContentInPack : DotNetProjectTests
+        {
+            [Test]
+            public void WhenIncludeContentInPackIsPresent_ThenReturnValue()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21);
+
+                Assert.That(sut.IncludeContentInPack, Is.False);
+            }
+
+            [Test]
+            public void WhenIncludeContentInPackIsNotPresent_ThenReturnTrue()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
+
+                Assert.That(sut.IncludeContentInPack, Is.True);
+            }
+        }
+
+        [TestFixture]
+        public class SymbolPackageFormat : DotNetProjectTests
+        {
+            [Test]
+            public void WhenSymbolPackageFormatIsPresent_ThenReturnValue()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21);
+
+                Assert.That(sut.SymbolPackageFormat, Is.EqualTo("snupkg"));
+            }
+            
+            [Test]
+            public void WhenSymbolPackageFormatIsNotPresent_ThenReturnNull()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
+
+                Assert.That(sut.SymbolPackageFormat, Is.Null);
+            }
+        }
+
+        [TestFixture]
+        public class BuildOutputTargetFolder : DotNetProjectTests
+        {
+            [Test]
+            public void WhenBuildOutputTargetFolderIsPresent_ThenReturnValue()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21);
+
+                Assert.That(sut.BuildOutputTargetFolder, Is.EqualTo(@"C:\output"));
+            }
+
+            [Test]
+            public void WhenBuildOutputTargetFolderIsNotPresent_ThenReturnNull()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
+
+                Assert.That(sut.BuildOutputTargetFolder, Is.Null);
+            }
+        }
+
+        [TestFixture]
+        public class MinClientVersion : DotNetProjectTests
+        {
+            [Test]
+            public void WhenMinClientVersionIsPresent_ThenReturnValue()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21);
+
+                Assert.That(sut.MinClientVersion, Is.EqualTo("3.3"));
+            }
+
+            [Test]
+            public void WhenMinClientVersionIsNotPresent_ThenReturnNull()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
+
+                Assert.That(sut.MinClientVersion, Is.Null);
+            }
+        }
+
+        [TestFixture]
+        public class NuspecFile : DotNetProjectTests
+        {
+            [Test]
+            public void WhenNuspecFileIsPresent_ThenReturnValue()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21);
+
+                Assert.That(sut.NuspecFile, Is.EqualTo(@"C:\temp\myapp.nuspec"));
+            }
+
+            [Test]
+            public void WhenNuspecFileIsNotPresent_ThenReturnNull()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
+
+                Assert.That(sut.NuspecFile, Is.Null);
+            }
+        }
+
+        [TestFixture]
+        public class NuspecBasePath : DotNetProjectTests
+        {
+            [Test]
+            public void WhenNuspecBasePathIsPresent_ThenReturnValue()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21);
+
+                Assert.That(sut.NuspecBasePath, Is.EqualTo(@"C:\temp"));
+            }
+
+            [Test]
+            public void WhenNuspecBasePathIsNotPresent_ThenReturnNull()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
+
+                Assert.That(sut.NuspecBasePath, Is.Null);
+            }
+        }
+
+        [TestFixture]
+        public class NuspecProperties : DotNetProjectTests
+        {
+            [Test]
+            public void WhenNuspecPropertiesIsPresent_ThenReturnValue()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21);
+
+                Assert.That(sut.NuspecProperties.Keys.Count, Is.EqualTo(3));
+                Assert.That(sut.NuspecProperties["name1"], Is.EqualTo("value1"));
+                Assert.That(sut.NuspecProperties["name2"], Is.EqualTo("value2"));
+                Assert.That(sut.NuspecProperties["name3"], Is.EqualTo("value3"));
+            }
+
+            [Test]
+            public void WhenNuspecPropertiesIsNotPresent_ThenReturnNull()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
+
+                Assert.That(sut.NuspecProperties, Is.Empty);
+            }
+        }
+
+        [TestFixture]
+        public class ContentTargetFolders : DotNetProjectTests
+        {
+            [Test]
+            public void WhenContentTargetFoldersIsPresent_ThenReturnValue()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21);
+
+                Assert.That(sut.ContentTargetFolders.Count(), Is.EqualTo(3));
+                Assert.That(sut.ContentTargetFolders.First(), Is.EqualTo("content2"));
+                Assert.That(sut.ContentTargetFolders.Second(), Is.EqualTo("contentFiles2"));
+                Assert.That(sut.ContentTargetFolders.Third(), Is.EqualTo("someWhereElse"));
+            }
+
+            [Test]
+            public void WhenContentTargetFoldersIsNotPresent_ThenReturnDefault()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
+
+                Assert.That(sut.ContentTargetFolders.Count(), Is.EqualTo(2));
+                Assert.That(sut.ContentTargetFolders.First(), Is.EqualTo("content"));
+                Assert.That(sut.ContentTargetFolders.Second(), Is.EqualTo("contentFiles"));
             }
         }
 

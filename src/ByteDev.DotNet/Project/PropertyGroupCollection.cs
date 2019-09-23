@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 using ByteDev.DotNet.Project.Parsers;
@@ -16,10 +17,23 @@ namespace ByteDev.DotNet.Project
 
         public string GetElementValue(string elementName)
         {
+            if(string.IsNullOrEmpty(elementName))
+                throw new ArgumentException("Element name was null or empty.", nameof(elementName));
+
             return PropertyGroupElements
                 .SingleOrDefault(pg => pg.Element(elementName) != null)?
                 .Element(elementName)?
                 .Value;
+        }
+
+        public bool GetElementBoolValue(string elementName, bool defaultValue = false)
+        {
+            var value = GetElementValue(elementName);
+
+            if (string.IsNullOrEmpty(value))
+                return defaultValue;
+
+            return Convert.ToBoolean(value);
         }
 
         private static IList<XElement> GetPropertyGroups(XDocument xDocument)

@@ -17,9 +17,24 @@
     <PackageVersion>1.2.3</PackageVersion>
     <PackageId>MyPackageName</PackageId>
     <Title>Some Title</Title>
+    <PackageLicenseFile>license\mylicense.txt</PackageLicenseFile>
     <PackageDescription>Some description</PackageDescription>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageOutputPath>C:\temp</PackageOutputPath>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <IncludeSource>true</IncludeSource>
+    <IsTool>true</IsTool>
+    <NoPackageAnalysis>true</NoPackageAnalysis>
+    <IncludeBuildOutput>true</IncludeBuildOutput>
+    <IncludeContentInPack>false</IncludeContentInPack>
+    <BuildOutputTargetFolder>C:\output</BuildOutputTargetFolder>
+    <MinClientVersion>3.3</MinClientVersion>
+    <ContentTargetFolders>content2;contentFiles2;someWhereElse</ContentTargetFolders>
+    <NuspecFile>C:\temp\myapp.nuspec</NuspecFile>
+    <NuspecBasePath>C:\temp</NuspecBasePath>
+    <NuspecProperties>name1=value1;name2=value2;name3=value3</NuspecProperties>
   </PropertyGroup>
 
   <ItemGroup>
