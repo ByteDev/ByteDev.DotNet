@@ -39,7 +39,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.8.0" />
-    <PackageReference Include="NUnit" Version="3.10.1" />
+    <PackageReference Include="NUnit" Version="3.10.1" IncludeAssets="Compile;Runtime" ExcludeAssets="ContentFiles;Build" PrivateAssets="Native;Analyzers" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 

@@ -48,7 +48,10 @@ namespace ByteDev.DotNet.Project
             return new PackageReference
             {
                 Name = packageReferenceElement.Attribute("Include")?.Value,
-                Version = packageReferenceElement.Attribute("Version")?.Value
+                Version = packageReferenceElement.Attribute("Version")?.Value,
+                InclueAssets = packageReferenceElement.Attribute("IncludeAssets")?.Value.SplitOnSemiColon(),
+                ExcludeAssets = packageReferenceElement.Attribute("ExcludeAssets")?.Value.SplitOnSemiColon(),
+                PrivateAssets = packageReferenceElement.Attribute("PrivateAssets")?.Value.SplitOnSemiColon()
             };
         }
     }

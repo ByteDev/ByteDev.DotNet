@@ -822,15 +822,33 @@ namespace ByteDev.DotNet.IntTests.Project
             }
 
             [Test]
-            public void WhenNewFormat_AndTwoPackageReferencesWithVersionNumbers_ThenReturnPackageReferences()
+            public void WhenNewFormat_AndNoAssertDetails_ThenReturnPackageReference()
             {
                 var sut = CreateSut(TestProjFiles.NewFormat.Core21);
 
                 Assert.That(sut.PackageReferences.First().Name, Is.EqualTo("Microsoft.NET.Test.Sdk"));
                 Assert.That(sut.PackageReferences.First().Version, Is.EqualTo("15.8.0"));
+                Assert.That(sut.PackageReferences.First().InclueAssets, Is.Empty);
+                Assert.That(sut.PackageReferences.First().ExcludeAssets, Is.Empty);
+                Assert.That(sut.PackageReferences.First().PrivateAssets, Is.Empty);
+            }
+
+            [Test]
+            public void WhenNewFormat_AndReferenceHasFullDetails_ThenReturnPackageReferences()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21);
 
                 Assert.That(sut.PackageReferences.Second().Name, Is.EqualTo("NUnit"));
                 Assert.That(sut.PackageReferences.Second().Version, Is.EqualTo("3.10.1"));
+
+                Assert.That(sut.PackageReferences.Second().InclueAssets.First(), Is.EqualTo("Compile"));
+                Assert.That(sut.PackageReferences.Second().InclueAssets.Second(), Is.EqualTo("Runtime"));
+
+                Assert.That(sut.PackageReferences.Second().ExcludeAssets.First(), Is.EqualTo("ContentFiles"));
+                Assert.That(sut.PackageReferences.Second().ExcludeAssets.Second(), Is.EqualTo("Build"));
+                
+                Assert.That(sut.PackageReferences.Second().PrivateAssets.First(), Is.EqualTo("Native"));
+                Assert.That(sut.PackageReferences.Second().PrivateAssets.Second(), Is.EqualTo("Analyzers"));
             }
 
             [Test]
