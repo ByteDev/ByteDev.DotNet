@@ -355,7 +355,7 @@ namespace ByteDev.DotNet.IntTests.Project
             public class TitleAip : AssemblyInfo
             {
                 [Test]
-                public void WhenInformationalVersionIsPresent_ThenReturnValue()
+                public void WhenTitleIsPresent_ThenReturnValue()
                 {
                     var sut = CreateSut(TestProjFiles.NewFormat.Core21);
 
@@ -363,7 +363,7 @@ namespace ByteDev.DotNet.IntTests.Project
                 }
 
                 [Test]
-                public void WhenInformationalVersionIsNotPresent_ThenReturnNull()
+                public void WhenTitleIsNotPresent_ThenReturnNull()
                 {
                     var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
 
@@ -499,7 +499,7 @@ namespace ByteDev.DotNet.IntTests.Project
             public class PackageLicenseFile : DotNetProjectTests
             {
                 [Test]
-                public void WhenPackageDescriptionIsPresent_ThenReturnValue()
+                public void WhenPackageLicenseFileIsPresent_ThenReturnValue()
                 {
                     var sut = CreateSut(TestProjFiles.NewFormat.Core21);
 
@@ -507,7 +507,7 @@ namespace ByteDev.DotNet.IntTests.Project
                 }
 
                 [Test]
-                public void WhenPackageDescriptionIsNotPrsent_ThenReturnNull()
+                public void WhenPackageLicenseFileIsNotPrsent_ThenReturnNull()
                 {
                     var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
 
