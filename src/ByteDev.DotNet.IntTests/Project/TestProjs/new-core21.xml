@@ -15,6 +15,7 @@
     <Copyright>Some Copyright</Copyright>
     <Description>new-core21 Description</Description>
 
+    <!-- NugetMetaData -->
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <Authors>John Smith;Jesus Christ</Authors>
     <PackageTags>something program exe</PackageTags>

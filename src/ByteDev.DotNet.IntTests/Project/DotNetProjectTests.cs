@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using ByteDev.Common.Collections;
+using ByteDev.Collections;
 using ByteDev.DotNet.Project;
 using NUnit.Framework;
 
