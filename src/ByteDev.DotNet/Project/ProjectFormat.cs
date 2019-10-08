@@ -1,5 +1,8 @@
 ﻿namespace ByteDev.DotNet.Project
 {
+    /// <summary>
+    /// Represents a project file's XML format.
+    /// </summary>
     public enum ProjectFormat
     {
         /// <summary>

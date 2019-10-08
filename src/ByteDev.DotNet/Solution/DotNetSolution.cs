@@ -6,6 +6,9 @@ using ByteDev.DotNet.Solution.Parsers;
 
 namespace ByteDev.DotNet.Solution
 {
+    /// <summary>
+    /// Represents a .NET solution file.
+    /// </summary>
     public class DotNetSolution
     {
         private readonly Lazy<string> _formatVersion;
@@ -16,6 +19,11 @@ namespace ByteDev.DotNet.Solution
         private readonly Lazy<IList<DotNetSolutionProject>> _projects;
         private readonly Lazy<IList<DotNetSolutionGlobalSection>> _globalSections;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:ByteDev.DotNet.Solution.DotNetSolution" /> class.
+        /// </summary>
+        /// <param name="slnText">The solution file's contents.</param>
+        /// <exception cref="T:System.ArgumentException"><paramref name="slnText" /> is null or empty.</exception>
         public DotNetSolution(string slnText)
         {
             if(string.IsNullOrEmpty(slnText))
@@ -64,10 +72,10 @@ namespace ByteDev.DotNet.Solution
         public IList<DotNetSolutionGlobalSection> GlobalSections => _globalSections.Value;
 
         /// <summary>
-        /// Loads the DotNetSolution from the specified file path.
+        /// Loads the <see cref="T:ByteDev.DotNet.Solution.DotNetSolution" /> from a file path.
         /// </summary>
-        /// <param name="slnFilePath">Sln file path.</param>
-        /// <returns>DotNetSolution</returns>
+        /// <param name="slnFilePath">.NET solution file path.</param>
+        /// <returns>New <see cref="T:ByteDev.DotNet.Solution.DotNetSolution" /> instance.</returns>
         public static DotNetSolution Load(string slnFilePath)
         {
             var slnText = File.ReadAllText(slnFilePath);

@@ -4,6 +4,9 @@ using System.Linq;
 
 namespace ByteDev.DotNet.Project
 {
+    /// <summary>
+    /// Represents Nuget meta data properties in the .NET project file.
+    /// </summary>
     public class NugetMetaDataProperties
     {
         private const string ContentTargetFoldersDefaultValue = "content;contentFiles";
@@ -41,7 +44,7 @@ namespace ByteDev.DotNet.Project
         private readonly Lazy<IEnumerable<string>> _authors;
 
         private readonly Lazy<Dictionary<string, string>> _nuspecProperties;
-
+        
         internal NugetMetaDataProperties(PropertyGroupCollection propertyGroups)
         {
             if(propertyGroups == null)

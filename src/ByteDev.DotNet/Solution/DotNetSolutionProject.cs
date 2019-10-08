@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace ByteDev.DotNet.Solution
 {
+    /// <summary>
+    /// Represents a project reference within a .NET solution.
+    /// </summary>
     public class DotNetSolutionProject
     {
         private IList<DotNetSolutionProjectSection> _projectSections;

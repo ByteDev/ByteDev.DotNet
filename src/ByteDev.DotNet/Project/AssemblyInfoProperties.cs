@@ -2,6 +2,9 @@
 
 namespace ByteDev.DotNet.Project
 {
+    /// <summary>
+    /// Represents assembly info properties for the .NET project file.
+    /// </summary>
     public class AssemblyInfoProperties
     {
         private readonly Lazy<string> _company;

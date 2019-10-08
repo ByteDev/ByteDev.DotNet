@@ -2,7 +2,7 @@
 
 namespace ByteDev.DotNet.Solution.Factories
 {
-    public interface IDotNetSolutionProjectTypeFactory
+    internal interface IDotNetSolutionProjectTypeFactory
     {
         DotNetSolutionProjectType Create(Guid projectTypeId);
     }

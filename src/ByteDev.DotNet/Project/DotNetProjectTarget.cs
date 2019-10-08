@@ -3,10 +3,19 @@ using System.Globalization;
 
 namespace ByteDev.DotNet.Project
 {
+    /// <summary>
+    /// Represents the .NET project target type.
+    /// </summary>
     public class DotNetProjectTarget
     {
         private bool _isOldStyleFormat;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:ByteDev.DotNet.Project.DotNetProjectTarget" /> class.
+        /// </summary>
+        /// <param name="targetValue">Target type value from a project file.</param>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="targetValue" /> is null or empty.</exception>
+        /// <exception cref="T:ByteDev.DotNet.Project.InvalidDotNetProjectException">Target value is not valid.</exception>
         public DotNetProjectTarget(string targetValue)
         {
             if(string.IsNullOrEmpty(targetValue))
@@ -24,7 +33,7 @@ namespace ByteDev.DotNet.Project
         public string TargetValue { get; }
 
         /// <summary>
-        /// The type of target (Framework, Core or Standard).
+        /// The type of target (e.g. Framework, Core or Standard).
         /// </summary>
         public TargetType Type { get; private set; }
 
@@ -38,6 +47,10 @@ namespace ByteDev.DotNet.Project
         /// </summary>
         public string Description { get; private set; }
 
+        /// <summary>
+        /// Returns a representation of <see cref="T:ByteDev.DotNet.Project.DotNetProjectTarget" />.
+        /// </summary>
+        /// <returns>String representation of <see cref="T:ByteDev.DotNet.Project.DotNetProjectTarget" />.</returns>
         public override string ToString()
         {
             return TargetValue;

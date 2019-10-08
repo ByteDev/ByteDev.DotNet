@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ByteDev.DotNet.Solution.Factories
 {
-    public class DotNetSolutionProjectTypeFactory : IDotNetSolutionProjectTypeFactory
+    internal class DotNetSolutionProjectTypeFactory : IDotNetSolutionProjectTypeFactory
     {
         private static readonly Dictionary<Guid, string> Types = new Dictionary<Guid, string>
         {
@@ -62,7 +62,7 @@ namespace ByteDev.DotNet.Solution.Factories
             {ProjectTypeIds.XnaXBox, "XNA (XBox)"},
             {ProjectTypeIds.XnaZune, "XNA (Zune)"}
         };
-
+        
         public DotNetSolutionProjectType Create(Guid projectTypeId)
         {
             try

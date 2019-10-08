@@ -2,6 +2,9 @@
 
 namespace ByteDev.DotNet.Solution
 {
+    /// <summary>
+    /// Represents a project reference's project section within a in a .NET solution.
+    /// </summary>
     public class DotNetSolutionProjectSection
     {
         private Dictionary<string, string> _dependencies;
@@ -24,12 +27,5 @@ namespace ByteDev.DotNet.Solution
             get => _dependencies ?? (_dependencies = new Dictionary<string, string>());
             set => _dependencies = value;
         }
-    }
-
-    public enum ProjectSectionType
-    {
-        Unknown,
-        PreProject,
-        PostProject
     }
 }

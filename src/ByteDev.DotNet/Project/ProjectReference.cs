@@ -1,5 +1,8 @@
 ﻿namespace ByteDev.DotNet.Project
 {
+    /// <summary>
+    /// Represents a reference to a project from a .NET project file.
+    /// </summary>
     public class ProjectReference
     {
         /// <summary>

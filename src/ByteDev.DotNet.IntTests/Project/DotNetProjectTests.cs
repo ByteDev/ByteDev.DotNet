@@ -98,27 +98,7 @@ namespace ByteDev.DotNet.IntTests.Project
                 Assert.That(sut.Format, Is.EqualTo(ProjectFormat.New));
             }
         }
-
-        [TestFixture]
-        public class PackageProjectUrl : DotNetProjectTests
-        {
-            [Test]
-            public void WhenPackageProjectUrlIsPresent_ThenReturnPackageProjectUrl()
-            {
-                var sut = CreateSut(TestProjFiles.NewFormat.Core21);
-
-                Assert.That(sut.PackageProjectUrl, Is.EqualTo("http://projecturl/"));
-            }
-
-            [Test]
-            public void WhenPackageProjectUrlIsNotPresent_ThenReturnNull()
-            {
-                var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
-
-                Assert.That(sut.PackageProjectUrl, Is.Null);
-            }
-        }
-
+        
         [TestFixture]
         public class ProjectReferences : DotNetProjectTests
         {

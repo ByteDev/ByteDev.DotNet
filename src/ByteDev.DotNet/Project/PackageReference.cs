@@ -3,6 +3,9 @@ using System.Linq;
 
 namespace ByteDev.DotNet.Project
 {
+    /// <summary>
+    /// Represents a reference to a package in a .NET project file.
+    /// </summary>
     public class PackageReference
     {
         private IEnumerable<string> _inclueAssets;
@@ -50,7 +53,7 @@ namespace ByteDev.DotNet.Project
             get => _privateAssets ?? (_privateAssets = Enumerable.Empty<string>());
             internal set => _privateAssets = value;
         }
-
+        
         public override string ToString()
         {
             return Name;

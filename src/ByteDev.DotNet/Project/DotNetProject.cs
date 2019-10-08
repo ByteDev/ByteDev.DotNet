@@ -6,12 +6,19 @@ using ByteDev.DotNet.Project.Parsers;
 
 namespace ByteDev.DotNet.Project
 {
+    /// <summary>
+    /// Represents a .NET project file.
+    /// </summary>
     public class DotNetProject
     {
         private const char ProjectTargetDelimiter = ';';
-
-        private Lazy<string> _packageProjectUrl;
         
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:ByteDev.DotNet.Project.DotNetProject" /> class.
+        /// </summary>
+        /// <param name="xDocument">XML document of the project file.</param>
+        /// <exception cref="T:System.ArgumentNullException"><paramref name="xDocument" /> is null.</exception>
+        /// <exception cref="T:ByteDev.DotNet.Project.InvalidDotNetProjectException">The project XML is not valid.</exception>
         public DotNetProject(XDocument xDocument)
         {
             if(xDocument == null)
@@ -22,7 +29,7 @@ namespace ByteDev.DotNet.Project
         }
 
         /// <summary>
-        /// Whether the project have more than one target.
+        /// Whether the project has more than one target.
         /// </summary>
         public bool IsMultiTarget => ProjectTargets?.Count() > 1;
 
@@ -32,15 +39,10 @@ namespace ByteDev.DotNet.Project
         public IEnumerable<DotNetProjectTarget> ProjectTargets { get; private set; }
 
         /// <summary>
-        /// Whether the project in the new or old format.
+        /// Whether the project is in the new or old format.
         /// </summary>
         public ProjectFormat Format { get; private set; }
         
-        /// <summary>
-        /// Project URL applicable to the package.
-        /// </summary>
-        public string PackageProjectUrl => _packageProjectUrl.Value;
-
         /// <summary>
         /// Collection of references to other projects.
         /// </summary>
@@ -62,12 +64,11 @@ namespace ByteDev.DotNet.Project
         /// </summary>
         public NugetMetaDataProperties NugetMetaData { get; private set; }
 
-
         /// <summary>
-        /// Loads the DotNetProject from the specified file path.
+        /// Loads the <see cref="T:ByteDev.DotNet.Project.DotNetProject" /> from a file path.
         /// </summary>
-        /// <param name="projFilePath">Project file path.</param>
-        /// <returns>DotNetProject</returns>
+        /// <param name="projFilePath">.NET project file path.</param>
+        /// <returns>New <see cref="T:ByteDev.DotNet.Project.DotNetProject" /> instance.</returns>
         public static DotNetProject Load(string projFilePath)
         {
             var xDoc = XDocument.Load(projFilePath);
@@ -91,8 +92,6 @@ namespace ByteDev.DotNet.Project
             
             AssemblyInfo = new AssemblyInfoProperties(propertyGroups);
             NugetMetaData = new NugetMetaDataProperties(propertyGroups);
-
-            _packageProjectUrl = new Lazy<string>(() => propertyGroups.GetElementValue("PackageProjectUrl"));
         }
         
         private void SetFormatAndProjectTargets(PropertyGroupCollection propertyGroups)
