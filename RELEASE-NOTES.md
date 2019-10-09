@@ -1,6 +1,6 @@
 # Release Notes
 
-## 5.0.0 - 08 Oct 2019
+## 5.0.1 - 08 Oct 2019
 
 Breaking changes:
 - Extracted DotNetProject properties to AssemblyInfoProperties and NugetMetaDataProperties classes.
