@@ -1,5 +1,16 @@
 # Release Notes
 
+## 5.0.2 - 02 March 2020
+
+Breaking changes:
+- (None)
+
+New features:
+- (None)
+
+Bug fixes:
+- Added package dependency on .NET Standard 2.0
+
 ## 5.0.1 - 08 Oct 2019
 
 Breaking changes:
