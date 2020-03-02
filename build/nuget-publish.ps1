@@ -32,9 +32,9 @@ foreach($file in $files) {
     & $nugetExe push $filePath $key -Source https://api.nuget.org/v3/index.json
 
     if($LASTEXITCODE -eq 0) {
-        Write-Output "Publish '$filePath' successful." -ForegroundColor Green
+        Write-Output "Publish '$filePath' successful."
     }
     else {
-        Write-Output "Publish '$filePath' unsuccessful." -ForegroundColor Red
+        Write-Output "Publish '$filePath' unsuccessful."
     }
 }
