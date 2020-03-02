@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>ByteDev.DotNet</id>
+    <version>0.0.1</version>
+    <title>ByteDev.DotNet</title>
+    <authors>Paul Stanley</authors>
+    <owners>Paul Stanley</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>.NET Standard library for reading .NET solution and project files.</description>
+    <copyright>Copyright 2019</copyright>
+    <tags>dotnet .net solution project sln csproj read reader file library</tags>
+    <iconUrl>https://raw.githubusercontent.com/bytedev/ByteDev.DotNet/master/images/icon.png</iconUrl>
+    <dependencies>
+      <group targetFramework=".NETStandard2.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="..\src\ByteDev.DotNet\bin\Release\netstandard2.0\ByteDev.DotNet.dll" target="lib\netstandard2.0" />
+    <file src="..\src\ByteDev.DotNet\bin\Release\netstandard2.0\ByteDev.DotNet.xml" target="lib\netstandard2.0" />
+  </files>
+</package>

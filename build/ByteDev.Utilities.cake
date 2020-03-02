@@ -27,26 +27,29 @@ string GetNuGetVersion()
 
 void CleanObjDirectories()
 {
-	var objSrcDirs = GetDirectories("../src/**/obj");
-	
-	CleanDirectories(objSrcDirs);
+	CleanDirectories(GetDirectories("../src/**/obj"));
+	CleanDirectories(GetDirectories("../test/**/obj"));
 }
 
 void CleanBinDirectories()
 {	
-	var binSrcDirs = GetDirectories("../src/**/bin");
-
-	CleanDirectories(binSrcDirs);
+	CleanDirectories(GetDirectories("../src/**/bin"));
+	CleanDirectories(GetDirectories("../test/**/bin"));
 }
 
 FilePathCollection GetUnitTestProjFiles()
 {
-	return GetFiles("../src/*.UnitTests/**/*.csproj");
+	return GetFiles("../test/*.UnitTests/**/*.csproj");
 }
 
 FilePathCollection GetIntTestProjFiles()
 {
-	return GetFiles("../src/*.IntTests/**/*.csproj");
+	return GetFiles("../test/*.IntTests/**/*.csproj");
+}
+
+FilePathCollection GetPackageTestCoreProjFiles()
+{
+	return GetFiles("../test/*.NetCore*PackageTests/*.csproj");
 }
 
 void DotNetCoreTests(FilePathCollection projects, DotNetCoreTestSettings settings)
@@ -71,3 +74,30 @@ void DotNetCoreIntTests(DotNetCoreTestSettings settings)
 	DotNetCoreTests(projects, settings);
 }
 
+void DotNetCorePackageTests(DotNetCoreTestSettings settings)
+{
+	var projects = GetPackageTestCoreProjFiles();
+
+	DotNetCoreTests(projects, settings);
+}
+
+void NetFrameworkUnitTests(string configuration)
+{
+	var assemblies = GetFiles($"../test/*UnitTests/bin/{configuration}/**/*.UnitTests.dll");
+		
+	NUnit3(assemblies);
+}
+
+void NetFrameworkIntTests(string configuration)
+{
+	var assemblies = GetFiles($"../test/*IntTests/bin/{configuration}/**/*.IntTests.dll");
+		
+	NUnit3(assemblies);
+}
+
+void NetFrameworkPackageTests(string configuration)
+{
+	var assemblies = GetFiles($"../test/*.Net4*.PackageTests/bin/{configuration}/**/*.PackageTests.dll");
+		
+	NUnit3(assemblies);
+}

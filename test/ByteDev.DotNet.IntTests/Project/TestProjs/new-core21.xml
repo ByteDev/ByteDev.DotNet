@@ -1,0 +1,63 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <!-- AssemblyInfo -->
+    <Company>Something Ltd.</Company>
+    <Configuration>debug</Configuration>
+    <FileVersion>1.2.3</FileVersion>
+    <InformationalVersion>beta2</InformationalVersion>
+    <Product>Some Product</Product>
+    <AssemblyTitle>Some Title</AssemblyTitle>
+    <AssemblyVersion>3.2.1</AssemblyVersion>
+    <NeutralLanguage>en</NeutralLanguage>
+
+    <!-- AssemblyInfo and NugetMetaData -->
+    <Copyright>Some Copyright</Copyright>
+    <Description>new-core21 Description</Description>
+
+    <!-- NugetMetaData -->
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <Authors>John Smith;Jesus Christ</Authors>
+    <PackageTags>something program exe</PackageTags>
+    <PackageLicenseUrl>http://licenseurl/</PackageLicenseUrl>
+    <PackageProjectUrl>http://projecturl/</PackageProjectUrl>
+    <PackageIconUrl>http://iconurl/</PackageIconUrl>
+    <RepositoryUrl>http://repourl/</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageReleaseNotes>Some release notes</PackageReleaseNotes>
+    <IsPackable>false</IsPackable>
+    <PackageVersion>1.2.3</PackageVersion>
+    <PackageId>MyPackageName</PackageId>
+    <Title>Some Title</Title>
+    <PackageLicenseFile>license\mylicense.txt</PackageLicenseFile>
+    <PackageDescription>Some description</PackageDescription>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageOutputPath>C:\temp</PackageOutputPath>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <IncludeSource>true</IncludeSource>
+    <IsTool>true</IsTool>
+    <NoPackageAnalysis>true</NoPackageAnalysis>
+    <IncludeBuildOutput>true</IncludeBuildOutput>
+    <IncludeContentInPack>false</IncludeContentInPack>
+    <BuildOutputTargetFolder>C:\output</BuildOutputTargetFolder>
+    <MinClientVersion>3.3</MinClientVersion>
+    <ContentTargetFolders>content2;contentFiles2;someWhereElse</ContentTargetFolders>
+    <NuspecFile>C:\temp\myapp.nuspec</NuspecFile>
+    <NuspecBasePath>C:\temp</NuspecBasePath>
+    <NuspecProperties>name1=value1;name2=value2;name3=value3</NuspecProperties>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.8.0" />
+    <PackageReference Include="NUnit" Version="3.10.1" IncludeAssets="Compile;Runtime" ExcludeAssets="ContentFiles;Build" PrivateAssets="Native;Analyzers" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ByteDev.SomeProj1\ByteDev.SomeProj1.csproj" />
+    <ProjectReference Include="..\ByteDev.SomeProj2\ByteDev.SomeProj2.csproj" />
+  </ItemGroup>
+
+</Project>
