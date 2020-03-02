@@ -14,7 +14,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{149381AE-C5AB-4612-9C36-CDF26E47FDB3}"
 	ProjectSection(SolutionItems) = preProject
 		..\README.md = ..\README.md
-		..\RELEASE-NOTES.md = ..\RELEASE-NOTES.md
+		..\docs\RELEASE-NOTES.md = ..\docs\RELEASE-NOTES.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{35D16047-687A-4B92-A1BE-605B0E2DAC40}"
