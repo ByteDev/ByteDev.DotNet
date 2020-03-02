@@ -35,7 +35,7 @@ There are two main classes in the project: DotNetSolution and DotNetProject.
 
 Load a .NET solution file:
 
-```c#
+```csharp
 var dotNetSolution = DotNetSolution.Load(@"C:\mysolution.sln");
 
 Console.WriteLine(dotNetSolution.VisualStudioVersion);
@@ -46,7 +46,7 @@ Console.WriteLine(dotNetSolution.Projects.Count);
 
 Load a .NET project file:
 
-```c#
+```csharp
 var dotNetProject = DotNetProject.Load(@"C:\myproj.csproj");
 
 Console.WriteLine(dotNetProject.ProjectTargets.Single());
