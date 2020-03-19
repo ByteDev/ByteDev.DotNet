@@ -17,13 +17,13 @@ namespace ByteDev.DotNet.UnitTests.Solution.Parsers
         }
 
         [Test]
-        public void WhenSlnTextIsNull_ThenThrowException()
+        public void WhenIsNull_ThenThrowException()
         {
             Assert.Throws<ArgumentException>(() => _sut.Parse(null));
         }
 
         [Test]
-        public void WhenSlnTextIsEmpty_ThenThrowException()
+        public void WhenIsEmpty_ThenThrowException()
         {
             Assert.Throws<ArgumentException>(() => _sut.Parse(string.Empty));
         }

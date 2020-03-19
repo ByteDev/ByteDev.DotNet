@@ -9,6 +9,9 @@ namespace ByteDev.DotNet.Solution.Parsers
 
         public string Parse(string slnText)
         {
+            if(string.IsNullOrEmpty(slnText))
+                ParserExThrower.ThrowSlnTextNullOrEmpty(nameof(slnText));
+
             try
             {
                 return Regex.Match(slnText, "^" + Marker + "([0-9.]+)", RegexOptions.Multiline).Value.Substring(Marker.Length);
