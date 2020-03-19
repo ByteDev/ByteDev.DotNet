@@ -7,16 +7,16 @@ namespace ByteDev.DotNet.Solution.Parsers
     {
         public int Parse(string slnText)
         {
+            if(string.IsNullOrEmpty(slnText))
+                ParserExThrower.ThrowSlnTextNullOrEmpty(nameof(slnText));
+
             try
             {
-                string value = Regex.Match(slnText, "# Visual Studio ([0-9]+)").Groups[1].Value;
+                // Match: "# Visual Studio 15" or "# Visual Studio Version 16"
 
-                if (string.IsNullOrEmpty(value))
-                {
-                    value = Regex.Match(slnText, "# Visual Studio Version ([0-9]+)").Groups[1].Value;
-                }
+                var match = Regex.Match(slnText, @"# Visual Studio?( Version|) ([0-9]+)");
 
-                return Convert.ToInt32(value);
+                return Convert.ToInt32(match.Groups[2].Value);
             }
             catch (Exception ex)
             {

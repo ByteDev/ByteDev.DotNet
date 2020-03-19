@@ -1,7 +1,7 @@
 ﻿namespace ByteDev.DotNet.Solution.Parsers
 {
-    internal interface ISolutionTextParser<T>
+    internal interface ISolutionTextParser<out TReturned>
     {
-        T Parse(string slnText);
+        TReturned Parse(string slnText);
     }
 }
