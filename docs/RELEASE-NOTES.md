@@ -1,5 +1,16 @@
 # Release Notes
 
+## 5.0.3 - 19 March 2020
+
+Breaking changes:
+- (None)
+
+New features:
+- (None)
+
+Bug fixes / internal changes:
+- Fix: can now handle solution file with Major Version 16.
+
 ## 5.0.2 - 02 March 2020
 
 Breaking changes:
@@ -9,7 +20,7 @@ New features:
 - (None)
 
 Bug fixes:
-- Added package dependency on .NET Standard 2.0
+- Added package dependency on .NET Standard 2.0.
 
 ## 5.0.1 - 08 Oct 2019
 
