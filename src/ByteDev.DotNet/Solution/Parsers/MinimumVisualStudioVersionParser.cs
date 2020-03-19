@@ -5,7 +5,7 @@ namespace ByteDev.DotNet.Solution.Parsers
 {
     internal class MinimumVisualStudioVersionParser : ISolutionTextParser<string>
     {
-        private const string Marker = "MinimumVisualStudioVersion = ";
+        private const string ExMessage = "A valid Minimum Visual Studio Version could not be found in the sln text.";
 
         public string Parse(string slnText)
         {
@@ -14,11 +14,18 @@ namespace ByteDev.DotNet.Solution.Parsers
 
             try
             {
-                return Regex.Match(slnText, "^" + Marker + "([0-9.]+)", RegexOptions.Multiline).Value.Substring(Marker.Length);
+                var match = Regex.Match(slnText, "^MinimumVisualStudioVersion = ([0-9.]+)", RegexOptions.Multiline);
+
+                var version = match.Groups[1].Value;
+
+                if (version == string.Empty)
+                    throw new InvalidDotNetSolutionException(ExMessage);
+
+                return version;
             }
             catch (Exception ex)
             {
-                throw new InvalidDotNetSolutionException("A valid Minimum Visual Studio Version could not be found in the sln text.", ex);
+                throw new InvalidDotNetSolutionException(ExMessage, ex);
             }
         }
     }
