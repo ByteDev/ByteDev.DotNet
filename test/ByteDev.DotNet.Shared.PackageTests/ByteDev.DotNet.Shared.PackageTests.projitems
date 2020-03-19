@@ -11,9 +11,4 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Tests.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)Test.sln">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
 </Project>
