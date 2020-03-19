@@ -40,6 +40,9 @@
     <None Update="Project\TestProjs\new-std20.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="Solution\TestSlns\sln-majorver16.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Solution\TestSlns\sln-no-formatversion.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

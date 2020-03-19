@@ -9,7 +9,12 @@ namespace ByteDev.DotNet.Solution.Parsers
         {
             try
             {
-                var value = Regex.Match(slnText, "# Visual Studio ([0-9]+)").Groups[1].Value;
+                string value = Regex.Match(slnText, "# Visual Studio ([0-9]+)").Groups[1].Value;
+
+                if (string.IsNullOrEmpty(value))
+                {
+                    value = Regex.Match(slnText, "# Visual Studio Version ([0-9]+)").Groups[1].Value;
+                }
 
                 return Convert.ToInt32(value);
             }

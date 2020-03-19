@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ByteDev.DotNet.Net461.PackageTests", "test\ByteDev.DotNet.Net461.PackageTests\ByteDev.DotNet.Net461.PackageTests.csproj", "{A16D86AB-305A-412E-A7EC-E53023A27D39}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ByteDev.DotNet.NetCore.PackageTests", "test\ByteDev.DotNet.NetCore.PackageTests\ByteDev.DotNet.NetCore.PackageTests.csproj", "{9B80B626-AA3F-4D37-AB7F-B69D2F5E639F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{CD9D71A9-893D-4A64-ABBB-228D088C9377}"
+	ProjectSection(SolutionItems) = preProject
+		build\build-package-tests.cake = build\build-package-tests.cake
+		build\ByteDev.Utilities.cake = build\ByteDev.Utilities.cake
+	EndProjectSection
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "ByteDev.DotNet.Shared.PackageTests", "test\ByteDev.DotNet.Shared.PackageTests\ByteDev.DotNet.Shared.PackageTests.shproj", "{24571CBC-010C-4C8D-A50C-0B625CBD3201}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		test\ByteDev.DotNet.Shared.PackageTests\ByteDev.DotNet.Shared.PackageTests.projitems*{24571cbc-010c-4c8d-a50c-0b625cbd3201}*SharedItemsImports = 13
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A16D86AB-305A-412E-A7EC-E53023A27D39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A16D86AB-305A-412E-A7EC-E53023A27D39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A16D86AB-305A-412E-A7EC-E53023A27D39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A16D86AB-305A-412E-A7EC-E53023A27D39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B80B626-AA3F-4D37-AB7F-B69D2F5E639F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B80B626-AA3F-4D37-AB7F-B69D2F5E639F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B80B626-AA3F-4D37-AB7F-B69D2F5E639F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B80B626-AA3F-4D37-AB7F-B69D2F5E639F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4C591A58-3179-4752-81FC-EFDEDBB097EB}
+	EndGlobalSection
+EndGlobal

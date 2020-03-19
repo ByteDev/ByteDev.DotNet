@@ -13,5 +13,7 @@
         public const string NoMajorVersion = BasePath + "sln-no-majorversion.txt";
         public const string NoVsVersion = BasePath + "sln-no-vsversion.txt";
         public const string NoMinVsVersion = BasePath + "sln-no-minvsversion.txt";
+
+        public const string MajorVersion16 = BasePath + "sln-majorver16.txt";
     }
 }

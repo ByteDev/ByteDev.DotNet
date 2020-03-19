@@ -42,14 +42,6 @@ namespace ByteDev.DotNet.IntTests.Solution
         public class MajorVersion : DotNetSolutionTests
         {
             [Test]
-            public void WhenSlnHasMajorVersion_ThenSetsMajorVersion()
-            {
-                var sut = CreateSut(TestSlnFiles.V12);
-
-                Assert.That(sut.MajorVersion, Is.EqualTo(15));
-            }
-
-            [Test]
             public void WhenSlnHasNoMajorVersion_ThenThrowException()
             {
                 var sut = CreateSut(TestSlnFiles.NoMajorVersion);
@@ -59,6 +51,22 @@ namespace ByteDev.DotNet.IntTests.Solution
                     var x = sut.MajorVersion;
                 });
                 Assert.That(ex.Message, Is.EqualTo("A valid Major Version could not be found in the sln text."));
+            }
+
+            [Test]
+            public void WhenSlnHasMajorVersion15_ThenSetsMajorVersion()
+            {
+                var sut = CreateSut(TestSlnFiles.V12);
+
+                Assert.That(sut.MajorVersion, Is.EqualTo(15));
+            }
+
+            [Test]
+            public void WhenSlnHasMajorVersion16_ThenSetsMajorVersion()
+            {
+                var sut = CreateSut(TestSlnFiles.MajorVersion16);
+
+                Assert.That(sut.MajorVersion, Is.EqualTo(16));
             }
         }
 
