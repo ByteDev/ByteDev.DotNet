@@ -54,6 +54,10 @@ namespace ByteDev.DotNet.Project
             internal set => _privateAssets = value;
         }
         
+        /// <summary>
+        /// Returns a string representation of <see cref="T:ByteDev.DotNet.Project.PackageReference" />.
+        /// </summary>
+        /// <returns>String representation.</returns>
         public override string ToString()
         {
             return Name;

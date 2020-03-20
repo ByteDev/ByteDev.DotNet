@@ -37,11 +37,20 @@ namespace ByteDev.DotNet.Solution
             Description = description;
         }
 
+        /// <summary>
+        /// Returns a string representation of <see cref="T:ByteDev.DotNet.Solution.DotNetSolutionProjectType" />.
+        /// </summary>
+        /// <returns>String representation.</returns>
         public override string ToString()
         {
             return $"{Description} ({Id})";
         }
 
+        /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="obj">The object to compare with the current object.</param>
+        /// <returns>True if the specified object  is equal to the current object; otherwise, false.</returns>
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(obj, null))
@@ -53,6 +62,11 @@ namespace ByteDev.DotNet.Solution
             return Equals(obj as DotNetSolutionProjectType);
         }
 
+        /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="other">The object to compare with the current object.</param>
+        /// <returns>True if the specified object  is equal to the current object; otherwise, false.</returns>
         public bool Equals(DotNetSolutionProjectType other)
         {
             if (other == null)
@@ -61,6 +75,10 @@ namespace ByteDev.DotNet.Solution
             return Id == other.Id;
         }
 
+        /// <summary>
+        /// Returns the hash code for this type.
+        /// </summary>
+        /// <returns>A 32-bit signed integer hash code.</returns>
         public override int GetHashCode()
         {
             return (Id + Description).GetHashCode();
