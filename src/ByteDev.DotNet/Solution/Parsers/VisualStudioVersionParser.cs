@@ -5,17 +5,27 @@ namespace ByteDev.DotNet.Solution.Parsers
 {
     internal class VisualStudioVersionParser : ISolutionTextParser<string>
     {
-        private const string Marker = "VisualStudioVersion = ";
+        private const string ExMessage = "A valid Visual Studio Version could not be found in the sln text.";
 
         public string Parse(string slnText)
         {
+            if (string.IsNullOrEmpty(slnText))
+                ParserExThrower.ThrowSlnTextNullOrEmpty(nameof(slnText));
+
             try
             {
-                return Regex.Match(slnText, "^" + Marker + "([0-9.]+)", RegexOptions.Multiline).Value.Substring(Marker.Length);
+                var match = Regex.Match(slnText, "^VisualStudioVersion = ([0-9.]+)", RegexOptions.Multiline);
+
+                var value = match.Groups[1].Value;
+
+                if (value == string.Empty)
+                    throw new InvalidDotNetSolutionException(ExMessage);
+
+                return value;
             }
             catch (Exception ex)
             {
-                throw new InvalidDotNetSolutionException("A valid Visual Studio Version could not be found in the sln text.", ex);
+                throw new InvalidDotNetSolutionException(ExMessage, ex);
             }
         }
     }
