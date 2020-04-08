@@ -1,6 +1,6 @@
 ﻿namespace ByteDev.DotNet.Project
 {
-    internal class VersionNumberFormatter
+    internal static class VersionNumberFormatter
     {
         /// <summary>
         /// Returns a formatted version number of the

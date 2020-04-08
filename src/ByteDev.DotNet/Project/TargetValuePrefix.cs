@@ -1,6 +1,6 @@
 ﻿namespace ByteDev.DotNet.Project
 {
-    internal class TargetValuePrefix
+    internal static class TargetValuePrefix
     {
         public const string Core = "netcoreapp";
         public const string Standard = "netstandard";

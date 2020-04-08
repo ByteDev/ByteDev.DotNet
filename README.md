@@ -1,5 +1,6 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/github/bytedev/ByteDev.DotNet?branch=master&svg=true)](https://ci.appveyor.com/project/bytedev/ByteDev-DotNet/branch/master)
 [![NuGet Package](https://img.shields.io/nuget/v/ByteDev.DotNet.svg)](https://www.nuget.org/packages/ByteDev.DotNet)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/d7286791f04843528797e2a48e72a070)](https://www.codacy.com/manual/ByteDev/ByteDev.DotNet?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ByteDev/ByteDev.DotNet&amp;utm_campaign=Badge_Grade)
 
 # ByteDev.DotNet
 
@@ -29,26 +30,44 @@ The repo can be cloned from git bash:
 
 ## Usage
 
-There are two main classes in the project: DotNetSolution and DotNetProject.
+There are two main classes in the project: `DotNetSolution` and `DotNetProject`.
 
 ### DotNetSolution
 
 Load a .NET solution file:
 
 ```csharp
-var dotNetSolution = DotNetSolution.Load(@"C:\mysolution.sln");
+DotNetSolution dotNetSolution = DotNetSolution.Load(@"C:\mysolution.sln");
 
 Console.WriteLine(dotNetSolution.VisualStudioVersion);
 Console.WriteLine(dotNetSolution.Projects.Count);
 ```
+
+`DotNetSolution` contains the following properties:
+- FormatVersion
+- MajorVersion
+- VisualStudioVersion
+- MinimumVisualStudioVersion
+- Projects
+- GlobalSections
+
 
 ### DotNetProject
 
 Load a .NET project file:
 
 ```csharp
-var dotNetProject = DotNetProject.Load(@"C:\myproj.csproj");
+DotNetProject dotNetProject = DotNetProject.Load(@"C:\myproj.csproj");
 
 Console.WriteLine(dotNetProject.ProjectTargets.Single());
 Console.WriteLine(dotNetProject.Format);
 ```
+
+`DotNetProject` contains the following properties:
+- IsMultiTarget
+- ProjectTargets
+- Format
+- ProjectReferences
+- PackageReferences
+- AssemblyInfo
+- NugetMetaData

@@ -4,7 +4,7 @@ using System.Xml.Linq;
 
 namespace ByteDev.DotNet.Project.Parsers
 {
-    internal class ProjectXmlParser
+    internal static class ProjectXmlParser
     {
         public static IEnumerable<XElement> GetPropertyGroups(XDocument xDocument)
         {

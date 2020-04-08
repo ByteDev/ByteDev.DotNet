@@ -4,7 +4,7 @@ using System.Xml.Linq;
 
 namespace ByteDev.DotNet.Project.Parsers
 {
-    internal class PropertyGroupXmlParser
+    internal static class PropertyGroupXmlParser
     {
         public static XElement GetOldStyleTargetElement(IEnumerable<XElement> propertyGroups)
         {
