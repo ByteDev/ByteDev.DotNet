@@ -1,6 +1,6 @@
 # Release Notes
 
-## 5.0.4 - ?? March 2020
+## 5.0.4 - 30 April 2020
 
 Breaking changes:
 - (None)
@@ -9,6 +9,8 @@ New features:
 - (None)
 
 Bug fixes / internal changes:
+- Added support for .NET 5 target framework.
+- Fixed DotNetProjectTarget.Version to always be consistent format.
 - Added missing XML doc to public methods.
 
 ## 5.0.3 - 19 March 2020

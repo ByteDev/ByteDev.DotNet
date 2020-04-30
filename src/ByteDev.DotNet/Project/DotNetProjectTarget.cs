@@ -8,8 +8,6 @@ namespace ByteDev.DotNet.Project
     /// </summary>
     public class DotNetProjectTarget
     {
-        private bool _isOldStyleFormat;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="T:ByteDev.DotNet.Project.DotNetProjectTarget" /> class.
         /// </summary>
@@ -83,7 +81,6 @@ namespace ByteDev.DotNet.Project
             {
                 Type = TargetType.Framework;
                 Version = targetValue.Substring(TargetValuePrefix.FrameworkOld.Length);
-                _isOldStyleFormat = true;
                 return;
             }
 
