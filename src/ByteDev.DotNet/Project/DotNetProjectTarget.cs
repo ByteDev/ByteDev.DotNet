@@ -75,7 +75,7 @@ namespace ByteDev.DotNet.Project
             if(targetValue.StartsWith(TargetValuePrefix.FrameworkNew, true, CultureInfo.InvariantCulture))
             {
                 Type = TargetType.Framework;
-                Version = targetValue.Substring(TargetValuePrefix.FrameworkNew.Length);
+                Version = VersionNumberFormatter.Format(TargetValue.Substring(TargetValuePrefix.FrameworkNew.Length));
                 return;
             }
 
@@ -94,20 +94,18 @@ namespace ByteDev.DotNet.Project
         {
             switch (Type)
             {
-                case TargetType.Framework:
-                    Description = _isOldStyleFormat ? 
-                        $".NET Framework {TargetValue.Substring(TargetValuePrefix.FrameworkOld.Length)}" : 
-                        $".NET Framework {VersionNumberFormatter.Format(TargetValue.Substring(TargetValuePrefix.FrameworkNew.Length))}";
-                    break;
-
                 case TargetType.Core:
-                    Description = $".NET Core {TargetValue.Substring(TargetValuePrefix.Core.Length)}"; 
+                    Description = float.Parse(Version) >= 5 ? $".NET {Version}" : $".NET Core {Version}";
                     break;
 
                 case TargetType.Standard:
-                    Description = $".NET Standard {TargetValue.Substring(TargetValuePrefix.Standard.Length)}";
+                    Description = $".NET Standard {Version}";
                     break;
 
+                case TargetType.Framework:
+                    Description = $".NET Framework {Version}";
+                    break;
+                
                 default:
                     throw new InvalidOperationException($"Unhandled {nameof(TargetType)}: {Type}.");
             }

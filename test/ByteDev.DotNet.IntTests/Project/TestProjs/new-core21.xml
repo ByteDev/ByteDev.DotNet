@@ -1,6 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+
     <!-- AssemblyInfo -->
     <Company>Something Ltd.</Company>
     <Configuration>debug</Configuration>
@@ -16,7 +18,6 @@
     <Description>new-core21 Description</Description>
 
     <!-- NugetMetaData -->
-    <TargetFramework>netcoreapp2.1</TargetFramework>
     <Authors>John Smith;Jesus Christ</Authors>
     <PackageTags>something program exe</PackageTags>
     <PackageLicenseUrl>http://licenseurl/</PackageLicenseUrl>

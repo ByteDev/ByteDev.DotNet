@@ -20,6 +20,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Project\TestProjs\new-core5.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Project\TestProjs\new-core21-commatags.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
