@@ -10,6 +10,7 @@
 
             public const string Framework471 = BasePath + "new-framework471.xml";
 
+            public const string NoTargetFramework = BasePath + "new-notargetframework.xml";
             public const string Std15AndFramework4 = BasePath + "new-std15-and-net40.xml";
 
             public const string Std20 = BasePath + "new-std20.xml";

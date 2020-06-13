@@ -77,6 +77,14 @@ namespace ByteDev.DotNet.IntTests.Project
 
                 Assert.That(sut.ProjectTargets.Single().TargetValue, Is.EqualTo("netcoreapp2.1"));
             }
+
+            [Test]
+            public void WhenNoTargetFrameworkSpecified_ThenSetToEmpty()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.NoTargetFramework);
+
+                Assert.That(sut.ProjectTargets, Is.Empty);
+            }
         }
 
         [TestFixture]

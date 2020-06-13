@@ -102,20 +102,24 @@ namespace ByteDev.DotNet.Project
             {
                 targetElement = PropertyGroupXmlParser.GetNewStyleTargetElement(propertyGroups.PropertyGroupElements);
                 
-                if (targetElement == null)
-                    throw new InvalidDotNetProjectException("Project document contains no target framework.");
-
                 Format = ProjectFormat.New;
             }
             else
             {
                 Format = ProjectFormat.Old;
             }
-            
-            ProjectTargets = targetElement
-                .Value
-                .Split(ProjectTargetDelimiter)
-                .Select(value => new DotNetProjectTarget(value));
+
+            if (targetElement == null)
+            {
+                ProjectTargets = Enumerable.Empty<DotNetProjectTarget>();
+            }
+            else
+            {
+                ProjectTargets = targetElement
+                    .Value
+                    .Split(ProjectTargetDelimiter)
+                    .Select(value => new DotNetProjectTarget(value));
+            }
         }
     }
 }
