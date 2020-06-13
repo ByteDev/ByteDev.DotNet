@@ -1,5 +1,17 @@
 # Release Notes
 
+## 6.0.0 - 13 June 2020
+
+Breaking changes:
+- No exception thrown on lack of target framework in project file
+
+New features:
+- (None)
+
+Bug fixes / internal changes:
+- Fix so `TargetFramework` for single framework and `TargetFrameworks` for multi-target in project file
+- Various package fixes
+
 ## 5.0.4 - 30 April 2020
 
 Breaking changes:
