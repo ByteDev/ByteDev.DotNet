@@ -18,6 +18,8 @@ EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		test\ByteDev.DotNet.Shared.PackageTests\ByteDev.DotNet.Shared.PackageTests.projitems*{24571cbc-010c-4c8d-a50c-0b625cbd3201}*SharedItemsImports = 13
+		test\ByteDev.DotNet.Shared.PackageTests\ByteDev.DotNet.Shared.PackageTests.projitems*{9b80b626-aa3f-4d37-ab7f-b69d2f5e639f}*SharedItemsImports = 5
+		test\ByteDev.DotNet.Shared.PackageTests\ByteDev.DotNet.Shared.PackageTests.projitems*{a16d86ab-305a-412e-a7ec-e53023a27d39}*SharedItemsImports = 5
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
