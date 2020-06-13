@@ -21,6 +21,6 @@
     <file src="..\src\ByteDev.DotNet\bin\Release\netstandard2.0\ByteDev.DotNet.dll" target="lib\netstandard2.0" />
     <file src="..\src\ByteDev.DotNet\bin\Release\netstandard2.0\ByteDev.DotNet.xml" target="lib\netstandard2.0" />
     <file src="..\images\icon.png" target="images\" />
-    <file src="..\LICENSE" target="" />
+    <file src="..\LICENSE*" target="" />
   </files>
 </package>
