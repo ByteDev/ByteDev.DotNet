@@ -1,5 +1,16 @@
 # Release Notes
 
+## 6.0.1 - 26 July 2020
+
+Breaking changes:
+- (None)
+
+New features:
+- (None)
+
+Bug fixes / internal changes:
+- Package updates
+
 ## 6.0.0 - 13 June 2020
 
 Breaking changes:
