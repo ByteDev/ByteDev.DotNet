@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 
@@ -19,7 +20,7 @@ namespace ByteDev.DotNet.Project.Parsers
         {
             const string singleTargetName = "TargetFramework";
             const string multiTargetName = "TargetFrameworks";
-
+            
             XElement element = propertyGroups.SingleOrDefault(pg => pg.Element(singleTargetName) != null)?
                 .Element(singleTargetName);
 

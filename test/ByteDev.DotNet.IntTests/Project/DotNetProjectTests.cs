@@ -32,7 +32,7 @@ namespace ByteDev.DotNet.IntTests.Project
             {
                 var sut = CreateSut(TestProjFiles.NewFormat.Std20);
 
-                Assert.That(sut.ProjectTargets.Single().TargetValue, Is.EqualTo("netstandard2.0"));
+                Assert.That(sut.ProjectTargets.Single().Moniker, Is.EqualTo("netstandard2.0"));
             }
 
             [Test]
@@ -40,7 +40,7 @@ namespace ByteDev.DotNet.IntTests.Project
             {
                 var sut = CreateSut(TestProjFiles.NewFormat.Core21);
 
-                Assert.That(sut.ProjectTargets.Single().TargetValue, Is.EqualTo("netcoreapp2.1"));
+                Assert.That(sut.ProjectTargets.Single().Moniker, Is.EqualTo("netcoreapp2.1"));
             }
 
             [Test]
@@ -48,7 +48,7 @@ namespace ByteDev.DotNet.IntTests.Project
             {
                 var sut = CreateSut(TestProjFiles.NewFormat.Framework471);
 
-                Assert.That(sut.ProjectTargets.Single().TargetValue, Is.EqualTo("net471"));
+                Assert.That(sut.ProjectTargets.Single().Moniker, Is.EqualTo("net471"));
             }
 
             [Test]
@@ -56,7 +56,7 @@ namespace ByteDev.DotNet.IntTests.Project
             {
                 var sut = CreateSut(TestProjFiles.OldFormat.Framework462);
 
-                Assert.That(sut.ProjectTargets.Single().TargetValue, Is.EqualTo("v4.6.2"));
+                Assert.That(sut.ProjectTargets.Single().Moniker, Is.EqualTo("v4.6.2"));
             }
 
             [Test]
@@ -66,8 +66,8 @@ namespace ByteDev.DotNet.IntTests.Project
 
                 Assert.That(sut.IsMultiTarget, Is.True);
 
-                Assert.That(sut.ProjectTargets.First().TargetValue, Is.EqualTo("netstandard1.5"));
-                Assert.That(sut.ProjectTargets.Second().TargetValue, Is.EqualTo("net40"));
+                Assert.That(sut.ProjectTargets.First().Moniker, Is.EqualTo("netstandard1.5"));
+                Assert.That(sut.ProjectTargets.Second().Moniker, Is.EqualTo("net40"));
             }
 
             [Test]
@@ -75,7 +75,7 @@ namespace ByteDev.DotNet.IntTests.Project
             {
                 var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
 
-                Assert.That(sut.ProjectTargets.Single().TargetValue, Is.EqualTo("netcoreapp2.1"));
+                Assert.That(sut.ProjectTargets.Single().Moniker, Is.EqualTo("netcoreapp2.1"));
             }
 
             [Test]

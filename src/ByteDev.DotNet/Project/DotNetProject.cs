@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 using ByteDev.DotNet.Project.Parsers;
+using ByteDev.Xml;
 
 namespace ByteDev.DotNet.Project
 {
@@ -24,6 +25,9 @@ namespace ByteDev.DotNet.Project
             if(xDocument == null)
                 throw new ArgumentNullException(nameof(xDocument));
 
+            if (!xDocument.IsRootName("Project"))
+                throw new InvalidDotNetProjectException("Invalid project XML. Root name was not Project.");
+
             SetPropertyGroupProperties(xDocument);
             SetItemGroupProperties(xDocument);
         }
@@ -36,7 +40,7 @@ namespace ByteDev.DotNet.Project
         /// <summary>
         /// The project's targets.
         /// </summary>
-        public IEnumerable<DotNetProjectTarget> ProjectTargets { get; private set; }
+        public IEnumerable<TargetFramework> ProjectTargets { get; private set; }
 
         /// <summary>
         /// Whether the project is in the new or old format.
@@ -111,14 +115,14 @@ namespace ByteDev.DotNet.Project
 
             if (targetElement == null)
             {
-                ProjectTargets = Enumerable.Empty<DotNetProjectTarget>();
+                ProjectTargets = Enumerable.Empty<TargetFramework>();
             }
             else
             {
                 ProjectTargets = targetElement
                     .Value
                     .Split(ProjectTargetDelimiter)
-                    .Select(value => new DotNetProjectTarget(value));
+                    .Select(value => new TargetFramework(value));
             }
         }
     }

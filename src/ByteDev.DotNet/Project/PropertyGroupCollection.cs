@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 using ByteDev.DotNet.Project.Parsers;
+using ByteDev.Xml;
 
 namespace ByteDev.DotNet.Project
 {
@@ -22,8 +23,7 @@ namespace ByteDev.DotNet.Project
 
             return PropertyGroupElements
                 .SingleOrDefault(pg => pg.Element(elementName) != null)?
-                .Element(elementName)?
-                .Value;
+                .GetChildElementValue(elementName);
         }
 
         public bool GetElementBoolValue(string elementName, bool defaultValue = false)

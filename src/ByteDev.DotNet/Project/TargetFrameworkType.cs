@@ -3,21 +3,26 @@
     /// <summary>
     /// Represents the project target type.
     /// </summary>
-    public enum TargetType
+    public enum TargetFrameworkType
     {
+        /// <summary>
+        /// Unknown framework.
+        /// </summary>
+        Unknown = 0,
+
         /// <summary>
         /// .NET Framework.
         /// </summary>
-        Framework,
+        Framework = 1,
 
         /// <summary>
         /// .NET Core.
         /// </summary>
-        Core,
+        Core = 2,
 
         /// <summary>
         /// .NET Standard.
         /// </summary>
-        Standard
+        Standard = 3
     }
 }

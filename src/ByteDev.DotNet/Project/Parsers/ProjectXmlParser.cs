@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
+using ByteDev.Xml;
 
 namespace ByteDev.DotNet.Project.Parsers
 {
@@ -8,7 +9,10 @@ namespace ByteDev.DotNet.Project.Parsers
     {
         public static IEnumerable<XElement> GetPropertyGroups(XDocument xDocument)
         {
-            return xDocument.Root?.Descendants().Where(d => d.Name.LocalName == "PropertyGroup");
+            return xDocument.Root?
+                .GetChildElements("PropertyGroup");
+
+            //return xDocument.Root?.Descendants().Where(d => d.Name.LocalName == "PropertyGroup");
         }
 
         public static IEnumerable<XElement> GetItemGroups(XDocument xDocument)
