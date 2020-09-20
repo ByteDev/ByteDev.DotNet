@@ -11,13 +11,12 @@ namespace ByteDev.DotNet.Project
         /// <summary>
         /// Initializes a new instance of the <see cref="T:ByteDev.DotNet.Project.DotNetProjectTarget" /> class.
         /// </summary>
-        /// <param name="moniker">Target type value from a project file.</param>
+        /// <param name="moniker">Target framework moniker.</param>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="moniker" /> is null or empty.</exception>
-        /// <exception cref="T:ByteDev.DotNet.Project.InvalidDotNetProjectException">Target value is not valid.</exception>
         public TargetFramework(string moniker)
         {
             if(string.IsNullOrEmpty(moniker))
-                throw new ArgumentException("Target value was null or empty.", nameof(moniker));
+                throw new ArgumentException("Target framework moniker was null or empty.", nameof(moniker));
 
             Moniker = moniker;
 
@@ -46,7 +45,7 @@ namespace ByteDev.DotNet.Project
         public string Description { get; private set; }
 
         /// <summary>
-        /// Returns a representation of <see cref="T:ByteDev.DotNet.Project.TargetFramework" />.
+        /// Returns a string representation of <see cref="T:ByteDev.DotNet.Project.TargetFramework" />.
         /// </summary>
         /// <returns>String representation of <see cref="T:ByteDev.DotNet.Project.TargetFramework" />.</returns>
         public override string ToString()
@@ -60,37 +59,29 @@ namespace ByteDev.DotNet.Project
             {
                 FrameworkType = TargetFrameworkType.Core;
 
-                int hypenPos = Moniker.IndexOf('-');
+                var hypenPos = Moniker.IndexOf('-');
 
                 if (hypenPos < 1)
                     Version = Moniker.Substring(3);
                 else
                     Version = Moniker.Substring(3, hypenPos - 3);
-                return;
             }
-
-            if (Moniker.StartsWith("netcoreapp", true, CultureInfo.InvariantCulture))
+            else if (Moniker.StartsWith("netcoreapp", true, CultureInfo.InvariantCulture))
             {
                 FrameworkType = TargetFrameworkType.Core;
                 Version = Moniker.Substring(10);
-                return;
             }
-
-            if (Moniker.StartsWith("netstandard", true, CultureInfo.InvariantCulture))
+            else if (Moniker.StartsWith("netstandard", true, CultureInfo.InvariantCulture))
             {
                 FrameworkType = TargetFrameworkType.Standard;
                 Version = Moniker.Substring(11);
-                return;
             }
-
-            if(Moniker.StartsWith("net", true, CultureInfo.InvariantCulture))
+            else if(Moniker.StartsWith("net", true, CultureInfo.InvariantCulture))
             {
                 FrameworkType = TargetFrameworkType.Framework;
                 Version = VersionNumberFormatter.Format(Moniker.Substring(3));
-                return;
             }
-
-            if (Moniker.StartsWith("v", true, CultureInfo.InvariantCulture))
+            else if (Moniker.StartsWith("v", true, CultureInfo.InvariantCulture))
             {
                 FrameworkType = TargetFrameworkType.Framework;
                 Version = Moniker.Substring(1);
