@@ -23,6 +23,31 @@
         /// <summary>
         /// .NET Standard.
         /// </summary>
-        Standard = 3
+        Standard = 3,
+
+        /// <summary>
+        /// Windows Storage.
+        /// </summary>
+        WindowsStorage = 4,
+
+        /// <summary>
+        /// .NET Micro Framework
+        /// </summary>
+        MicroFramework = 5,
+
+        /// <summary>
+        /// Silverlight
+        /// </summary>
+        Silverlight = 6,
+
+        /// <summary>
+        /// Windows Phone.
+        /// </summary>
+        WindowsPhone = 7,
+
+        /// <summary>
+        /// Universal Windows Platform.
+        /// </summary>
+        UniversalWindowsPlatform = 8
     }
 }

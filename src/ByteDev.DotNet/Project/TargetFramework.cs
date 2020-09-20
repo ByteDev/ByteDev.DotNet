@@ -76,7 +76,12 @@ namespace ByteDev.DotNet.Project
                 FrameworkType = TargetFrameworkType.Standard;
                 Version = Moniker.Substring(11);
             }
-            else if(Moniker.StartsWith("net", true, CultureInfo.InvariantCulture))
+            else if (Moniker.StartsWith("netmf", true, CultureInfo.InvariantCulture))
+            {
+                FrameworkType = TargetFrameworkType.MicroFramework;
+                Version = string.Empty;
+            }
+            else if (Moniker.StartsWith("net", true, CultureInfo.InvariantCulture))
             {
                 FrameworkType = TargetFrameworkType.Framework;
                 Version = VersionNumberFormatter.Format(Moniker.Substring(3));
@@ -85,6 +90,11 @@ namespace ByteDev.DotNet.Project
             {
                 FrameworkType = TargetFrameworkType.Framework;
                 Version = Moniker.Substring(1);
+            }
+            else if (Moniker.StartsWith("sl", true, CultureInfo.InvariantCulture))
+            {
+                FrameworkType = TargetFrameworkType.Silverlight;
+                Version = Moniker.Substring(2);
             }
         }
 
@@ -102,6 +112,14 @@ namespace ByteDev.DotNet.Project
 
                 case TargetFrameworkType.Framework:
                     Description = $".NET Framework {Version}";
+                    break;
+
+                case TargetFrameworkType.MicroFramework:
+                    Description = ".NET Micro Framework";
+                    break;
+
+                case TargetFrameworkType.Silverlight:
+                    Description = $"Silverlight {Version}";
                     break;
             }
         }

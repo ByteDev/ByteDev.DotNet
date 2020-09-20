@@ -67,6 +67,9 @@ namespace ByteDev.DotNet.UnitTests.Project
         [TestCase("netstandard1.6", TargetFrameworkType.Standard, "1.6", ".NET Standard 1.6")]
         [TestCase("netstandard2.0", TargetFrameworkType.Standard, "2.0", ".NET Standard 2.0")]
         [TestCase("netstandard2.1", TargetFrameworkType.Standard, "2.1", ".NET Standard 2.1")]
+        [TestCase("netmf", TargetFrameworkType.MicroFramework, "", ".NET Micro Framework")]
+        [TestCase("sl4", TargetFrameworkType.Silverlight, "4", "Silverlight 4")]
+        [TestCase("sl5", TargetFrameworkType.Silverlight, "5", "Silverlight 5")]
         public void WhenTargetIsNewFormat_ThenSetProperties(string moniker, TargetFrameworkType frameworkType, string version, string description)
         {
             var sut = new TargetFramework(moniker);
