@@ -1,13 +1,13 @@
 # Release Notes
 
-## 7.0.0 - ?? September 2020
+## 7.0.0 - 21 September 2020
 
 Breaking changes:
 - DotNetProjectTarget is now TargetFramework
 - TargetType is now TargetFrameworkType
 
 New features:
-- (None)
+- Added greater target framework moniker support
 
 Bug fixes / internal changes:
 - Fixes to handle more .NET 5 target framework monikers

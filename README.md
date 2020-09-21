@@ -22,17 +22,13 @@ Releases follow semantic versioning.
 
 Full details of the release notes can be viewed on [GitHub](https://github.com/ByteDev/ByteDev.DotNet/blob/master/docs/RELEASE-NOTES.md).
 
-## Code
-
-The repo can be cloned from git bash:
-
-`git clone https://github.com/ByteDev/ByteDev.DotNet`
-
 ## Usage
 
 There are two main classes in the project: `DotNetSolution` and `DotNetProject`.
 
 ### DotNetSolution
+
+Use `DotNetSolution` from the namespace: `ByteDev.DotNet.Solution`.
 
 Load a .NET solution file:
 
@@ -53,6 +49,8 @@ Console.WriteLine(dotNetSolution.Projects.Count);
 
 
 ### DotNetProject
+
+Use `DotNetProject` from the namespace: `ByteDev.DotNet.Project`.
 
 Load a .NET project file:
 
