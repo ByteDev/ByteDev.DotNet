@@ -12,6 +12,8 @@
             if (string.IsNullOrEmpty(value))
                 return string.Empty;
 
+            value = value.Trim();
+
             if (value.Contains("."))
                 return value;
 

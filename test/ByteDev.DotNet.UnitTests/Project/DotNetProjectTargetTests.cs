@@ -26,7 +26,7 @@ namespace ByteDev.DotNet.UnitTests.Project
 
             Assert.That(sut.Moniker, Is.EqualTo("4.5"));
             Assert.That(sut.FrameworkType, Is.EqualTo(TargetFrameworkType.Unknown));
-            Assert.That(sut.Version, Is.Null);
+            Assert.That(sut.Version, Is.Empty);
             Assert.That(sut.Description, Is.Null);
         }
 
@@ -55,6 +55,7 @@ namespace ByteDev.DotNet.UnitTests.Project
         [TestCase("netcoreapp3.0", TargetFrameworkType.Core, "3.0", ".NET Core 3.0")]
         [TestCase("netcoreapp3.1", TargetFrameworkType.Core, "3.1", ".NET Core 3.1")]
         [TestCase("netcoreapp5.0", TargetFrameworkType.Core, "5.0", ".NET 5.0")]
+        [TestCase("net5", TargetFrameworkType.Core, "5", ".NET 5")]
         [TestCase("net5.0", TargetFrameworkType.Core, "5.0", ".NET 5.0")]
         [TestCase("net5.0-windows", TargetFrameworkType.Core, "5.0", ".NET 5.0")]
         [TestCase("net5.0-macos", TargetFrameworkType.Core, "5.0", ".NET 5.0")]
@@ -70,6 +71,20 @@ namespace ByteDev.DotNet.UnitTests.Project
         [TestCase("netmf", TargetFrameworkType.MicroFramework, "", ".NET Micro Framework")]
         [TestCase("sl4", TargetFrameworkType.Silverlight, "4", "Silverlight 4")]
         [TestCase("sl5", TargetFrameworkType.Silverlight, "5", "Silverlight 5")]
+        [TestCase("wp", TargetFrameworkType.WindowsPhone, "", "Windows Phone")]
+        [TestCase("wp [wp7]", TargetFrameworkType.WindowsPhone, "7", "Windows Phone 7")]
+        [TestCase("wp [wp71]", TargetFrameworkType.WindowsPhone, "7.1", "Windows Phone 7.1")]
+        [TestCase("wp75", TargetFrameworkType.WindowsPhone, "7.5", "Windows Phone 7.5")]
+        [TestCase("wp8", TargetFrameworkType.WindowsPhone, "8", "Windows Phone 8")]
+        [TestCase("wp81", TargetFrameworkType.WindowsPhone, "8.1", "Windows Phone 8.1")]
+        [TestCase("wpa81", TargetFrameworkType.WindowsPhone, "8.1", "Windows Phone 8.1")]
+        [TestCase("uap [uap10.0]", TargetFrameworkType.UniversalWindowsPlatform, "10.0", "Universal Windows Platform 10.0")]
+        [TestCase("uap10.0 [win10] [netcore50]", TargetFrameworkType.UniversalWindowsPlatform, "10.0", "Universal Windows Platform 10.0")]
+        [TestCase("uap10.0", TargetFrameworkType.UniversalWindowsPlatform, "10.0", "Universal Windows Platform 10.0")]
+        [TestCase("netcore [netcore45]", TargetFrameworkType.WindowsStore, "4.5", "Windows Store 4.5")]
+        [TestCase("netcore45", TargetFrameworkType.WindowsStore, "4.5", "Windows Store 4.5")]
+        [TestCase("netcore45 [win] [win8]", TargetFrameworkType.WindowsStore, "4.5", "Windows Store 4.5")]
+        [TestCase("netcore451 [win81]", TargetFrameworkType.WindowsStore, "4.5.1", "Windows Store 4.5.1")]
         public void WhenTargetIsNewFormat_ThenSetProperties(string moniker, TargetFrameworkType frameworkType, string version, string description)
         {
             var sut = new TargetFramework(moniker);

@@ -55,16 +55,13 @@ namespace ByteDev.DotNet.Project
         
         private void SetTypeAndVersion()
         {
+            FrameworkType = TargetFrameworkType.Unknown;
+            Version = string.Empty;
+
             if (Moniker.StartsWith("net5", true, CultureInfo.InvariantCulture))
             {
                 FrameworkType = TargetFrameworkType.Core;
-
-                var hypenPos = Moniker.IndexOf('-');
-
-                if (hypenPos < 1)
-                    Version = Moniker.Substring(3);
-                else
-                    Version = Moniker.Substring(3, hypenPos - 3);
+                SetVersionDotNet5();
             }
             else if (Moniker.StartsWith("netcoreapp", true, CultureInfo.InvariantCulture))
             {
@@ -79,12 +76,6 @@ namespace ByteDev.DotNet.Project
             else if (Moniker.StartsWith("netmf", true, CultureInfo.InvariantCulture))
             {
                 FrameworkType = TargetFrameworkType.MicroFramework;
-                Version = string.Empty;
-            }
-            else if (Moniker.StartsWith("net", true, CultureInfo.InvariantCulture))
-            {
-                FrameworkType = TargetFrameworkType.Framework;
-                Version = VersionNumberFormatter.Format(Moniker.Substring(3));
             }
             else if (Moniker.StartsWith("v", true, CultureInfo.InvariantCulture))
             {
@@ -96,6 +87,126 @@ namespace ByteDev.DotNet.Project
                 FrameworkType = TargetFrameworkType.Silverlight;
                 Version = Moniker.Substring(2);
             }
+            else if (Moniker.StartsWith("wp", true, CultureInfo.InvariantCulture))
+            {
+                FrameworkType = TargetFrameworkType.WindowsPhone;
+                SetVersionWindowsPhone();
+            }
+            else if (Moniker.StartsWith("uap", true, CultureInfo.InvariantCulture))
+            {
+                FrameworkType = TargetFrameworkType.UniversalWindowsPlatform;
+                SetVersionUniversalWindowsPlatform();
+            }
+            else if (Moniker.StartsWith("netcore", true, CultureInfo.InvariantCulture))
+            {
+                FrameworkType = TargetFrameworkType.WindowsStore;
+                SetVersionWindowsStore();
+            }
+            else if (Moniker.StartsWith("net", true, CultureInfo.InvariantCulture))
+            {
+                FrameworkType = TargetFrameworkType.Framework;
+                Version = VersionNumberFormatter.Format(Moniker.Substring(3));
+            }
+        }
+
+        private void SetVersionWindowsStore()
+        {
+            if (Moniker.StartsWith("netcore [", true, CultureInfo.InvariantCulture))
+            {
+                // netcore [netcore45]
+                var startIndex = Moniker.IndexOf("[netcore", StringComparison.Ordinal);
+                var endIndex = Moniker.IndexOf("]", StringComparison.Ordinal);
+
+                if (endIndex > 0)
+                {
+                    var ver = Moniker.Substring(startIndex + 8, endIndex - startIndex - 8);
+                    Version = VersionNumberFormatter.Format(ver);
+                }
+            }
+            else
+            {
+                // netcore451 [win81]
+                // netcore451
+                var startIndex = Moniker.IndexOf("[", StringComparison.Ordinal);
+
+                if (startIndex < 1)
+                {
+                    Version = VersionNumberFormatter.Format(Moniker.Substring(7));
+                }
+                else
+                {
+                    Version = VersionNumberFormatter.Format(Moniker.Substring(7, startIndex - 7));
+                }
+            }
+        }
+
+        private void SetVersionDotNet5()
+        {
+            var hyphenIndex = Moniker.IndexOf('-');
+
+            if (hyphenIndex < 1)
+                Version = Moniker.Substring(3);                     // net5.0
+            else
+                Version = Moniker.Substring(3, hyphenIndex - 3);    // net5.0-windows
+        }
+
+        private void SetVersionUniversalWindowsPlatform()
+        {
+            if (Moniker.StartsWith("uap [", true, CultureInfo.InvariantCulture))
+            {
+                // uap [uap10.0]
+                var startIndex = Moniker.IndexOf("[uap", StringComparison.Ordinal);
+                var endIndex = Moniker.IndexOf("]", StringComparison.Ordinal);
+
+                if (endIndex > 0)
+                {
+                    var ver = Moniker.Substring(startIndex + 4, endIndex - startIndex - 4);
+                    Version = VersionNumberFormatter.Format(ver);
+                }
+            }
+            else
+            {
+                // uap10.0 [win10] [netcore50]
+                var startIndex = Moniker.IndexOf("[", StringComparison.Ordinal);
+
+                if (startIndex < 1)
+                {
+                    Version = VersionNumberFormatter.Format(Moniker.Substring(3));
+                }
+                else
+                {
+                    Version = VersionNumberFormatter.Format(Moniker.Substring(3, startIndex - 3));
+                }
+            }
+        }
+
+        private void SetVersionWindowsPhone()
+        {
+            if (Moniker.StartsWith("wpa", true, CultureInfo.InvariantCulture))
+            {
+                // wpa81
+                Version = VersionNumberFormatter.Format(Moniker.Substring(3));
+            }
+            else if (Moniker.StartsWith("wp [", true, CultureInfo.InvariantCulture))
+            {
+                // wp [wp71]
+                var startIndex = Moniker.IndexOf("[wp", StringComparison.Ordinal);
+                var endIndex = Moniker.IndexOf("]", StringComparison.Ordinal);
+
+                if (endIndex < 1)
+                {
+                    Version = string.Empty;
+                }
+                else
+                {
+                    var ver = Moniker.Substring(startIndex + 3, endIndex - startIndex - 3);
+                    Version = VersionNumberFormatter.Format(ver);
+                }
+            }
+            else
+            {
+                Version = VersionNumberFormatter.Format(Moniker.Substring(2));
+            }
         }
 
         private void SetDescription()
@@ -103,15 +214,15 @@ namespace ByteDev.DotNet.Project
             switch (FrameworkType)
             {
                 case TargetFrameworkType.Core:
-                    Description = float.Parse(Version) >= 5 ? $".NET {Version}" : $".NET Core {Version}";
+                    Description = VersionGreaterOrEqual(5) ? $".NET {Version}" : $".NET Core {Version}";
                     break;
 
                 case TargetFrameworkType.Standard:
-                    Description = $".NET Standard {Version}";
+                    Description = string.IsNullOrEmpty(Version) ? ".NET Standard" : $".NET Standard {Version}";
                     break;
 
                 case TargetFrameworkType.Framework:
-                    Description = $".NET Framework {Version}";
+                    Description = string.IsNullOrEmpty(Version) ? ".NET Framework" : $".NET Framework {Version}";
                     break;
 
                 case TargetFrameworkType.MicroFramework:
@@ -119,9 +230,29 @@ namespace ByteDev.DotNet.Project
                     break;
 
                 case TargetFrameworkType.Silverlight:
-                    Description = $"Silverlight {Version}";
+                    Description = string.IsNullOrEmpty(Version) ? "Silverlight" : $"Silverlight {Version}";
+                    break;
+
+                case TargetFrameworkType.WindowsPhone:
+                    Description = string.IsNullOrEmpty(Version) ? "Windows Phone" : $"Windows Phone {Version}";
+                    break;
+
+                case TargetFrameworkType.UniversalWindowsPlatform:
+                    Description = string.IsNullOrEmpty(Version) ? "Universal Windows Platform" : $"Universal Windows Platform {Version}";
+                    break;
+
+                case TargetFrameworkType.WindowsStore:
+                    Description = string.IsNullOrEmpty(Version) ? "Windows Store" : $"Windows Store {Version}";
                     break;
             }
+        }
+
+        private bool VersionGreaterOrEqual(int value)
+        {
+            if (string.IsNullOrEmpty(Version))
+                return false;
+
+            return int.Parse(Version.Substring(0, 1)) >= value;
         }
     }
 }

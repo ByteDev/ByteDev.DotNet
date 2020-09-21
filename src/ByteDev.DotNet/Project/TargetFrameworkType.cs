@@ -26,9 +26,9 @@
         Standard = 3,
 
         /// <summary>
-        /// Windows Storage.
+        /// Windows Store.
         /// </summary>
-        WindowsStorage = 4,
+        WindowsStore = 4,
 
         /// <summary>
         /// .NET Micro Framework
