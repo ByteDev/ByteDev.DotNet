@@ -10,13 +10,13 @@ namespace ByteDev.DotNet.UnitTests.Project
         [Test]
         public void WhenTargetIsNull_ThenThrowException()
         {
-            Assert.Throws<ArgumentException>(() => new TargetFramework(null));
+            Assert.Throws<ArgumentException>(() => _ = new TargetFramework(null));
         }
 
         [Test]
         public void WhenTargetIsEmpty_ThenThrowException()
         {
-            Assert.Throws<ArgumentException>(() => new TargetFramework(string.Empty));
+            Assert.Throws<ArgumentException>(() => _ = new TargetFramework(string.Empty));
         }
 
         [Test]
@@ -97,7 +97,7 @@ namespace ByteDev.DotNet.UnitTests.Project
 
         [TestCase("v4.5", TargetFrameworkType.Framework, "4.5", ".NET Framework 4.5")]
         [TestCase("v4.7.2", TargetFrameworkType.Framework, "4.7.2", ".NET Framework 4.7.2")]
-        public void WhenTargetIsOldFormat_ThenSetProperties(string moniker, TargetFrameworkType frameworkType, string version, string description)
+        public void WhenTargetIsOldFormatFramework_ThenSetProperties(string moniker, TargetFrameworkType frameworkType, string version, string description)
         {
             var sut = new TargetFramework(moniker);
 
