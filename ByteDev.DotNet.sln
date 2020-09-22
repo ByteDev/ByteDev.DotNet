@@ -5,11 +5,11 @@ VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{F8FDF7E8-B7FB-4BA1-8107-DB114CB729BB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ByteDev.DotNet.IntTests", "test\ByteDev.DotNet.IntTests\ByteDev.DotNet.IntTests.csproj", "{989150B8-63EE-4213-A7E0-71ECB5A781C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ByteDev.DotNet.IntTests", "tests\ByteDev.DotNet.IntTests\ByteDev.DotNet.IntTests.csproj", "{989150B8-63EE-4213-A7E0-71ECB5A781C8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ByteDev.DotNet", "src\ByteDev.DotNet\ByteDev.DotNet.csproj", "{321736A6-AE48-46F1-89E5-074D6C105E66}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ByteDev.DotNet.UnitTests", "test\ByteDev.DotNet.UnitTests\ByteDev.DotNet.UnitTests.csproj", "{34D79A1C-6035-486F-B885-FEEF1DB6632A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ByteDev.DotNet.UnitTests", "tests\ByteDev.DotNet.UnitTests\ByteDev.DotNet.UnitTests.csproj", "{34D79A1C-6035-486F-B885-FEEF1DB6632A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{149381AE-C5AB-4612-9C36-CDF26E47FDB3}"
 	ProjectSection(SolutionItems) = preProject
