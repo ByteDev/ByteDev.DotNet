@@ -1,16 +1,27 @@
 # Release Notes
 
+## 7.1.0 - 09 December 2020
+
+Breaking changes:
+- (None)
+
+New features:
+- Added `TargetFramework.OperatingSystem` for .NET 5 TFM
+
+Bug fixes / internal changes:
+- (None)
+
 ## 7.0.0 - 21 September 2020
 
 Breaking changes:
-- DotNetProjectTarget is now TargetFramework
-- TargetType is now TargetFrameworkType
+- `DotNetProjectTarget` is now `TargetFramework`
+- `TargetType` is now `TargetFrameworkType`
 
 New features:
 - Added greater target framework moniker support
 
 Bug fixes / internal changes:
-- Fixes to handle more .NET 5 target framework monikers
+- Fixes to handle more .NET 5 target framework monikers.
 
 ## 6.0.1 - 26 July 2020
 
@@ -21,19 +32,19 @@ New features:
 - (None)
 
 Bug fixes / internal changes:
-- Package updates
+- Package updates.
 
 ## 6.0.0 - 13 June 2020
 
 Breaking changes:
-- No exception thrown on lack of target framework in project file
+- No exception thrown on lack of target framework in project file.
 
 New features:
 - (None)
 
 Bug fixes / internal changes:
-- Fix so `TargetFramework` for single framework and `TargetFrameworks` for multi-target in project file
-- Various package fixes
+- Fix so `TargetFramework` for single framework and `TargetFrameworks` for multi-target in project file.
+- Various package fixes.
 
 ## 5.0.4 - 30 April 2020
 
@@ -45,7 +56,7 @@ New features:
 
 Bug fixes / internal changes:
 - Added support for .NET 5 target framework.
-- Fixed DotNetProjectTarget.Version to always be consistent format.
+- Fixed `DotNetProjectTarget.Version` to always be consistent format.
 - Added missing XML doc to public methods.
 
 ## 5.0.3 - 19 March 2020
@@ -73,7 +84,7 @@ Bug fixes:
 ## 5.0.1 - 08 Oct 2019
 
 Breaking changes:
-- Extracted DotNetProject properties to AssemblyInfoProperties and NugetMetaDataProperties classes.
+- Extracted `DotNetProject` properties to `AssemblyInfoProperties` and `NugetMetaDataProperties` classes.
 
 New features:
 - (None)
@@ -87,7 +98,7 @@ Breaking changes:
 - (None)
 
 New features:
-- Added project properties CopyRight, PackageLicenseUrl, PackageProjectUrl, PackageIconUrl, RepositoryUrl, RepositoryType, PackageReleaseNotes.
+- Added project properties `CopyRight`, `PackageLicenseUrl`, `PackageProjectUrl`, `PackageIconUrl`, `RepositoryUrl`, `RepositoryType`, `PackageReleaseNotes`.
 - Improved public method and property comments.
 
 Bug fixes:
@@ -96,10 +107,10 @@ Bug fixes:
 ## 4.0.0 - 22 Aug 2019
 
 Breaking changes:
-- DotNetSolutionProjectTypeFactory moved to Factories NS
+- `DotNetSolutionProjectTypeFactory` moved to Factories NS
 
 New features:
-- Added DotNetSolutionProject.ProjectSections property which contains a collection of DotNetSolutionProjectSection objects that each represent a Project's ProjectSection.
+- Added `DotNetSolutionProject.ProjectSections` property which contains a collection of `DotNetSolutionProjectSection` objects that each represent a Project's `ProjectSection`.
 
 Bug fixes:
 - (None)
@@ -110,7 +121,7 @@ Breaking changes:
 - (None)
 
 New features:
-- Added DotNetSolution.GlobalSections property which contains a collection of DotNetSolutionGlobalSection objects that each represent a GlobalSection in the solution file.
+- Added `DotNetSolution.GlobalSections` property which contains a collection of `DotNetSolutionGlobalSection` objects that each represent a `GlobalSection` in the solution file.
 
 Bug fixes:
 - (None)

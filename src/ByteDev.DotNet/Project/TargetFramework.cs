@@ -11,7 +11,7 @@ namespace ByteDev.DotNet.Project
         /// <summary>
         /// Initializes a new instance of the <see cref="T:ByteDev.DotNet.Project.DotNetProjectTarget" /> class.
         /// </summary>
-        /// <param name="moniker">Target framework moniker.</param>
+        /// <param name="moniker">Target framework moniker (TFM).</param>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="moniker" /> is null or empty.</exception>
         public TargetFramework(string moniker)
         {
@@ -43,6 +43,11 @@ namespace ByteDev.DotNet.Project
         /// Readable description of the target.
         /// </summary>
         public string Description { get; private set; }
+
+        /// <summary>
+        /// Any OS-specific binding. Supported in .NET 5+.
+        /// </summary>
+        public string OperatingSystem { get; private set; }
 
         /// <summary>
         /// Returns a string representation of <see cref="T:ByteDev.DotNet.Project.TargetFramework" />.
@@ -142,12 +147,15 @@ namespace ByteDev.DotNet.Project
 
         private void SetVersionDotNet5()
         {
-            var hyphenIndex = Moniker.IndexOf('-');
+            var segments = Moniker.Split('-');
 
-            if (hyphenIndex < 1)
-                Version = Moniker.Substring(3);                     // net5.0
-            else
-                Version = Moniker.Substring(3, hyphenIndex - 3);    // net5.0-windows
+            Version = segments[0].Substring(3);                     // net5.0
+
+            if (segments.Length > 1)            
+            {
+                // net5.0-windows
+                OperatingSystem = segments[1];
+            }
         }
 
         private void SetVersionUniversalWindowsPlatform()
@@ -214,7 +222,14 @@ namespace ByteDev.DotNet.Project
             switch (FrameworkType)
             {
                 case TargetFrameworkType.Core:
-                    Description = VersionGreaterOrEqual(5) ? $".NET {Version}" : $".NET Core {Version}";
+                    if (VersionGreaterOrEqual(5))
+                    {
+                        Description = OperatingSystem == null ? $".NET {Version}" : $".NET {Version} ({OperatingSystem})";
+                    }
+                    else
+                    {
+                        Description = $".NET Core {Version}";
+                    }
                     break;
 
                 case TargetFrameworkType.Standard:

@@ -30,8 +30,6 @@ namespace ByteDev.DotNet.UnitTests.Project
             Assert.That(sut.Description, Is.Null);
         }
 
-        // Full moniker list: https://docs.microsoft.com/en-us/dotnet/standard/frameworks
-        
         [TestCase("net11", TargetFrameworkType.Framework, "1.1", ".NET Framework 1.1")]
         [TestCase("net20", TargetFrameworkType.Framework, "2.0", ".NET Framework 2.0")]
         [TestCase("net35", TargetFrameworkType.Framework, "3.5", ".NET Framework 3.5")]
@@ -55,10 +53,6 @@ namespace ByteDev.DotNet.UnitTests.Project
         [TestCase("netcoreapp3.0", TargetFrameworkType.Core, "3.0", ".NET Core 3.0")]
         [TestCase("netcoreapp3.1", TargetFrameworkType.Core, "3.1", ".NET Core 3.1")]
         [TestCase("netcoreapp5.0", TargetFrameworkType.Core, "5.0", ".NET 5.0")]
-        [TestCase("net5", TargetFrameworkType.Core, "5", ".NET 5")]
-        [TestCase("net5.0", TargetFrameworkType.Core, "5.0", ".NET 5.0")]
-        [TestCase("net5.0-windows", TargetFrameworkType.Core, "5.0", ".NET 5.0")]
-        [TestCase("net5.0-macos", TargetFrameworkType.Core, "5.0", ".NET 5.0")]
         [TestCase("netstandard1.0", TargetFrameworkType.Standard, "1.0", ".NET Standard 1.0")]
         [TestCase("netstandard1.1", TargetFrameworkType.Standard, "1.1", ".NET Standard 1.1")]
         [TestCase("netstandard1.2", TargetFrameworkType.Standard, "1.2", ".NET Standard 1.2")]
@@ -93,6 +87,26 @@ namespace ByteDev.DotNet.UnitTests.Project
             Assert.That(sut.FrameworkType, Is.EqualTo(frameworkType));
             Assert.That(sut.Version, Is.EqualTo(version));
             Assert.That(sut.Description, Is.EqualTo(description));
+            Assert.That(sut.OperatingSystem, Is.Null);
+        }
+
+        [TestCase("net5", TargetFrameworkType.Core, "5", ".NET 5", null)]
+        [TestCase("net5.0", TargetFrameworkType.Core, "5.0", ".NET 5.0", null)]
+        [TestCase("net5.0-android", TargetFrameworkType.Core, "5.0", ".NET 5.0 (android)", "android")]
+        [TestCase("net5.0-ios", TargetFrameworkType.Core, "5.0", ".NET 5.0 (ios)", "ios")]
+        [TestCase("net5.0-macos", TargetFrameworkType.Core, "5.0", ".NET 5.0 (macos)", "macos")]
+        [TestCase("net5.0-tvos", TargetFrameworkType.Core, "5.0", ".NET 5.0 (tvos)", "tvos")]
+        [TestCase("net5.0-watchos", TargetFrameworkType.Core, "5.0", ".NET 5.0 (watchos)", "watchos")]
+        [TestCase("net5.0-windows", TargetFrameworkType.Core, "5.0", ".NET 5.0 (windows)", "windows")]
+        public void WhenTargetIsDotNet5_ThenSetProperties(string moniker, TargetFrameworkType frameworkType, string version, string description, string os)
+        {
+            var sut = new TargetFramework(moniker);
+
+            Assert.That(sut.Moniker, Is.EqualTo(moniker));
+            Assert.That(sut.FrameworkType, Is.EqualTo(frameworkType));
+            Assert.That(sut.Version, Is.EqualTo(version));
+            Assert.That(sut.Description, Is.EqualTo(description));
+            Assert.That(sut.OperatingSystem, Is.EqualTo(os));
         }
 
         [TestCase("v4.5", TargetFrameworkType.Framework, "4.5", ".NET Framework 4.5")]
