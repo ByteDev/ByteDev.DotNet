@@ -35,7 +35,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ByteDev.DotNet, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\packages\ByteDev.DotNet.6.0.0\lib\netstandard2.0\ByteDev.DotNet.dll</HintPath>
+      <HintPath>..\..\packages\ByteDev.DotNet.7.1.0\lib\netstandard2.0\ByteDev.DotNet.dll</HintPath>
+      <Private>True</Private>
+      <SpecificVersion>True</SpecificVersion>
+    </Reference>
+    <Reference Include="ByteDev.Xml, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\packages\ByteDev.Xml.1.0.0\lib\netstandard2.0\ByteDev.Xml.dll</HintPath>
       <Private>True</Private>
       <SpecificVersion>True</SpecificVersion>
     </Reference>

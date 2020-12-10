@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ByteDev.DotNet.Net461.PackageTests", "test\ByteDev.DotNet.Net461.PackageTests\ByteDev.DotNet.Net461.PackageTests.csproj", "{A16D86AB-305A-412E-A7EC-E53023A27D39}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ByteDev.DotNet.Net461.PackageTests", "tests\ByteDev.DotNet.Net461.PackageTests\ByteDev.DotNet.Net461.PackageTests.csproj", "{A16D86AB-305A-412E-A7EC-E53023A27D39}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ByteDev.DotNet.NetCore.PackageTests", "test\ByteDev.DotNet.NetCore.PackageTests\ByteDev.DotNet.NetCore.PackageTests.csproj", "{9B80B626-AA3F-4D37-AB7F-B69D2F5E639F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ByteDev.DotNet.NetCore.PackageTests", "tests\ByteDev.DotNet.NetCore.PackageTests\ByteDev.DotNet.NetCore.PackageTests.csproj", "{9B80B626-AA3F-4D37-AB7F-B69D2F5E639F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{CD9D71A9-893D-4A64-ABBB-228D088C9377}"
 	ProjectSection(SolutionItems) = preProject
@@ -13,13 +13,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{CD9D71A9
 		build\ByteDev.Utilities.cake = build\ByteDev.Utilities.cake
 	EndProjectSection
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "ByteDev.DotNet.Shared.PackageTests", "test\ByteDev.DotNet.Shared.PackageTests\ByteDev.DotNet.Shared.PackageTests.shproj", "{24571CBC-010C-4C8D-A50C-0B625CBD3201}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "ByteDev.DotNet.Shared.PackageTests", "tests\ByteDev.DotNet.Shared.PackageTests\ByteDev.DotNet.Shared.PackageTests.shproj", "{24571CBC-010C-4C8D-A50C-0B625CBD3201}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		test\ByteDev.DotNet.Shared.PackageTests\ByteDev.DotNet.Shared.PackageTests.projitems*{24571cbc-010c-4c8d-a50c-0b625cbd3201}*SharedItemsImports = 13
-		test\ByteDev.DotNet.Shared.PackageTests\ByteDev.DotNet.Shared.PackageTests.projitems*{9b80b626-aa3f-4d37-ab7f-b69d2f5e639f}*SharedItemsImports = 5
-		test\ByteDev.DotNet.Shared.PackageTests\ByteDev.DotNet.Shared.PackageTests.projitems*{a16d86ab-305a-412e-a7ec-e53023a27d39}*SharedItemsImports = 5
+		tests\ByteDev.DotNet.Shared.PackageTests\ByteDev.DotNet.Shared.PackageTests.projitems*{24571cbc-010c-4c8d-a50c-0b625cbd3201}*SharedItemsImports = 13
+		tests\ByteDev.DotNet.Shared.PackageTests\ByteDev.DotNet.Shared.PackageTests.projitems*{9b80b626-aa3f-4d37-ab7f-b69d2f5e639f}*SharedItemsImports = 5
+		tests\ByteDev.DotNet.Shared.PackageTests\ByteDev.DotNet.Shared.PackageTests.projitems*{a16d86ab-305a-412e-a7ec-e53023a27d39}*SharedItemsImports = 5
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
