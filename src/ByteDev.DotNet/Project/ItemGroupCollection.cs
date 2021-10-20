@@ -7,7 +7,7 @@ namespace ByteDev.DotNet.Project
 {
     internal class ItemGroupCollection
     {
-        public IList<XElement> ItemGroupElements { get; }
+        private IList<XElement> ItemGroupElements { get; }
 
         public ItemGroupCollection(XDocument xDocument)
         {
@@ -16,16 +16,49 @@ namespace ByteDev.DotNet.Project
 
         public IEnumerable<ProjectReference> GetProjectReferences()
         {
-            var projectRefElements = ItemGroupElements.Descendants().Where(e => e.Name.LocalName == "ProjectReference");
-
-            return projectRefElements.Select(CreateProjectReferenceFor);
+            return ItemGroupElements
+                .Descendants()
+                .Where(e => e.Name.LocalName == "ProjectReference")
+                .Select(CreateProjectReferenceFor);
         }
 
         public IEnumerable<PackageReference> GetPackageReferences()
         {
-            var packageRefElements = ItemGroupElements.Descendants().Where(e => e.Name.LocalName == "PackageReference");
+            return ItemGroupElements
+                .Descendants()
+                .Where(e => e.Name.LocalName == "PackageReference")
+                .Select(CreatePackageReferenceFor);
+        }
 
-            return packageRefElements.Select(CreatePackageReferenceFor);
+        public IEnumerable<ProjectItem> GetExcludedItems(ProjectFormat format)
+        {
+            if (format == ProjectFormat.Old)
+                return Enumerable.Empty<ProjectItem>();
+
+            return ItemGroupElements
+                .Descendants()
+                .Where(e => IsBuildActionItem(e) && e.Attribute("Remove") != null)
+                .Select(CreateExcludedItemFor);
+        }
+
+        public IEnumerable<ProjectItem> GetIncludedItems(ProjectFormat format)
+        {
+            if (format == ProjectFormat.Old)
+                return Enumerable.Empty<ProjectItem>();
+
+            return ItemGroupElements
+                .Descendants()
+                .Where(e => IsBuildActionItem(e) && e.Attribute("Include") != null)
+                .Select(CreateIncludedItemFor);
+        }
+
+        private static bool IsBuildActionItem(XElement e)
+        {
+            return e.Name.LocalName == "None" ||
+                   e.Name.LocalName == "Content" ||
+                   e.Name.LocalName == "Compile" ||
+                   e.Name.LocalName == "Resource" ||
+                   e.Name.LocalName == "EmbeddedResource";
         }
 
         private static IList<XElement> GetItemGroups(XDocument xDocument)
@@ -52,6 +85,24 @@ namespace ByteDev.DotNet.Project
                 InclueAssets = packageReferenceElement.Attribute("IncludeAssets")?.Value.SplitOnSemiColon(),
                 ExcludeAssets = packageReferenceElement.Attribute("ExcludeAssets")?.Value.SplitOnSemiColon(),
                 PrivateAssets = packageReferenceElement.Attribute("PrivateAssets")?.Value.SplitOnSemiColon()
+            };
+        }
+
+        private static ProjectItem CreateExcludedItemFor(XElement itemElement)
+        {
+            return new ProjectItem
+            {
+                BuildAction = itemElement.Name.LocalName,
+                Path = itemElement.Attribute("Remove")?.Value
+            };
+        }        
+        
+        private static ProjectItem CreateIncludedItemFor(XElement itemElement)
+        {
+            return new ProjectItem
+            {
+                BuildAction = itemElement.Name.LocalName,
+                Path = itemElement.Attribute("Include")?.Value
             };
         }
     }

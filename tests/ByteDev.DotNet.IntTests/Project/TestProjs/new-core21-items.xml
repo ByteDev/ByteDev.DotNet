@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="mylogo.png" />
+    <None Remove="excluded_folder\**" />
+    <None Include="excluded_folder\image1.jpg" />
+    
+    <Content Remove="excluded_folder\**" />
+    <Content Include="excluded_folder\image2.jpg" />
+
+    <Compile Remove="excluded_folder\**" />
+    <Compile Include="excluded_folder\Something.cs" />
+
+    <Resource Remove="SomeCode.cs" />
+    <Resource Include="SomeCode.cs" />
+
+    <EmbeddedResource Remove="excluded_folder\**" />
+    <EmbeddedResource Include="excluded_folder\image3.jpg" />
+  </ItemGroup>
+
+</Project>

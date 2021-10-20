@@ -1,5 +1,17 @@
 # Release Notes
 
+## 7.2.0 - ?
+
+Breaking changes:
+- (None)
+
+New features:
+- Added `DotNetProject.ExcludedItems` property.
+- Added `DotNetProject.IncludedItems` property.
+
+Bug fixes / internal changes:
+- Added default message for `InvalidDotNetProjectException` and `InvalidDotNetSolutionException`.
+
 ## 7.1.0 - 09 December 2020
 
 Breaking changes:

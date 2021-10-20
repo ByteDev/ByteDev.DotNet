@@ -18,6 +18,7 @@
             public const string Core21 = BasePath + "new-core21.xml";
             public const string Core21Exe = BasePath + "new-core21-exe.xml";
             public const string Core21CommaTags = BasePath + "new-core21-commatags.xml";
+            public const string Core21Items = BasePath + "new-core21-items.xml";
 
             public const string Core5 = BasePath + "new-core5.xml";
         }

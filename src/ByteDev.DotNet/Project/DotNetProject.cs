@@ -33,7 +33,7 @@ namespace ByteDev.DotNet.Project
         }
 
         /// <summary>
-        /// Whether the project has more than one target.
+        /// Determines if the project has more than one target.
         /// </summary>
         public bool IsMultiTarget => ProjectTargets?.Count() > 1;
 
@@ -47,6 +47,8 @@ namespace ByteDev.DotNet.Project
         /// </summary>
         public ProjectFormat Format { get; private set; }
         
+        #region ItemGroup
+
         /// <summary>
         /// Collection of references to other projects.
         /// </summary>
@@ -59,6 +61,22 @@ namespace ByteDev.DotNet.Project
         public IEnumerable<PackageReference> PackageReferences { get; private set; }
 
         /// <summary>
+        /// Collection of explicitly excluded items. Will return empty unless the project
+        /// is in the new format.
+        /// </summary>
+        public IEnumerable<ProjectItem> ExcludedItems { get; private set; }
+
+        /// <summary>
+        /// Collection of explicitly excluded items. Will return empty unless the project
+        /// is in the new format.
+        /// </summary>
+        public IEnumerable<ProjectItem> IncludedItems { get; private set; }
+
+        #endregion
+
+        #region PropertyGroup
+
+        /// <summary>
         /// Assembly info properties. 
         /// </summary>
         public AssemblyInfoProperties AssemblyInfo { get; private set; }
@@ -66,8 +84,10 @@ namespace ByteDev.DotNet.Project
         /// <summary>
         /// Nuget meta data properties.
         /// </summary>
-        public NugetMetaDataProperties NugetMetaData { get; private set; }
+        public NugetMetaDataProperties NugetMetaData { get; private set; }        
 
+        #endregion
+        
         /// <summary>
         /// Loads the <see cref="T:ByteDev.DotNet.Project.DotNetProject" /> from a file path.
         /// </summary>
@@ -86,6 +106,8 @@ namespace ByteDev.DotNet.Project
 
             ProjectReferences = itemGroups.GetProjectReferences();
             PackageReferences = itemGroups.GetPackageReferences();
+            ExcludedItems = itemGroups.GetExcludedItems(Format);
+            IncludedItems = itemGroups.GetIncludedItems(Format);
         }
 
         private void SetPropertyGroupProperties(XDocument xDocument)

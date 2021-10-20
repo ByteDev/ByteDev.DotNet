@@ -195,7 +195,74 @@ namespace ByteDev.DotNet.IntTests.Project
             }
         }
 
+        [TestFixture]
+        public class ExcludedItems : DotNetProjectTests
+        {
+            [Test]
+            public void WhenOldFormat_ThenReturnEmpty()
+            {
+                var sut = CreateSut(TestProjFiles.OldFormat.Framework462);
 
+                Assert.That(sut.ExcludedItems, Is.Empty);
+            }
+
+            [Test]
+            public void WhenNewFormat_AndHasNoExcludedItems_ThenReturnEmpty()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
+
+                Assert.That(sut.ExcludedItems, Is.Empty);
+            }
+
+            [Test]
+            public void WhenNewFormat_AndHasExcludedItems_ThenReturnExcludedItems()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21Items);
+
+                Assert.That(sut.ExcludedItems.Count(), Is.EqualTo(6));
+
+                Assert.That(sut.ExcludedItems.First().BuildAction, Is.EqualTo("None"));
+                Assert.That(sut.ExcludedItems.First().Path, Is.EqualTo("mylogo.png"));
+
+                Assert.That(sut.ExcludedItems.Last().BuildAction, Is.EqualTo("EmbeddedResource"));
+                Assert.That(sut.ExcludedItems.Last().Path, Is.EqualTo(@"excluded_folder\**"));
+            }
+        }
+
+        [TestFixture]
+        public class IncludedItems : DotNetProjectTests
+        {
+            [Test]
+            public void WhenOldFormat_ThenReturnEmpty()
+            {
+                var sut = CreateSut(TestProjFiles.OldFormat.Framework462);
+
+                Assert.That(sut.IncludedItems, Is.Empty);
+            }
+
+            [Test]
+            public void WhenNewFormat_AndHasNoExcludedItems_ThenReturnEmpty()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21Exe);
+
+                Assert.That(sut.IncludedItems, Is.Empty);
+            }
+
+            [Test]
+            public void WhenNewFormat_AndHasIncludedItems_ThenReturnIncludedItems()
+            {
+                var sut = CreateSut(TestProjFiles.NewFormat.Core21Items);
+
+                Assert.That(sut.IncludedItems.Count(), Is.EqualTo(5));
+
+                Assert.That(sut.IncludedItems.First().BuildAction, Is.EqualTo("None"));
+                Assert.That(sut.IncludedItems.First().Path, Is.EqualTo(@"excluded_folder\image1.jpg"));
+
+                Assert.That(sut.IncludedItems.Last().BuildAction, Is.EqualTo("EmbeddedResource"));
+                Assert.That(sut.IncludedItems.Last().Path, Is.EqualTo(@"excluded_folder\image3.jpg"));
+            }
+        }
+        
         [TestFixture]
         public class AssemblyInfo : DotNetProjectTests
         {
