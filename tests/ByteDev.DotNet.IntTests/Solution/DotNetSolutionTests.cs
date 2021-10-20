@@ -30,10 +30,7 @@ namespace ByteDev.DotNet.IntTests.Solution
             {
                 var sut = CreateSut(TestSlnFiles.NoFormatVersion);
 
-                var ex = Assert.Throws<InvalidDotNetSolutionException>(() =>
-                {
-                    var x = sut.FormatVersion;
-                });
+                var ex = Assert.Throws<InvalidDotNetSolutionException>(() => _ = sut.FormatVersion);
                 Assert.That(ex.Message, Is.EqualTo("A valid Format Version could not be found in the sln text."));
             }
         }
@@ -46,10 +43,7 @@ namespace ByteDev.DotNet.IntTests.Solution
             {
                 var sut = CreateSut(TestSlnFiles.NoMajorVersion);
 
-                var ex = Assert.Throws<InvalidDotNetSolutionException>(() =>
-                {
-                    var x = sut.MajorVersion;
-                });
+                var ex = Assert.Throws<InvalidDotNetSolutionException>(() => _ = sut.MajorVersion);
                 Assert.That(ex.Message, Is.EqualTo("A valid Major Version could not be found in the sln text."));
             }
 
@@ -86,10 +80,7 @@ namespace ByteDev.DotNet.IntTests.Solution
             {
                 var sut = CreateSut(TestSlnFiles.NoVsVersion);
 
-                var ex = Assert.Throws<InvalidDotNetSolutionException>(() =>
-                {
-                    var x = sut.VisualStudioVersion;
-                });
+                var ex = Assert.Throws<InvalidDotNetSolutionException>(() => _ = sut.VisualStudioVersion);
                 Assert.That(ex.Message, Is.EqualTo("A valid Visual Studio Version could not be found in the sln text."));
             }
         }
@@ -109,11 +100,8 @@ namespace ByteDev.DotNet.IntTests.Solution
             public void WhenSlnHasNoMinVisualStudioVersion_ThenThrowException()
             {
                 var sut = CreateSut(TestSlnFiles.NoMinVsVersion);
-
-                var ex = Assert.Throws<InvalidDotNetSolutionException>(() =>
-                {
-                    var x = sut.MinimumVisualStudioVersion;
-                });
+                
+                var ex = Assert.Throws<InvalidDotNetSolutionException>(() => _ = sut.MinimumVisualStudioVersion);
                 Assert.That(ex.Message, Is.EqualTo("A valid Minimum Visual Studio Version could not be found in the sln text."));
             }
         }

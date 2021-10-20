@@ -12,7 +12,7 @@ namespace ByteDev.DotNet.Project
         /// <summary>
         /// Initializes a new instance of the <see cref="T:ByteDev.DotNet.Project.InvalidDotNetProjectException" /> class.
         /// </summary>
-        public InvalidDotNetProjectException()
+        public InvalidDotNetProjectException() : this("The .NET project was invalid.")
         {
         }
 

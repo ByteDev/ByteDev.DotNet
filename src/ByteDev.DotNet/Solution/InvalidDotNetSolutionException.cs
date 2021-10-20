@@ -12,7 +12,7 @@ namespace ByteDev.DotNet.Solution
         /// <summary>
         /// Initializes a new instance of the <see cref="T:ByteDev.DotNet.Solution.InvalidDotNetSolutionException" /> class.
         /// </summary>
-        public InvalidDotNetSolutionException()
+        public InvalidDotNetSolutionException() : this("The .NET solution was invalid.")
         {
         }
 
