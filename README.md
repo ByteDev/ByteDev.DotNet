@@ -47,6 +47,7 @@ Console.WriteLine(dotNetSolution.Projects.Count);
 - Projects
 - GlobalSections
 
+---
 
 ### DotNetProject
 
