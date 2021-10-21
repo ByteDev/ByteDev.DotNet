@@ -109,6 +109,25 @@ namespace ByteDev.DotNet.UnitTests.Project
             Assert.That(sut.OperatingSystem, Is.EqualTo(os));
         }
 
+        [TestCase("net6", TargetFrameworkType.Core, "6", ".NET 6", null)]
+        [TestCase("net6.0", TargetFrameworkType.Core, "6.0", ".NET 6.0", null)]
+        [TestCase("net6.0-android", TargetFrameworkType.Core, "6.0", ".NET 6.0 (android)", "android")]
+        [TestCase("net6.0-ios", TargetFrameworkType.Core, "6.0", ".NET 6.0 (ios)", "ios")]
+        [TestCase("net6.0-macos", TargetFrameworkType.Core, "6.0", ".NET 6.0 (macos)", "macos")]
+        [TestCase("net6.0-maccatalyst", TargetFrameworkType.Core, "6.0", ".NET 6.0 (maccatalyst)", "maccatalyst")]
+        [TestCase("net6.0-tvos", TargetFrameworkType.Core, "6.0", ".NET 6.0 (tvos)", "tvos")]
+        [TestCase("net6.0-windows", TargetFrameworkType.Core, "6.0", ".NET 6.0 (windows)", "windows")]
+        public void WhenTargetIsDotNet6_ThenSetProperties(string moniker, TargetFrameworkType frameworkType, string version, string description, string os)
+        {
+            var sut = new TargetFramework(moniker);
+
+            Assert.That(sut.Moniker, Is.EqualTo(moniker));
+            Assert.That(sut.FrameworkType, Is.EqualTo(frameworkType));
+            Assert.That(sut.Version, Is.EqualTo(version));
+            Assert.That(sut.Description, Is.EqualTo(description));
+            Assert.That(sut.OperatingSystem, Is.EqualTo(os));
+        }
+
         [TestCase("v4.5", TargetFrameworkType.Framework, "4.5", ".NET Framework 4.5")]
         [TestCase("v4.7.2", TargetFrameworkType.Framework, "4.7.2", ".NET Framework 4.7.2")]
         public void WhenTargetIsOldFormatFramework_ThenSetProperties(string moniker, TargetFrameworkType frameworkType, string version, string description)

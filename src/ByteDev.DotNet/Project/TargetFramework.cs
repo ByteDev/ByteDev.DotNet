@@ -6,6 +6,10 @@ namespace ByteDev.DotNet.Project
     /// <summary>
     /// Represents the .NET project target type.
     /// </summary>
+    /// <remarks>
+    /// For further details on target frameworks see:
+    /// https://docs.microsoft.com/en-us/dotnet/standard/frameworks
+    /// </remarks>
     public class TargetFramework
     {
         /// <summary>
@@ -63,10 +67,11 @@ namespace ByteDev.DotNet.Project
             FrameworkType = TargetFrameworkType.Unknown;
             Version = string.Empty;
 
-            if (Moniker.StartsWith("net5", true, CultureInfo.InvariantCulture))
+            if (Moniker.StartsWith("net6", true, CultureInfo.InvariantCulture) ||
+                Moniker.StartsWith("net5", true, CultureInfo.InvariantCulture))
             {
                 FrameworkType = TargetFrameworkType.Core;
-                SetVersionDotNet5();
+                SetVersionDotNet5Plus();
             }
             else if (Moniker.StartsWith("netcoreapp", true, CultureInfo.InvariantCulture))
             {
@@ -145,7 +150,7 @@ namespace ByteDev.DotNet.Project
             }
         }
 
-        private void SetVersionDotNet5()
+        private void SetVersionDotNet5Plus()
         {
             var segments = Moniker.Split('-');
 

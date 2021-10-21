@@ -1,6 +1,6 @@
 # Release Notes
 
-## 7.2.0 - ?
+## 7.2.0 - 21 October 2021
 
 Breaking changes:
 - (None)
@@ -8,6 +8,7 @@ Breaking changes:
 New features:
 - Added `DotNetProject.ExcludedItems` property.
 - Added `DotNetProject.IncludedItems` property.
+- Added `TargetFramework` support for .NET 6.
 
 Bug fixes / internal changes:
 - Added default message for `InvalidDotNetProjectException` and `InvalidDotNetSolutionException`.
