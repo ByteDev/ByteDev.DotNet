@@ -12,6 +12,7 @@ New features:
 
 Bug fixes / internal changes:
 - Added default message for `InvalidDotNetProjectException` and `InvalidDotNetSolutionException`.
+- Updated package dependency of `ByteDev.Xml` to v2.0.0.
 
 ## 7.1.0 - 09 December 2020
 
