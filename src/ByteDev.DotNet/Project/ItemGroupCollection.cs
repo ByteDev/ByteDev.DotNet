@@ -37,7 +37,7 @@ namespace ByteDev.DotNet.Project
 
             return ItemGroupElements
                 .Descendants()
-                .Where(e => IsBuildActionItem(e) && e.Attribute("Remove") != null)
+                .Where(e => BuildAction.IsValid(e.Name.LocalName) && e.Attribute("Remove") != null)
                 .Select(CreateExcludedItemFor);
         }
 
@@ -48,17 +48,8 @@ namespace ByteDev.DotNet.Project
 
             return ItemGroupElements
                 .Descendants()
-                .Where(e => IsBuildActionItem(e) && e.Attribute("Include") != null)
+                .Where(e => BuildAction.IsValid(e.Name.LocalName) && e.Attribute("Include") != null)
                 .Select(CreateIncludedItemFor);
-        }
-
-        private static bool IsBuildActionItem(XElement e)
-        {
-            return e.Name.LocalName == "None" ||
-                   e.Name.LocalName == "Content" ||
-                   e.Name.LocalName == "Compile" ||
-                   e.Name.LocalName == "Resource" ||
-                   e.Name.LocalName == "EmbeddedResource";
         }
 
         private static IList<XElement> GetItemGroups(XDocument xDocument)

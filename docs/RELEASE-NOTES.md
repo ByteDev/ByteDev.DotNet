@@ -18,7 +18,7 @@ Breaking changes:
 - (None)
 
 New features:
-- Added `TargetFramework.OperatingSystem` for .NET 5 TFM
+- Added `TargetFramework.OperatingSystem` for .NET 5 TFM.
 
 Bug fixes / internal changes:
 - (None)
@@ -26,11 +26,11 @@ Bug fixes / internal changes:
 ## 7.0.0 - 21 September 2020
 
 Breaking changes:
-- `DotNetProjectTarget` is now `TargetFramework`
-- `TargetType` is now `TargetFrameworkType`
+- Renamed `DotNetProjectTarget` to `TargetFramework`.
+- Renamed `TargetType` to `TargetFrameworkType`.
 
 New features:
-- Added greater target framework moniker support
+- Added greater target framework moniker support.
 
 Bug fixes / internal changes:
 - Fixes to handle more .NET 5 target framework monikers.
