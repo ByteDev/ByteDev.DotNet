@@ -67,5 +67,7 @@ Console.WriteLine(dotNetProject.Format);
 - Format
 - ProjectReferences
 - PackageReferences
+- ExcludedItems
+- IncludedItems
 - AssemblyInfo
 - NugetMetaData
