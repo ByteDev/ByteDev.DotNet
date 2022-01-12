@@ -1,6 +1,5 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/github/bytedev/ByteDev.DotNet?branch=master&svg=true)](https://ci.appveyor.com/project/bytedev/ByteDev-DotNet/branch/master)
 [![NuGet Package](https://img.shields.io/nuget/v/ByteDev.DotNet.svg)](https://www.nuget.org/packages/ByteDev.DotNet)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/d7286791f04843528797e2a48e72a070)](https://www.codacy.com/manual/ByteDev/ByteDev.DotNet?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ByteDev/ByteDev.DotNet&amp;utm_campaign=Badge_Grade)
 
 # ByteDev.DotNet
 
