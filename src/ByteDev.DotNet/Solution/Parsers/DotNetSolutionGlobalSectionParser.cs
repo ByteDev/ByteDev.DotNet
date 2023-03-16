@@ -48,7 +48,7 @@ namespace ByteDev.DotNet.Solution.Parsers
             {
                 var nameValue = settingLine.Split(new[] {" = "}, StringSplitOptions.None).ToArray();
 
-                gc.Settings.Add(nameValue[0], nameValue[1]);
+                gc.Settings.Add(nameValue[0], nameValue.Length > 1 ? nameValue[1] : string.Empty);
             }
 
             return gc;
