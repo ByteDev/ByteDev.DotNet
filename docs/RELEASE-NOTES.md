@@ -1,5 +1,16 @@
 # Release Notes
 
+## 7.2.1 - 16 March 2023
+
+Breaking changes:
+- (None)
+
+New features:
+- (None)
+
+Bug fixes / internal changes:
+- Fix check if solution setting has a value. If not, make it an empty string.
+
 ## 7.2.0 - 21 October 2021
 
 Breaking changes:
