@@ -1,6 +1,6 @@
-#addin "nuget:?package=Cake.Incubator&version=6.0.0"
-#tool "nuget:?package=NUnit.ConsoleRunner&version=3.12.0"
-#tool "nuget:?package=GitVersion.CommandLine&version=5.6.10"
+#addin "nuget:?package=Cake.Incubator&version=8.0.0"
+#tool "nuget:?package=NUnit.ConsoleRunner&version=3.16.3"
+#tool "nuget:?package=GitVersion.CommandLine&version=5.12.0"
 #load "ByteDev.Utilities.cake"
 
 var solutionName = "ByteDev.DotNet";
@@ -8,8 +8,6 @@ var projName = "ByteDev.DotNet";
 
 var solutionFilePath = "../" + solutionName + ".sln";
 var nuspecFilePath = projName + ".nuspec";
-
-var nugetSources = new[] {"https://api.nuget.org/v3/index.json"};
 
 var target = Argument("target", "Default");
 
@@ -19,7 +17,6 @@ var nugetDirectory = artifactsDirectory + Directory("NuGet");
 var configuration = GetBuildConfiguration();
 
 Information("Configurtion: " + configuration);
-
 
 Task("Clean")
     .Does(() =>
@@ -36,7 +33,7 @@ Task("Restore")
     {
 		var settings = new NuGetRestoreSettings
 		{
-			Source = nugetSources
+			Source = new[] { "https://api.nuget.org/v3/index.json" }
 		};
 
 		NuGetRestore(solutionFilePath, settings);
@@ -46,38 +43,38 @@ Task("Build")
 	.IsDependentOn("Restore")
     .Does(() =>
 	{	
-		var settings = new DotNetCoreBuildSettings()
+		var settings = new DotNetBuildSettings
         {
             Configuration = configuration
         };
 
-        DotNetCoreBuild(solutionFilePath, settings);
+        DotNetBuild(solutionFilePath, settings);
 	});
 
 Task("UnitTests")
     .IsDependentOn("Build")
     .Does(() =>
 	{
-		var settings = new DotNetCoreTestSettings()
+		var settings = new DotNetTestSettings
 		{
 			Configuration = configuration,
 			NoBuild = true
 		};
 
-		DotNetCoreUnitTests(settings);
+		DotNetUnitTests(settings);
 	});
 
 Task("IntegrationTests")
     .IsDependentOn("UnitTests")
     .Does(() =>
 	{
-		var settings = new DotNetCoreTestSettings()
+		var settings = new DotNetTestSettings()
 		{
 			Configuration = configuration,
 			NoBuild = true
 		};
 
-		DotNetCoreIntTests(settings);
+		DotNetIntTests(settings);
 	});
 	
 Task("CreateNuGetPackages")

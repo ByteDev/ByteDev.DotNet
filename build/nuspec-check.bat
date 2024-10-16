@@ -1,0 +1,1 @@
+powershell.exe -File "nuspec-check.ps1" ../src/ByteDev.Template.LibraryPackage/ByteDev.Template.LibraryPackage.csproj ByteDev.Template.LibraryPackage.nuspec
